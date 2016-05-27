@@ -37,7 +37,7 @@ describe('bidItem reducer', () => {
     expect(nextState.bid_price).to.equal(2300)
   })
 
-  it('should set draft #', () => {
+  it('should set draft #/ID', () => {
     const draft_num = 5
     const id = draft_num
     const action = {
@@ -47,4 +47,28 @@ describe('bidItem reducer', () => {
     const state = reducer(initialState, action)
     expect(state.id).to.equal(5)
   })
+
+  it('should handle variants', () => {
+    const variant = 'golden'
+    const action = {
+      type: a.SET_VARIANT,
+      variant
+    }
+    const state = reducer(initialState, action)
+    expect(state.variant).to.equal('golden')
+  })
+
+  // May go with this. May not.
+  //it('should handle updating entire state', () => {
+  //  const bidItem = {
+  //    ...initialState,
+  //    bid_price: 2000
+  //  }
+  //  let action = {
+  //    type: a.EDIT,
+  //    bidItem
+  //  }
+  //  const state = reducer(initialState, action)
+  //  expect(state.bid_price).to.equal(2000)
+  //})
 })

@@ -10,7 +10,7 @@ function getInitialStateByType(type = 'cattle') {
         weight: 0,
         average_weight: 0,
         price_per: 0,
-        sex: '',
+        variants: '',
         bid_price: 0,
         updated_at: ''
       }
@@ -39,6 +39,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         id
+      }
+    }
+    case a.SET_VARIANT: {
+      const {variant} = action
+      return {
+        ...state,
+        variant
       }
     }
 
