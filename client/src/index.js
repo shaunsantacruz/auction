@@ -6,15 +6,20 @@ import ReactDOM from 'react-dom'
 
 import routes from './routes'
 
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
+import remoteAction from './middleware/remoteAction'
 
 import * as main from './main'
 
 const port = 8090
 const socket = io(`${location.protocol}//${location.hostname}:${port}`)
 
-const store = createStore(main.reducer)
+const createStoreWithMiddleware = applyMiddleware(
+  remoteAction(socket)
+)(createStore)
+
+const store = createStoreWithMiddleware(main.reducer)
 
 ReactDOM.render(
   <Provider store={store}>
