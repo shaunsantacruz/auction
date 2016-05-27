@@ -15,7 +15,7 @@ export default class extends React.Component {
 
   render() {
 
-    const {bid_price} = this.props
+    const {bid_price} = this.props.model
 
     return (
       <div>

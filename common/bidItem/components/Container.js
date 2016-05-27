@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import BidItem from './BidItem'
+import { getModel } from '../selectors'
 
 const Component = (props) => {
   return (
@@ -10,7 +11,7 @@ const Component = (props) => {
 
 function mapStateToProps(state) {
   return {
-    bid_price: state.bidItem.bid_price
+    model: getModel(state)
   }
 }
 
