@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class extends React.Component {
+class BidItem extends React.Component {
 
   constructor(props) {
     super(props)
@@ -32,3 +32,8 @@ export default class extends React.Component {
   }
 }
 
+BidItem.propTypes = {
+  model: React.PropTypes.object.isRequired
+}
+
+export default BidItem

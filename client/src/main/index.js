@@ -25,3 +25,6 @@ export const Root = ({ children }) => {
   )
 }
 
+Root.propTypes = {
+  children: React.PropTypes.element
+}
