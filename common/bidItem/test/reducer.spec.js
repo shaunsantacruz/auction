@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 
 import {expect} from 'chai'
-import {reducer, initialState, actions as a} from '../../common/bidItem'
+import {reducer, initialState, actions as a} from '../index'
 
 describe('bidItem reducer', () => {
 
