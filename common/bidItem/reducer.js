@@ -28,27 +28,26 @@ export default (state = initialState, action) => {
         ...action.initialState
       }
     case a.SET_BID_PRICE: {
-      const {bid_price} = action
+      const bid_price = action.payload
       return {
         ...state,
         bid_price
       }
     }
     case a.SET_ID: {
-      const {id} = action
+      const id = action.payload
       return {
         ...state,
         id
       }
     }
     case a.SET_VARIANT: {
-      const {variant} = action
+      const variant = action.payload
       return {
         ...state,
         variant
       }
     }
-
     default:
       return state
   }

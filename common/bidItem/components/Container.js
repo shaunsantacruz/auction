@@ -1,13 +1,7 @@
-import React from 'react'
 import {connect} from 'react-redux'
 import BidItem from './BidItem'
 import { getModel } from '../selectors'
-
-const Component = (props) => {
-  return (
-    <BidItem {...props} />
-  )
-}
+import { setBidPrice } from '../actions'
 
 function mapStateToProps(state) {
   return {
@@ -15,4 +9,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Component)
+export default connect(
+  mapStateToProps,
+  {onBidPriceChange: setBidPrice}
+)(BidItem)

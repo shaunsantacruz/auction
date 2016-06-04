@@ -4,26 +4,24 @@ class BidItem extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.foo = this.foo.bind(this)
-  }
-
-  foo() {
-
-    console.log(this.props)
   }
 
   render() {
 
-    const {bid_price} = this.props.model
+    let input
+    const {
+      model: { bid_price },
+      onBidPriceChange
+    } = this.props
 
     return (
       <div>
         <p>Bidders</p>
         <form action="#">
           <input
+            ref={node => input = node}
             type="text"
-            onChange={this.foo}
+            onChange={() => {onBidPriceChange(input.value.trim())}}
             value={bid_price}
           />
         </form>
@@ -33,7 +31,8 @@ class BidItem extends React.Component {
 }
 
 BidItem.propTypes = {
-  model: React.PropTypes.object.isRequired
+  model: React.PropTypes.object.isRequired,
+  onBidPriceChange: React.PropTypes.func.isRequired
 }
 
 export default BidItem
