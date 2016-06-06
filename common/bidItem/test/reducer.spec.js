@@ -11,9 +11,10 @@ describe('bidItem reducer', () => {
   })
 
   it('should be able to load state', () => {
+    const state = initialState;
     const action = {
       type: a.SET_STATE,
-      initialState // use initial state to test. Could be any object
+      payload: {state}// use initial state to test. Could be any object
     }
     const nextState = reducer(undefined, action)
     expect(nextState).to.deep.equal(initialState)
@@ -23,7 +24,7 @@ describe('bidItem reducer', () => {
     let bid_price = 2000
     let action = {
       type: a.SET_BID_PRICE,
-      payload: bid_price
+      payload: {bid_price}
     }
     const state = reducer(initialState, action)
     expect(state.bid_price).to.equal(2000)
@@ -31,7 +32,7 @@ describe('bidItem reducer', () => {
     bid_price = 2300
     action = {
       type: a.SET_BID_PRICE,
-      payload: bid_price
+      payload: {bid_price}
     }
     const nextState = reducer(state, action)
     expect(nextState.bid_price).to.equal(2300)
@@ -42,7 +43,7 @@ describe('bidItem reducer', () => {
     const id = draft_num
     const action = {
       type: a.SET_ID,
-      payload: id
+      payload: {id}
     }
     const state = reducer(initialState, action)
     expect(state.id).to.equal(5)
@@ -52,7 +53,7 @@ describe('bidItem reducer', () => {
     const variant = 'golden'
     const action = {
       type: a.SET_VARIANT,
-      payload: variant
+      payload: {variant}
     }
     const state = reducer(initialState, action)
     expect(state.variant).to.equal('golden')

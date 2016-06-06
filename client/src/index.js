@@ -8,9 +8,12 @@ import configureStore from './configureStore'
 import {handleSocketEvents} from './main'
 import {getNamespace, socket} from './socket-client'
 
-const store = configureStore(socket)
+const initialState = window.__INITIAL_STATE__;
+const namespace = getNamespace(location.pathname);
 
-handleSocketEvents(socket, getNamespace(location.pathname), store)
+const store = configureStore(initialState, namespace)
+
+handleSocketEvents(socket, namespace, store)
 
 ReactDOM.render(
   <Provider store={store}>

@@ -5,10 +5,8 @@ import { combineReducers } from 'redux'
 
 import * as bidItem from '../../../common/bidItem'
 import * as bidder from './bidder'
-import * as app from '../../../common/app'
 
 export const reducer = combineReducers({
-  app: app.reducer,
   [bidItem.name]: bidItem.reducer
 })
 

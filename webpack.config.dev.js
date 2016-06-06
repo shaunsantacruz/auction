@@ -4,8 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     './client/src/index.js'
   ],
   module: {
@@ -34,7 +33,7 @@ module.exports = {
   devServer: {
     contentBase: './public',
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: true
     //noInfo: true,
   },
   plugins: [
