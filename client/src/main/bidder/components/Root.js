@@ -3,8 +3,10 @@ import Container from './Container'
 
 export default class Root extends React.Component {
 
-  foo() {
-    console.log('foo')
+  constructor(props) {
+    super(props)
+    
+    //console.log(props.location.pathname);
   }
 
   render() {

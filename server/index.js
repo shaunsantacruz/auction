@@ -1,4 +1,9 @@
 import server from './src/server'
-import socketServer from './src/socket-server'
+import createSocketServer from './src/socket-server'
+import handleSocketEvents from './src/socket-events'
+import configureStore from './src/configureStore'
 
-socketServer(server)
+const store = configureStore()
+const {socketServer} = createSocketServer(server)
+
+handleSocketEvents(socketServer, store)

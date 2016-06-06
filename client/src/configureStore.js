@@ -1,10 +1,10 @@
 import {createStore, applyMiddleware} from 'redux'
 
 import * as main from './main'
-import remoteAction from './middleware/remoteAction'
-import socket from './socket-client'
 
-const configureStore = () => {
+import remoteAction from './middleware/remoteAction'
+
+const configureStore = (socket) => {
 
   const createStoreWithMiddleware = applyMiddleware(
     remoteAction(socket)
