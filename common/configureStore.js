@@ -7,6 +7,8 @@ import remoteAction from './middleware/remoteAction'
 const configureStore = (initialState, socket) => {
 
   let middlewares = []
+  const DEV_MODE = process.env.NODE_ENV === 'development'
+  const useDevTools = DEV_MODE && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined';
 
   if(socket) {
     middlewares = [remoteAction(socket)]
@@ -19,9 +21,11 @@ const configureStore = (initialState, socket) => {
   const store = createStoreWithMiddleware(
     main.reducer,
     initialState,
-    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f)
+    // Redux DevTools chrome extension
+    useDevTools ? window.devToolsExtension() : f => f
+  )
 
-  if (process.env.NODE_ENV === 'development' && module.hot) {
+  if (DEV_MODE && module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./main', () => {
       const nextRootReducer = require('./main').reducer;
