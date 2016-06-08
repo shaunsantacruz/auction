@@ -21,21 +21,21 @@ describe('bidItem reducer', () => {
   })
 
   it('should set and update a bid price', () => {
-    let bid_price = 2000
+    let price = 2000
     let action = {
-      type: a.SET_BID_PRICE,
-      payload: {bid_price}
+      type: a.SET_PRICE,
+      payload: {price}
     }
     const state = reducer(initialState, action)
-    expect(state.bid_price).to.equal(2000)
+    expect(state.price).to.equal(2000)
 
-    bid_price = 2300
+    price = 2300
     action = {
-      type: a.SET_BID_PRICE,
-      payload: {bid_price}
+      type: a.SET_PRICE,
+      payload: {price}
     }
     const nextState = reducer(state, action)
-    expect(nextState.bid_price).to.equal(2300)
+    expect(nextState.price).to.equal(2300)
   })
 
   it('should set draft #/ID', () => {
@@ -63,13 +63,13 @@ describe('bidItem reducer', () => {
   //it('should handle updating entire state', () => {
   //  const bidItem = {
   //    ...initialState,
-  //    bid_price: 2000
+  //    price: 2000
   //  }
   //  let action = {
   //    type: a.EDIT,
   //    bidItem
   //  }
   //  const state = reducer(initialState, action)
-  //  expect(state.bid_price).to.equal(2000)
+  //  expect(state.price).to.equal(2000)
   //})
 })

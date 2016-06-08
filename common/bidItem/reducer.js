@@ -8,11 +8,11 @@ function getInitialStateByType(type = 'cattle') {
         name: '',
         count: 0,
         weight: 0,
-        average_weight: 0,
-        price_per: 0,
+        averageWeight: 0,
+        pricePer: 0,
         variants: '',
-        bid_price: 0,
-        updated_at: ''
+        price: 0,
+        updatedAt: ''
       }
     default:
       return {}
@@ -27,11 +27,11 @@ export default (state = initialState, action) => {
       const {state} = action.payload
       return state
     }
-    case a.SET_BID_PRICE: {
-      const {bid_price} = action.payload
+    case a.SET_PRICE: {
+      const {price} = action.payload
       return {
         ...state,
-        bid_price
+        price
       }
     }
     case a.SET_ID: {

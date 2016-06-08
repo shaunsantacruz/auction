@@ -23,7 +23,7 @@
     "quotes": [2, "single"],
     "strict": [2, "never"],
     "no-console":0,
-
+    "comma-dangle": ["error", "only-multiline"],
     //
     // eslint-plugin-react
     //

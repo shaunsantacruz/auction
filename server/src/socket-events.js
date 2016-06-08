@@ -16,6 +16,8 @@ export default function handleSocketEvents(socketServer, store) {
     })
   )
 
+  store.subscribe(() => console.log('chgd'))
+
   socketServer.of('/bidder').on('connection', (socket) => {
     console.log( 'User ' + socket.id + ' connected' );
 

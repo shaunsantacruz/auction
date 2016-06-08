@@ -7,12 +7,10 @@ import React from 'react'
 import { RouterContext, match } from 'react-router'
 import {createLocation} from 'history'
 
-import routes from '../../client/src/routes'
-import configureServerStore from './configureServerStore'
-import configureClientStore from '../../client/src/configureStore'
+import routes from '../../common/routes'
+import configureStore from '../../common/configureStore'
 import createSocketServer from './socket-server'
 import handleSocketEvents from './socket-events'
-//import DevTools from '../common/containers/DevTools'
 //import cors from 'cors'
 import webpack from 'webpack'
 import webpackConfig from '../../webpack.config.dev'
@@ -40,12 +38,14 @@ const server = app.listen(config.port, config.host, function(err) {
 })
 console.log('server listening on port: %s', config.port)
 
+
 // create socket server
 const {socketServer} = createSocketServer(server)
 // Store for our app
-const serverStore = configureServerStore()
+const initialState = {};
+const store = configureStore(initialState)
 // Socket events
-handleSocketEvents(socketServer, serverStore)
+handleSocketEvents(socketServer, store)
 
 //app.use(cors())
 
@@ -60,12 +60,10 @@ app.get('/*', function(req, res) {
   const location = createLocation(req.url)
   match({ routes, location }, (err, redirectLocation, renderProps) => {
 
-    const initialState = undefined;
-    const clientStore = configureClientStore(initialState)
-     console.log(redirectLocation)
-     if(redirectLocation) {
-       return res.status(302).end(redirectLocation)
-     }
+    //const clientStore = configureClientStore(initialState)
+    // if(redirectLocation) {
+    //   return res.status(302).end(redirectLocation)
+    // }
 
     if(err) {
       console.error(err)
@@ -76,18 +74,17 @@ app.get('/*', function(req, res) {
       return res.status(404).end('Not found')
     }
     const InitialView = (
-      <Provider store={serverStore}>
+      <Provider store={store}>
           <RouterContext {...renderProps} />
       </Provider>
     )
 
-    const finalState = serverStore.getState()
+    const finalState = store.getState()
     const html = renderToString(InitialView)
     res.status(200).end(renderFullPage(html, finalState))
   })
 })
 // goes inside initialView
-//{process.env.NODE_ENV !== 'production' && <DevTools />}
 
 function renderFullPage(html, initialState) {
   return `

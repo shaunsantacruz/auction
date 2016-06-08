@@ -3,11 +3,13 @@ import { Link } from 'react-router'
 
 import { combineReducers } from 'redux'
 
-import * as bidItem from '../../../common/bidItem'
-import * as bidder from './bidder'
+import * as bidItem from '../bidItem'
+import * as bidBoard from '../bidBoard'
+import * as bidder from '../bidder'
 
 export const reducer = combineReducers({
-  [bidItem.name]: bidItem.reducer
+  [bidItem.name]: bidItem.reducer,
+  [bidBoard.name]: bidBoard.reducer
 })
 
 export function handleSocketEvents(socket, namespace, store) {

@@ -10,8 +10,8 @@ class BidItem extends React.Component {
 
     let input
     const {
-      model: { bid_price },
-      onBidPriceChange
+      model: { price },
+      onPriceChange
     } = this.props
 
     return (
@@ -21,8 +21,8 @@ class BidItem extends React.Component {
           <input
             ref={node => input = node}
             type="text"
-            onChange={() => {onBidPriceChange(input.value.trim())}}
-            value={bid_price}
+            onChange={() => {onPriceChange(input.value.trim())}}
+            value={price}
           />
         </form>
       </div>
@@ -32,7 +32,7 @@ class BidItem extends React.Component {
 
 BidItem.propTypes = {
   model: React.PropTypes.object.isRequired,
-  onBidPriceChange: React.PropTypes.func.isRequired
+  onPriceChange: React.PropTypes.func.isRequired
 }
 
 export default BidItem

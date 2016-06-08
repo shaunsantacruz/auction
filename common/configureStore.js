@@ -6,12 +6,20 @@ import remoteAction from './middleware/remoteAction'
 
 const configureStore = (initialState, socket) => {
 
+  let middlewares = []
+
+  if(socket) {
+    middlewares = [remoteAction(socket)]
+  }
+
   const createStoreWithMiddleware = applyMiddleware(
-    remoteAction(socket)
+    ...middlewares
   )(createStore)
 
-  const store = createStoreWithMiddleware(main.reducer, initialState)
-
+  const store = createStoreWithMiddleware(
+    main.reducer,
+    initialState,
+    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f)
 
   if (process.env.NODE_ENV === 'development' && module.hot) {
     // Enable Webpack hot module replacement for reducers

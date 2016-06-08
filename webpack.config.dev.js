@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './client/src/index.js'
+    './client/index.js'
   ],
   module: {
     preLoaders: [
@@ -15,11 +15,19 @@ module.exports = {
         exclude: [/node_modules/, '/build', '/assets/bundle.js']
       }
     ],
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'react-hot!babel'
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'react-hot!babel'
+      },
+      { test: /\.png$/, loader: "url-loader?limit=100000" },
+      { test: /\.(jpg|gif|jpeg)$/, loader: "file-loader" },
+      {
+        test: /\.(scss|css)$/,
+        loaders: ["style", "css", "sass"]
+      }
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']

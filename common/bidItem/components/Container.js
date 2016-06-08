@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import BidItem from './BidItem'
 import { getModel } from '../selectors'
-import { setBidPrice } from '../actions'
+import { setPrice } from '../actions'
 
 function mapStateToProps(state) {
   return {
@@ -11,5 +11,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {onBidPriceChange: setBidPrice}
+  {onPriceChange: setPrice}
 )(BidItem)
