@@ -6,10 +6,12 @@ import { combineReducers } from 'redux'
 import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
 import * as bidder from '../bidder'
+import * as user from '../user'
 
 export const reducer = combineReducers({
   [bidItem.name]: bidItem.reducer,
-  [bidBoard.name]: bidBoard.reducer
+  [bidBoard.name]: bidBoard.reducer,
+  [user.name]: user.reducer,
 })
 
 export function handleSocketEvents(socket, namespace, store) {

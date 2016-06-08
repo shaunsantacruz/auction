@@ -11,8 +11,8 @@ import configureStore from './../common/configureStore'
 import {handleSocketEvents} from './../common/main'
 import {getNamespace, socket} from './src/socket-client'
 
-const initialState = window.__INITIAL_STATE__;
-const namespace = getNamespace(location.pathname);
+const initialState = window.__INITIAL_STATE__
+const namespace = getNamespace(location.pathname)
 
 const store = configureStore(initialState, namespace)
 

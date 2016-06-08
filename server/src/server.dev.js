@@ -38,11 +38,26 @@ const server = app.listen(config.port, config.host, function(err) {
 })
 console.log('server listening on port: %s', config.port)
 
+// generate user
+// Mocked User
+const user = {
+  id: 515,
+  fullName: 'Dan Abramov',
+  firstName: 'Dan',
+  lastName: 'Abromov',
+  email: 'dan@awesomesauce.com',
+  city: 'New York',
+  state: 'NY',
+  buyerNumber: 'foo_125',
+  role: 'bidder'
+}
 
-// create socket server
+// create socket server for server
 const {socketServer} = createSocketServer(server)
 // Store for our app
-const initialState = {};
+const initialState = {
+  user
+}
 const store = configureStore(initialState)
 // Socket events
 handleSocketEvents(socketServer, store)

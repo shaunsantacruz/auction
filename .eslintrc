@@ -24,6 +24,7 @@
     "strict": [2, "never"],
     "no-console":0,
     "comma-dangle": ["error", "only-multiline"],
+    "semi": [2, "never"],
     //
     // eslint-plugin-react
     //

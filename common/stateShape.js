@@ -45,9 +45,12 @@ const server_state = {
     buyerNumber: 'foo_153',
     createdAt: 'timestamp',
     amount: 10022,
-    socketId: 64654654564
   },
-  currentViewers: [515, 175],
+  // Not needed. Will reduce bidLog
+  //bidLogByUserId: {
+  //  515: [{},{},{}],
+  //  451: [...{}],
+  //},
   messagesByUserId: {
     515: [{
       id: 0,
@@ -60,9 +63,21 @@ const server_state = {
       text: 'Yes, we accept bitcoin.',
       createdAt: 'timestamp',
     }],
-    175: [{},{},]
+    175: [{},{}]
   },
-  messagesByUserId: {
+  user: {
+    id: 515,
+    fullName: 'Dan Abramov',
+    firstName: 'Dan',
+    lastName: 'Abromov',
+    email: 'dan@awesomesauce.com',
+    city: 'New York',
+    state: 'NY',
+    buyerNumber: 'foo_125',
+    role: 'bidder'
+  },
+  loggedInUserIds: [515, 175],
+  biddersByUserId: {
     515: {
       id: 515,
       fullName: 'Dan Abramov',

@@ -3,5 +3,8 @@ node_modules
 npm-debug.log
 .idea/
 
+server/build
+
 # Vagrant stuff
 /.vagrant
+ß

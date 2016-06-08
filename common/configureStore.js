@@ -8,7 +8,7 @@ const configureStore = (initialState, socket) => {
 
   let middlewares = []
   const DEV_MODE = process.env.NODE_ENV === 'development'
-  const useDevTools = DEV_MODE && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined';
+  const useDevTools = DEV_MODE && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
 
   if(socket) {
     middlewares = [remoteAction(socket)]
@@ -28,9 +28,9 @@ const configureStore = (initialState, socket) => {
   if (DEV_MODE && module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./main', () => {
-      const nextRootReducer = require('./main').reducer;
-      store.replaceReducer(nextRootReducer);
-    });
+      const nextRootReducer = require('./main').reducer
+      store.replaceReducer(nextRootReducer)
+    })
   }
 
   return store
