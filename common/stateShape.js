@@ -28,29 +28,30 @@ const server_state = {
     },
     price: 0
   },
-  bidLog: [{
-    userId: 515,
-    fullName: 'Dan Abramov',
-    amount: 31550,
-    createdAt: 'timestamp',
-  }, {
-    userId: 175,
-    fullName: 'Freddy Mercury',
-    amount: 44799,
-    createdAt: 'timestamp',
-  }],
-  recentBidder: {
-    userId: 515,
-    fullName: 'Dan Abramov',
-    buyerNumber: 'foo_153',
-    createdAt: 'timestamp',
-    amount: 10022,
+  bidLog: {
+    all: [{
+      userId: 515,
+      fullName: 'Paul Irish',
+      amount: 31550,
+      createdAt: 'timestamp',
+    }, {
+      userId: 175,
+      fullName: 'Freddy Mercury',
+      amount: 44799,
+      createdAt: 'timestamp',
+    }],
+    current: [{
+      userId: 515,
+      fullName: 'Dan Abramov',
+      amount: 31550,
+      createdAt: 'timestamp',
+    }, {
+      userId: 175,
+      fullName: 'Freddy Mercury',
+      amount: 44799,
+      createdAt: 'timestamp',
+    }]
   },
-  // Not needed. Will reduce bidLog
-  //bidLogByUserId: {
-  //  515: [{},{},{}],
-  //  451: [...{}],
-  //},
   messagesByUserId: {
     515: [{
       id: 0,

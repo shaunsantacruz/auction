@@ -10,13 +10,11 @@ export default function handleSocketEvents(socketServer, store) {
       console.log('old', oldVal)
       console.log('new', newVal)
       if(oldVal === newVal) {
-        return;
+        return
       }
       socketServer.of('/bidder').emit('bid_state', bidItem.selectors.getModel(store.getState()))
     })
   )
-
-  store.subscribe(() => console.log('chgd'))
 
   socketServer.of('/bidder').on('connection', (socket) => {
     console.log( 'User ' + socket.id + ' connected' );
@@ -27,12 +25,11 @@ export default function handleSocketEvents(socketServer, store) {
     })
   })
 
-  //socketServer.on('connection', (socket) => {
-  //  console.log( 'User ' + socket.id + ' connected' );
-  //  // listen on action from client
-  //  socket.on('action', (action) => {
-  //    // dispatch action
-  //    store.dispatch(action)
-  //  })
-  //})
+  socketServer.on('connection', (socket) => {
+    socket.on('join', ({userId}) => {
+      socket.join(userId)
+      //io.to(userId).emit('joined', 'joined')
+      socketServer.to(userId).emit('joined', 'joined')
+    })
+  })
 }
