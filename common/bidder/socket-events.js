@@ -8,5 +8,13 @@ export default function handleSocketEvents(socket, namespace, store) {
 
   // Attempt to join room
   const userObj = user.selectors.getModel(store.getState())
-  socket.emit('join', {userObj})
+  socket.emit('join', userObj)
+
+  socket.on('joined', (data) => {
+    console.log(data);
+  })
+
+  socket.on('disconnect', () => {
+    socket.emit('user disconnect', userObj)
+  })
 }

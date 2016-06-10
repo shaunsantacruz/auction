@@ -7,11 +7,15 @@ import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
 import * as bidder from '../bidder'
 import * as user from '../user'
+import * as usersById from '../../common/usersById'
+import * as loggedInUserIds from '../../common/loggedInUserIds'
 
 export const reducer = combineReducers({
   [bidItem.name]: bidItem.reducer,
   [bidBoard.name]: bidBoard.reducer,
   [user.name]: user.reducer,
+  [usersById.name]: usersById.reducer,
+  [loggedInUserIds.name]: loggedInUserIds.reducer,
 })
 
 export function handleSocketEvents(socket, namespace, store) {

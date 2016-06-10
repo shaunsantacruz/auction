@@ -21,12 +21,14 @@ const server_state = {
     updatedAt: 'timestamp',
   },
   bidBoard: {
+    price: 0,
     recentBidder: {
       fullName: '-',
       userId: 60,
       createdAt: 'timestamp'
     },
-    price: 0
+    tieBidsUserIds: [],
+    onDeck: {},
   },
   bidLog: {
     all: [{

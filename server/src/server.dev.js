@@ -40,6 +40,7 @@ console.log('server listening on port: %s', config.port)
 
 // generate user
 // Mocked User
+let id = 0
 const user = {
   id: 515,
   fullName: 'Dan Abramov',
