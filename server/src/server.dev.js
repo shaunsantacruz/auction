@@ -40,7 +40,12 @@ app.use(require('webpack-hot-middleware')(compiler))
 //app.use('/', express.static(path.join(__dirname, '..', 'static')))
 
 // Store for our app
-const initialState = {}
+const user = {
+  id: null
+}
+const initialState = {
+  user
+}
 const store = configureStore(initialState)
 
 app.get('/*', function(req, res) {

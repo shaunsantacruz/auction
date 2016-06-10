@@ -4,22 +4,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import {flexboxgrid} from 'flexboxgrid'
+import SocketProvider from '../common/socket/SocketProvider'
+
 import routes from './../common/routes'
 import configureStore from './../common/configureStore'
 
-import {handleSocketEvents} from './../common/main'
-import {getNamespace, socket} from './src/socket-client'
-
-const initialState = window.__INITIAL_STATE__
+import {getNamespace, socket} from './socket-client'
 const namespace = getNamespace(location.pathname)
 
+const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState, namespace)
-
-handleSocketEvents(socket, namespace, store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+    <SocketProvider socket={socket} namespace={namespace}>
+      <Router history={browserHistory} routes={routes}/>
+    </SocketProvider>
   </Provider>,
   document.getElementById('app')
 )

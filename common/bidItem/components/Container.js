@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import BidItem from './BidItem'
-import { bindActionCreators } from 'redux'
+//import { bindActionCreators } from 'redux'
 
 import * as user from '../../user'
 
@@ -14,11 +14,11 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    handleBidAttempt: bindActionCreators(handleBidAttempt, dispatch)
-  }
-}
+//function mapDispatchToProps(dispatch) {
+//  return {
+//    handleBidAttempt: bindActionCreators(handleBidAttempt, dispatch)
+//  }
+//}
 
 export default connect(
   mapStateToProps,

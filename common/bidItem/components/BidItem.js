@@ -36,7 +36,7 @@ class BidItem extends React.Component {
 
 BidItem.propTypes = {
   model: React.PropTypes.object.isRequired,
-  userId: React.PropTypes.number.isRequired,
+  userId: React.PropTypes.string.isRequired,
   onClickHandler: React.PropTypes.func.isRequired
 }
 

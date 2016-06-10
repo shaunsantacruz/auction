@@ -1,10 +1,17 @@
 import {name} from './__init__'
 import uuid from 'uuid'
 
-export const GET_USER = `${name}/GET_USER`
+//export const GET_USER = `${name}/GET_USER`
+export const SET_STATE = `${name}/SET_STATE`
 
+export const setState = (user) => ({
+  type: SET_STATE,
+  payload: { user }
+})
+
+// async
 function fetchUser() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Mocked User
     const uid = uuid.v1().substr(0, 5)
     const user = {
@@ -26,5 +33,8 @@ function fetchUser() {
 }
 
 export const getUser = (id) => (dispatch) => {
-  fetchUser(id).then((user) => {console.log(user)})
+  fetchUser(id)
+    .then((user) => {
+      dispatch(setState(user))
+    })
 }

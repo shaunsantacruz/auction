@@ -5,7 +5,7 @@ import { combineReducers } from 'redux'
 
 import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
-import * as bidder from '../bidder'
+//import * as bidder from '../bidder'
 import * as user from '../user'
 import * as usersById from '../../common/usersById'
 import * as loggedInUserIds from '../../common/loggedInUserIds'
@@ -18,11 +18,11 @@ export const reducer = combineReducers({
   [loggedInUserIds.name]: loggedInUserIds.reducer,
 })
 
-export function handleSocketEvents(socket, namespace, store) {
-  if(`/${bidder.name}` === namespace.nsp) {
-    bidder.handleSockets(socket, namespace, store)
-  }
-}
+//export function handleSocketEvents(socket, namespace, store) {
+//  if(`/${bidder.name}` === namespace.nsp) {
+//    bidder.handleSockets(socket, namespace, store)
+//  }
+//}
 
 export const Root = ({ children }) => {
   return (

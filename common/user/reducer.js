@@ -1,6 +1,7 @@
+import * as a from './actions'
 
 export const initialState = {
-  id: 0,
+  id: null,
   fullName: null,
   firstName: null,
   lastName: null,
@@ -12,9 +13,13 @@ export const initialState = {
 }
 
 export default (state = initialState, action) => {
-  const {type} = action
+  const {type, payload: {user} = {}} = action
 
   switch (type) {
-    default: return state
+    case a.SET_STATE: {
+      return user
+    }
+    default:
+      return state
   }
 }

@@ -7,7 +7,6 @@ import {createStore, applyMiddleware} from 'redux'
 import { combineReducers } from 'redux'
 import * as bidItem from '../../common/bidItem'
 
-
 export const reducer = combineReducers({
   [bidItem.name]: bidItem.reducer
 })
