@@ -1,5 +1,6 @@
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
+import {compose} from 'ramda'
 
 import * as main from './main'
 
@@ -20,8 +21,10 @@ const configureStore = (initialState, socket) => {
   const store = createStore(
     main.reducer,
     initialState,
-    applyMiddleware(...middlewares),
-    useDevTools ? window.devToolsExtension() : f => f
+    compose(
+      applyMiddleware(...middlewares),
+      useDevTools ? window.devToolsExtension() : f => f
+    )
   )
 
   if (DEV_MODE && module.hot) {
