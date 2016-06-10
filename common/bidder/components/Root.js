@@ -1,27 +1,25 @@
 import React from 'react'
 import Container from './Container'
 
-//export default class Root extends React.Component {
-//
-//  constructor(props) {
-//    super(props)
-//  }
-//
-//  render() {
-//    return (
-//      <div>
-//        <h2>Bidder Root</h2>
-//        <Container />
-//      </div>
-//    )
-//  }
-//}
+export default class Root extends React.Component {
 
-export default () => {
-  return (
-    <div>
-      <h2>Bidder Root</h2>
-      <Container />
-    </div>
-  )
+  constructor(props) {
+    super(props)
+  }
+
+
+  componentDidMount() {
+
+  }
+
+
+  render() {
+    return (
+      <div>
+        <h2>Bidder Root</h2>
+        <Container />
+      </div>
+    )
+  }
 }
+

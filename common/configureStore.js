@@ -1,4 +1,5 @@
 import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
 
 import * as main from './main'
 
@@ -11,17 +12,15 @@ const configureStore = (initialState, socket) => {
   const useDevTools = DEV_MODE && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
 
   if(socket) {
-    middlewares = [remoteAction(socket)]
+    middlewares.push(remoteAction(socket))
   }
 
-  const createStoreWithMiddleware = applyMiddleware(
-    ...middlewares
-  )(createStore)
+  middlewares.push(thunk)
 
-  const store = createStoreWithMiddleware(
+  const store = createStore(
     main.reducer,
     initialState,
-    // Redux DevTools chrome extension
+    applyMiddleware(...middlewares),
     useDevTools ? window.devToolsExtension() : f => f
   )
 
