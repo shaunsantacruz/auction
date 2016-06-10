@@ -11,7 +11,7 @@ export default function handleSocketEvents(socket, namespace, store) {
   socket.emit('join', userObj)
 
   socket.on('joined', (data) => {
-    console.log(data);
+    console.log(data)
   })
 
   socket.on('disconnect', () => {

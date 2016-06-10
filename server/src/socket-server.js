@@ -4,5 +4,5 @@ import io from 'socket.io'
 
 export default function (server) {
   const socketServer = io(server)
-  return {socketServer}
+  return socketServer
 }

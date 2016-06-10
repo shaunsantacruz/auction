@@ -27,7 +27,7 @@ export function handleSocketEvents(socket, namespace, store) {
 export const Root = ({ children }) => {
   return (
     <div>
-      <h1>My App</h1>
+      <h1>Auction</h1>
       <ul>
         <li><Link to="/bidder">Bidder</Link></li>
         <li><Link to="/broadcaster">Broadcaster</Link></li>

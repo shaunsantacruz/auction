@@ -1,9 +1,16 @@
 import React from 'react'
-//import {connect} from 'react-redux'
+import {connect} from 'react-redux'
+import * as user from '../../user'
 
 import * as bidItem from '../../bidItem'
 
-export default class extends React.Component {
+export default class Bidder extends React.Component {
+
+  componentDidMount() {
+    const {dispatch} = this.props
+    dispatch(user.actions.getUser(5))
+  }
+
   render() {
     return (
       <bidItem.Root />
@@ -11,5 +18,5 @@ export default class extends React.Component {
   }
 }
 
-//export default connect(
-//)(Bidder)
+export default connect(
+)(Bidder)

@@ -1,15 +1,11 @@
 import React from 'react'
 import Container from './Container'
 
+
 export default class Root extends React.Component {
 
   constructor(props) {
     super(props)
-  }
-
-
-  componentDidMount() {
-
   }
 
 

@@ -11,7 +11,9 @@ import routes from '../../common/routes'
 import configureStore from '../../common/configureStore'
 import createSocketServer from './socket-server'
 import handleSocketEvents from './socket-events'
+const app = express()
 //import cors from 'cors'
+//app.use(cors())
 import webpack from 'webpack'
 import webpackConfig from '../../webpack.config.dev'
 const compiler = webpack(webpackConfig)
@@ -29,41 +31,6 @@ process.on('uncaughtException', function (err) {
   console.log('unhandled node error', err)
 })
 
-const app = express()
-const server = app.listen(config.port, config.host, function(err) {
-  if (err) {
-    console.log(err)
-    return
-  }
-})
-console.log('server listening on port: %s', config.port)
-
-// generate user
-// Mocked User
-let id = 0
-const user = {
-  id: 515,
-  fullName: 'Dan Abramov',
-  firstName: 'Dan',
-  lastName: 'Abromov',
-  email: 'dan@awesomesauce.com',
-  city: 'New York',
-  state: 'NY',
-  buyerNumber: 'foo_125',
-  role: 'bidder'
-}
-
-// create socket server for server
-const {socketServer} = createSocketServer(server)
-// Store for our app
-const initialState = {
-  user
-}
-const store = configureStore(initialState)
-// Socket events
-handleSocketEvents(socketServer, store)
-
-//app.use(cors())
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -72,14 +39,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler))
 //app.use('/', express.static(path.join(__dirname, '..', 'static')))
 
+// Store for our app
+const initialState = {}
+const store = configureStore(initialState)
+
 app.get('/*', function(req, res) {
   const location = createLocation(req.url)
   match({ routes, location }, (err, redirectLocation, renderProps) => {
-
-    //const clientStore = configureClientStore(initialState)
-    // if(redirectLocation) {
-    //   return res.status(302).end(redirectLocation)
-    // }
 
     if(err) {
       console.error(err)
@@ -100,7 +66,17 @@ app.get('/*', function(req, res) {
     res.status(200).end(renderFullPage(html, finalState))
   })
 })
-// goes inside initialView
+
+const server = app.listen(config.port, config.host, function(err) {
+  if (err) {
+    console.log(err)
+    return
+  }
+})
+console.log('server listening on port: %s', config.port)
+
+// create server and pass to socket handler
+handleSocketEvents(createSocketServer(server), store)
 
 function renderFullPage(html, initialState) {
   return `
