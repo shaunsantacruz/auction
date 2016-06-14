@@ -6,7 +6,6 @@ import {
 export default class SocketProvider extends Component {
   getChildContext() {
     return {
-      socket: this.props.socket,
       namespace: this.props.namespace,
     }
   }
@@ -17,11 +16,9 @@ export default class SocketProvider extends Component {
 }
 
 SocketProvider.childContextTypes = {
-  socket: PropTypes.object.isRequired,
   namespace: PropTypes.object.isRequired,
 }
 SocketProvider.propTypes = {
   children: PropTypes.object.isRequired,
-  socket: PropTypes.object.isRequired,
   namespace: PropTypes.object.isRequired,
 }

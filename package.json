@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:server": "NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
+    "start:server": "DEBUG=socket.io:* NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
     "start:client": "webpack-dev-server --config webpack.config.dev.js",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js && NODE_ENV=production babel ./server/src -d ./server/build",
     "test": "mocha --compilers js:babel-core/register --recursive",

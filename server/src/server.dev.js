@@ -11,7 +11,9 @@ import routes from '../../common/routes'
 import configureStore from '../../common/configureStore'
 import createSocketServer from './socket-server'
 import handleSocketEvents from './socket-events'
+import {createServer} from 'http'
 const app = express()
+const server = createServer(app)
 //import cors from 'cors'
 //app.use(cors())
 import webpack from 'webpack'
@@ -71,17 +73,23 @@ app.get('/*', function(req, res) {
     res.status(200).end(renderFullPage(html, finalState))
   })
 })
+//const server = app.listen(config.port, config.host, function(err) {
+//  if (err) {
+//    console.log(err)
+//    return
+//  }
+//})
+//console.log('server listening on port: %s', config.port)
 
-const server = app.listen(config.port, config.host, function(err) {
+// create server and pass to socket handler
+handleSocketEvents(createSocketServer(server), store)
+server.listen(config.port, config.host, function(err) {
   if (err) {
     console.log(err)
     return
   }
 })
 console.log('server listening on port: %s', config.port)
-
-// create server and pass to socket handler
-handleSocketEvents(createSocketServer(server), store)
 
 function renderFullPage(html, initialState) {
   return `

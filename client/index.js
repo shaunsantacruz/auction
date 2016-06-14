@@ -9,7 +9,7 @@ import SocketProvider from '../common/socket/SocketProvider'
 import routes from './../common/routes'
 import configureStore from './../common/configureStore'
 
-import {getNamespace, socket} from './socket-client'
+import {getNamespace} from './socket-client'
 const namespace = getNamespace(location.pathname)
 
 const initialState = window.__INITIAL_STATE__
@@ -17,7 +17,7 @@ const store = configureStore(initialState, namespace)
 
 ReactDOM.render(
   <Provider store={store}>
-    <SocketProvider socket={socket} namespace={namespace}>
+    <SocketProvider namespace={namespace}>
       <Router history={browserHistory} routes={routes}/>
     </SocketProvider>
   </Provider>,

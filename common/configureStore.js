@@ -9,7 +9,7 @@ import remoteAction from './middleware/remoteAction'
 const configureStore = (initialState, socket) => {
 
   let middlewares = []
-  const DEV_MODE = process.env.NODE_ENV === 'development'
+  const DEV_MODE = process.env.NODE_ENV !== 'production'
   const useDevTools = DEV_MODE && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
 
   if(socket) {

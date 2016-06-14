@@ -19,8 +19,8 @@ class BidderContainer extends Component {
 
     if(userId) {
       const {store} = this.context
-      const {socket, namespace} = this.context
-      handleSocketEvents(socket, namespace, store)
+      const {namespace} = this.context
+      handleSocketEvents(namespace, store)
     }
   }
 
@@ -43,7 +43,6 @@ function mapStateToProps(state) {
 
 BidderContainer.contextTypes = {
   store: PropTypes.object,
-  socket: PropTypes.object,
   namespace: PropTypes.object,
 }
 BidderContainer.propTypes = {
