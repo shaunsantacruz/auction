@@ -1,19 +1,26 @@
 import * as a from './actions'
 
-export const initialState = {
-  type: '',
-  id: 0,
-  name: '',
-  count: 0,
-  weight: 0,
-  averageWeight: 0,
-  pricePer: 0,
-  variants: '',
-  price: 0,
-  updatedAt: '',
+export function getInitialStateByType(type = 'cattle') {
+  switch (type) {
+    case 'cattle':
+      return {
+        type,
+        id: 0,
+        name: '',
+        count: 0,
+        weight: 0,
+        averageWeight: 0,
+        pricePer: 0,
+        variants: '',
+        price: 0,
+        updatedAt: '',
+      }
+    default:
+      return {}
+  }
 }
 
-export default (state = initialState, action) => {
+export default (state = getInitialStateByType(), action) => {
   switch (action.type) {
     case a.SET_STATE: {
       const {state} = action.payload
@@ -21,6 +28,14 @@ export default (state = initialState, action) => {
     }
     case a.SET_PRICE: {
       const {price} = action.payload
+      return {
+        ...state,
+        price
+      }
+    }
+    case a.ADJUST_PRICE: {
+      let {price} = action.payload
+      price += state.price
       return {
         ...state,
         price

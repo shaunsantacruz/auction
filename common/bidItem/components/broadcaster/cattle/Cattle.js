@@ -25,7 +25,6 @@ class BidItem extends Component {
           <input
             ref={node => input = node}
             type="text"
-            readOnly
             value={price}
           />
           <button onClick={() => {onClickHandler(userId)}}>

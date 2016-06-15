@@ -20,7 +20,7 @@ describe('bidItem reducer', () => {
     expect(nextState).to.deep.equal(initialState)
   })
 
-  it('should set and update a bid price', () => {
+  it('should set a bid price', () => {
     let price = 2000
     let action = {
       type: a.SET_PRICE,
@@ -36,6 +36,18 @@ describe('bidItem reducer', () => {
     }
     const nextState = reducer(state, action)
     expect(nextState.price).to.equal(2300)
+  })
+
+  it('should be able to update a price', () => {
+    let nextState = reducer(undefined, a.updatePrice(1000))
+    expect(nextState.price).to.equal(1000)
+
+    const state = {
+      price: 2000
+    }
+
+    nextState = reducer(state, a.updatePrice(500))
+    expect(nextState.price).to.equal(2500)
   })
 
   it('should set draft #/ID', () => {
@@ -59,17 +71,4 @@ describe('bidItem reducer', () => {
     expect(state.variant).to.equal('golden')
   })
 
-  // May go with this. May not.
-  //it('should handle updating entire state', () => {
-  //  const bidItem = {
-  //    ...initialState,
-  //    price: 2000
-  //  }
-  //  let action = {
-  //    type: a.EDIT,
-  //    bidItem
-  //  }
-  //  const state = reducer(initialState, action)
-  //  expect(state.price).to.equal(2000)
-  //})
 })

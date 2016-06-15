@@ -7,6 +7,7 @@ import React from 'react'
 import { RouterContext, match } from 'react-router'
 import {createLocation} from 'history'
 
+import {getInitialStateByType as getInitialBidItemStateByType} from '../../common/bidItem'
 import routes from '../../common/routes'
 import configureStore from '../../common/configureStore'
 import createSocketServer from './socket-server'
@@ -41,12 +42,12 @@ app.use(require('webpack-hot-middleware')(compiler))
 //app.use('/', express.static(path.join(__dirname, '..', 'static')))
 
 // Can be Set dynamically. Assuming cattle for now
-const bidItem = {
+const auction = {
   type: 'cattle'
 }
 // Initial state. Keep in mind this is run once when server spins up
 const initialState = {
-  bidItem,
+  bidItem: getInitialBidItemStateByType(auction.type),
 }
 // Store for SSR
 const store = configureStore(initialState)

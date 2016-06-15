@@ -1,43 +1,48 @@
-import React from 'react'
+import React, {
+  Component,
+  PropTypes,
+} from 'react'
+import PriceAdjusterRoot from './broadcaster/priceAdjuster/Root'
 
-class BidItem extends React.Component {
+class BidItem extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
+  }
+
+  renderPriceAdjuster() {
+    return (
+      <div className="col-xs">
+        <div className="box">
+          <PriceAdjusterRoot />
+        </div>
+      </div>
+    )
   }
 
   render() {
-
-    let input
-    const {
-      model: { price },
-      userId,
-      onClickHandler
-    } = this.props
+    const {bidType, pathname} = this.props
+    const isBroadcaster = /\/broadcaster/.test(pathname)
+    const pathToBidTypeRootComponent = `.${pathname}/${bidType}/Root.js`
+    const TypeRootComponent = require(pathToBidTypeRootComponent).default
 
     return (
-      <div>
-        <p>Bidders</p>
-        <form action="#">
-          <input
-            ref={node => input = node}
-            type="text"
-            readOnly
-            value={price}
-          />
-          <button onClick={() => {onClickHandler(userId)}}>
-            Bid Now!
-          </button>
-        </form>
+      <div className="row">
+        {isBroadcaster && this.renderPriceAdjuster()}
+        <div className="col-xs">
+          <div className="box">
+            {/* Typeroot is the auction-type bidItem component. i.e. Cattle or Land etc. */}
+            <TypeRootComponent />
+          </div>
+        </div>
       </div>
     )
   }
 }
 
 BidItem.propTypes = {
-  model: React.PropTypes.object.isRequired,
-  userId: React.PropTypes.string.isRequired,
-  onClickHandler: React.PropTypes.func.isRequired
+  bidType: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
 }
 
 export default BidItem
