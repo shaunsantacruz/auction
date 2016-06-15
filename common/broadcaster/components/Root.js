@@ -1,26 +1,23 @@
-import React from 'react'
-//import Container from './Container'
+import React, {
+  Component,
+  PropTypes,
+} from 'react'
 
-import * as bidItem from '../../bidItem'
-import * as bidBoard from '../../bidBoard'
+import Container from './Container'
 
-export default class Root extends React.Component {
+export default class Root extends Component {
 
   render() {
+    const {location: {pathname} } = this.props
     return (
-      <div className="row">
-        <h2 style={{width: '100%'}}>Broadcaster Root</h2>
-        <div className="col-xs">
-          <div className="box">
-            <bidItem.Root />
-          </div>
-        </div>
-        <div className="col-xs">
-          <div className="box">
-            <bidBoard.Root />
-          </div>
-        </div>
+      <div>
+        <h2>Broadcaster Root</h2>
+        <Container pathname={pathname} />
       </div>
     )
   }
+}
+
+Root.propTypes = {
+  location: PropTypes.object.isRequired
 }

@@ -1,6 +1,5 @@
 import React, {
   Component,
-  PropTypes,
 } from 'react'
 
 import Container from './Container'
@@ -14,12 +13,9 @@ export default class Root extends Component {
   render() {
     return (
       <div>
-        <Container {...this.props} />
+        <h2>Bid Item Cattle Root for broadcaster</h2>
+        <Container />
       </div>
     )
   }
 }
-
-//Container.propTypes = {
-//  pathname: PropTypes.string.isRequired
-//}

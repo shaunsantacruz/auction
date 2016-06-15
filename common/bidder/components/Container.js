@@ -4,7 +4,7 @@ import Bidder from './Bidder'
 import * as user from '../../user'
 import handleSocketEvents from '../socket-events'
 
-class BidderContainer extends Component {
+class Container extends Component {
   constructor(props, context) {
     super(props, context)
   }
@@ -24,7 +24,6 @@ class BidderContainer extends Component {
     }
   }
 
-
   render() {
     const {userId} = this.props
     return (
@@ -35,21 +34,15 @@ class BidderContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userId: user.selectors.getId(state)
-  }
-}
-
-BidderContainer.contextTypes = {
+Container.contextTypes = {
   store: PropTypes.object,
   namespace: PropTypes.object,
 }
-BidderContainer.propTypes = {
+Container.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userId: PropTypes.string
 }
 
 export default connect(
-  mapStateToProps
-)(BidderContainer)
+  (state) => ({userId: user.selectors.getId(state)})
+)(Container)

@@ -33,7 +33,6 @@ process.on('uncaughtException', function (err) {
   console.log('unhandled node error', err)
 })
 
-
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath
@@ -41,13 +40,15 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler))
 //app.use('/', express.static(path.join(__dirname, '..', 'static')))
 
-// Store for our app
-const user = {
-  id: null
+// Can be Set dynamically. Assuming cattle for now
+const bidItem = {
+  type: 'cattle'
 }
+// Initial state. Keep in mind this is run once when server spins up
 const initialState = {
-  user
+  bidItem,
 }
+// Store for SSR
 const store = configureStore(initialState)
 
 app.get('/*', function(req, res) {

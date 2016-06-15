@@ -1,21 +1,30 @@
-import React from 'react'
+import React, {
+  Component,
+  PropTypes,
+} from 'react'
 import Container from './Container'
 
 
-export default class Root extends React.Component {
+export default class Root extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
   }
 
+  componentWillMount() {
+  }
 
   render() {
+    const {location: {pathname} } = this.props
     return (
       <div>
         <h2>Bidder Root</h2>
-        <Container />
+        <Container pathname={pathname} />
       </div>
     )
   }
 }
 
+Root.propTypes = {
+  location: PropTypes.object.isRequired
+}

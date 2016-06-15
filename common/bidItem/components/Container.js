@@ -1,26 +1,33 @@
+import React, {
+  Component,
+  PropTypes,
+} from 'react'
+
 import {connect} from 'react-redux'
-import BidItem from './BidItem'
-//import { bindActionCreators } from 'redux'
 
-import * as user from '../../user'
+import { getType } from '../selectors'
 
-import { getModel } from '../selectors'
-import { handleBidAttempt } from '../actions'
+class Container extends Component {
+  constructor(props, context) {
+    super(props, context)
+  }
 
-function mapStateToProps(state) {
-  return {
-    model: getModel(state),
-    userId: user.selectors.getId(state)
+  render() {
+    const {bidType, pathname} = this.props
+    const pathToRootComponentType = `.${pathname}/${bidType}/Root.js`
+    const Root = require(pathToRootComponentType).default
+
+    return <Root />
   }
 }
 
-//function mapDispatchToProps(dispatch) {
-//  return {
-//    handleBidAttempt: bindActionCreators(handleBidAttempt, dispatch)
-//  }
-//}
+Container.propTypes = {
+  bidType: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
+}
 
 export default connect(
-  mapStateToProps,
-  {onClickHandler: handleBidAttempt }
-)(BidItem)
+  (state) => ({
+    bidType: getType(state),
+  })
+)(Container)

@@ -1,25 +1,17 @@
 import * as a from './actions'
 
-function getInitialStateByType(type = 'cattle') {
-  switch (type) {
-    case 'cattle':
-      return {
-        id: 0,
-        name: '',
-        count: 0,
-        weight: 0,
-        averageWeight: 0,
-        pricePer: 0,
-        variants: '',
-        price: 0,
-        updatedAt: ''
-      }
-    default:
-      return {}
-  }
+export const initialState = {
+  type: '',
+  id: 0,
+  name: '',
+  count: 0,
+  weight: 0,
+  averageWeight: 0,
+  pricePer: 0,
+  variants: '',
+  price: 0,
+  updatedAt: '',
 }
-
-export const initialState = getInitialStateByType('cattle')
 
 export default (state = initialState, action) => {
   switch (action.type) {
