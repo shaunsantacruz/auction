@@ -3,6 +3,8 @@ import React, {
   PropTypes,
 } from 'react'
 
+import {formatMoney} from '../../../../utils'
+
 class BidItem extends Component {
 
   constructor(props) {
@@ -20,13 +22,12 @@ class BidItem extends Component {
 
     return (
       <div>
-        <p>Bidders</p>
         <form action="#">
           <input
             ref={node => input = node}
             type="text"
             readOnly
-            value={price}
+            value={formatMoney(price)}
           />
           <button onClick={() => {onClickHandler(userId)}}>
             Bid Now!

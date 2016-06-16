@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/informationsynergy/auction#readme",
   "dependencies": {
+    "deep-diff": "^0.3.4",
     "express": "^4.13.4",
     "flexboxgrid": "^6.3.0",
     "ramda": "^0.21.0",

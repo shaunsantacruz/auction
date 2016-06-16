@@ -2,8 +2,8 @@ import * as bidItem from '../bidItem'
 import * as user from '../user'
 
 export default function handleSocketEvents(namespace, store) {
-  namespace.on('bid_state', (state) => {
-    store.dispatch(bidItem.actions.setState(state))
+  namespace.on(bidItem.actions.SET_PRICE, (price) => {
+    store.dispatch(bidItem.actions.setPrice(price))
   })
 
   // Attempt to join room
