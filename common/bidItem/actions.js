@@ -9,25 +9,23 @@ export const BID_ATTEMPT = `${name}/BID_ATTEMPT`
 
 export const setState = (state) => ({
   type: SET_STATE,
-  payload: { state }
+  payload: { state },
 })
 
-export const setPrice = (price) => ({
+export const setPrice = (price, {remote = false} = {}) => ({
   type: SET_PRICE,
   payload: { price },
-  meta: { remote: true }
+  meta: { remote },
 })
 
-export const adjustPrice = (price) => ({
+export const adjustPrice = (price, {remote = false} = {}) => ({
   type: ADJUST_PRICE,
   payload: { price },
-  meta: { remote: true }
+  meta: { remote },
 })
 
-export const handleBidAttempt = (userId) => ({
+export const handleBidAttempt = (userId, {remote = false} = {}) => ({
   type: BID_ATTEMPT,
-  payload: {
-    userId
-  },
-  meta: { remote: true }
+  payload: { userId },
+  meta: { remote },
 })
