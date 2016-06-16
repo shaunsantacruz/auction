@@ -2,34 +2,38 @@ import React, {
   Component,
   PropTypes,
 } from 'react'
+import {formatMoney, unformatMoney} from '../../../../utils'
 
 class BidItem extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
   }
 
   render() {
-
     let input
     const {
       model: { price },
-      userId,
-      onClickHandler
+      handleInputChange,
+      handleInputKeyDown,
       } = this.props
-
     return (
       <div>
-        <p>Broadcaster Bidder</p>
         <form action="#">
           <input
             ref={node => input = node}
             type="text"
-            value={price}
+            onChange={() => {
+              handleInputChange(unformatMoney(input.value.trim()))
+            }}
+            onKeyDown={(e) => {
+              if(e.which === 13 || e.which === 9) {
+                e.preventDefault()
+                handleInputKeyDown(unformatMoney(input.value.trim()))
+              }
+            }}
+            value={formatMoney(price, '$ ')}
           />
-          <button onClick={() => {onClickHandler(userId)}}>
-            Bid Now!
-          </button>
         </form>
       </div>
     )
@@ -38,8 +42,8 @@ class BidItem extends Component {
 
 BidItem.propTypes = {
   model: PropTypes.object.isRequired,
-  userId: PropTypes.string.isRequired,
-  onClickHandler: PropTypes.func.isRequired
+  handleInputChange: PropTypes.func.isRequired,
+  handleInputKeyDown: PropTypes.func.isRequired,
 }
 
 export default BidItem

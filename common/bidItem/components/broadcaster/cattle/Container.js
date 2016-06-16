@@ -4,8 +4,9 @@ import Cattle from './Cattle'
 
 import * as user from '../../../../user'
 
+import {setPrice} from '../../../actions'
 import { getModel } from '../../../selectors'
-import { handleBidAttempt } from '../../../actions'
+//import { handleBidAttempt } from '../../../actions'
 
 function mapStateToProps(state) {
   return {
@@ -14,13 +15,12 @@ function mapStateToProps(state) {
   }
 }
 
-//function mapDispatchToProps(dispatch) {
-//  return {
-//    handleBidAttempt: bindActionCreators(handleBidAttempt, dispatch)
-//  }
-//}
-
 export default connect(
   mapStateToProps,
-  {onClickHandler: handleBidAttempt }
+  {
+    handleInputChange: setPrice,
+    handleInputKeyDown: (price) => {
+      return setPrice(price, {remote: true})
+    },
+  }
 )(Cattle)

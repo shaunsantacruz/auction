@@ -23,7 +23,9 @@ class BidItem extends Component {
   render() {
     const {bidType, pathname} = this.props
     const isBroadcaster = /\/broadcaster/.test(pathname)
-    const pathToBidTypeRootComponent = `.${pathname}/${bidType}/Root.js`
+    const pathTo = isBroadcaster ? '/broadcaster' : '/bidder'
+    // e.g. /broadcaster/cattle/Root.js || /bidder/land/Root.js
+    const pathToBidTypeRootComponent = `.${pathTo}/${bidType}/Root.js`
     const TypeRootComponent = require(pathToBidTypeRootComponent).default
 
     return (
