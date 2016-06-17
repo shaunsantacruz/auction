@@ -4,9 +4,14 @@
 //} from 'react'
 import {connect} from 'react-redux'
 import PriceAdjuster from './PriceAdjuster'
-import {adjustPrice} from '../../../actions'
+import {getPrice} from '../../../selectors'
+import {setPrice} from '../../../actions'
 
 export default connect(
-  null,
-  {handlePriceAdjust: adjustPrice}
+  (state) => ({
+    price: getPrice(state)
+  }),
+  {
+    handlePriceAdjust: (price) => setPrice(price, {remote: true}),
+  }
 )(PriceAdjuster)

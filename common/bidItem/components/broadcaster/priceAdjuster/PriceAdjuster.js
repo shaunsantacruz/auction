@@ -9,7 +9,7 @@ class PriceAdjuster extends Component {
   }
 
   render() {
-    const {handlePriceAdjust} = this.props
+    let {handlePriceAdjust, price} = this.props
     const amounts = [
       10000,
       5000,
@@ -22,10 +22,14 @@ class PriceAdjuster extends Component {
       <div>
         {
           amounts.map(amt => [
-            <button onClick={handlePriceAdjust.bind(null, amt)}>
+            <button onClick={() => {
+              handlePriceAdjust((price += amt))
+            }}>
               {(amt / 100).toFixed(2)}
             </button>,
-            <button onClick={handlePriceAdjust.bind(null, -amt)}>
+            <button onClick={() => {
+              handlePriceAdjust((price -= amt))
+            }}>
               -{(amt / 100).toFixed(2)}
             </button>,
             <br />,
@@ -37,7 +41,8 @@ class PriceAdjuster extends Component {
 }
 
 PriceAdjuster.propTypes = {
-  handlePriceAdjust: PropTypes.func.isRequired
+  handlePriceAdjust: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
 }
 //PriceAdjuster.defaultProps = {}
 
