@@ -2,10 +2,11 @@ import React, {
   Component,
   PropTypes,
 } from 'react'
+import {formatMoney} from '../../utils'
 
 export default class BidBoard extends Component {
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
   }
   render() {
     const { recentBidder: {fullName}, price } = this.props.model
@@ -20,7 +21,7 @@ export default class BidBoard extends Component {
         <div className="col-xs">
           <div className="box">
             <label>Bid Price</label>
-            <input type="text" value={price} />
+            <input type="text" value={formatMoney(price)} />
           </div>
         </div>
       </div>
