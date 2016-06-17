@@ -5,6 +5,7 @@ import { combineReducers } from 'redux'
 
 import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
+import * as bidLog from '../bidLog'
 //import * as bidder from '../bidder'
 import * as user from '../user'
 import * as usersById from '../../common/usersById'
@@ -16,6 +17,7 @@ export const reducer = combineReducers({
   [user.name]: user.reducer,
   [usersById.name]: usersById.reducer,
   [loggedInUserIds.name]: loggedInUserIds.reducer,
+  [bidLog.name]: bidLog.reducer,
 })
 
 //export function handleSocketEvents(socket, namespace, store) {

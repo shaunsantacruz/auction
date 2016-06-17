@@ -7,8 +7,8 @@ export default function reducer(state = initialState, action) {
   switch(type) {
     case a.ADD: {
       return [
+        log,
         ...state,
-        log
       ]
     }
     default: return state

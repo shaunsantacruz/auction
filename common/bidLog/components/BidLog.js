@@ -1,6 +1,6 @@
 import React, {
   Component,
-  PropTypes,
+  //PropTypes,
 } from 'react'
 
 class BidLog extends Component {

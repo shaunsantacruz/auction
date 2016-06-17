@@ -14,3 +14,11 @@ export const unformatMoney = (value) => {
   }
   return parseInt(('' + value).replace(/[^0-9-]/g, ''), 10)
 }
+
+export const makeLog = ({id, fullName, buyerNumber}, amount) => ({
+  userId: id,
+  fullName,
+  buyerNumber,
+  amount,
+  createdAt: Date.now(),
+})

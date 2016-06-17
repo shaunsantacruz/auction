@@ -1,8 +1,10 @@
 import watch from 'redux-watch'
 import * as bidItem from '../../common/bidItem'
 import * as bidBoard from '../../common/bidBoard'
+import * as bidLog from '../../common/bidLog'
 import * as usersById from '../../common/usersById'
 import * as loggedInUserIds from '../../common/loggedInUserIds'
+import {makeLog} from '../../common/utils'
 import diff from 'deep-diff'
 import isEqual from 'is-equal'
 
@@ -64,12 +66,19 @@ export default function handleSocketEvents(socketServer, store) {
       const { type } = action
       switch (type) {
         case bidItem.actions.BID_ATTEMPT: {
-          const {user: {fullName}, price} = action.payload
+          const {user, price} = action.payload
+          const {fullName} = user
           const recentBidder = {
             fullName
           }
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
+          dispatch(bidLog.actions.add(makeLog(user, price)))
+          console.log('makeLog', makeLog(user, price))
+          console.log('bidLog', bidLog.selectors.getModel(store.getState()))
+          console.log('STATE', store.getState());
+          // TODO: Add bid accepted confirmation
+          //socketServer.of('/bidder').to(id).emit('bid accepted', 'THANKS!')
           return
         }
         default: null
