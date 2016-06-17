@@ -5,6 +5,7 @@ import React, {
 
 import * as bidItem from '../../bidItem'
 import * as bidBoard from '../../bidBoard'
+import * as bidLog from '../../bidLog'
 
 export default class Broadcaster extends Component {
 
@@ -20,6 +21,12 @@ export default class Broadcaster extends Component {
         <div className="col-xs">
           <div className="box">
             <bidBoard.Root />
+          </div>
+        </div>
+        <div className="col-xs">
+          <div className="box">
+            Bid Log for Current Draft (most recent on top)
+            <bidLog.Root />
           </div>
         </div>
       </div>

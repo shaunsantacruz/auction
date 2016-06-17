@@ -30,30 +30,32 @@ const server_state = {
     tieBidsUserIds: [],
     onDeck: {},
   },
-  bidLog: {
-    all: [{
-      userId: 515,
-      fullName: 'Paul Irish',
-      amount: 31550,
-      createdAt: 'timestamp',
-    }, {
-      userId: 175,
-      fullName: 'Freddy Mercury',
-      amount: 44799,
-      createdAt: 'timestamp',
-    }],
-    current: [{
-      userId: 515,
-      fullName: 'Dan Abramov',
-      amount: 31550,
-      createdAt: 'timestamp',
-    }, {
-      userId: 175,
-      fullName: 'Freddy Mercury',
-      amount: 44799,
-      createdAt: 'timestamp',
-    }]
-  },
+  bidLog: [{
+    userId: 515,
+    fullName: 'Paul Irish',
+    amount: 31550,
+    buyerNumber: 'foo_123',
+    createdAt: 'timestamp',
+  }, {
+    userId: 175,
+    fullName: 'Freddy Mercury',
+    amount: 44799,
+    buyerNumber: 'foo_123',
+    createdAt: 'timestamp',
+  }],
+  currentBidLog: [{
+    userId: 515,
+    fullName: 'Dan Abramov',
+    amount: 31550,
+    buyerNumber: 'foo_123',
+    createdAt: 'timestamp',
+  }, {
+    userId: 175,
+    fullName: 'Freddy Mercury',
+    amount: 44799,
+    buyerNumber: 'foo_123',
+    createdAt: 'timestamp',
+  }],
   messagesByUserId: {
     515: [{
       id: 0,
@@ -66,7 +68,7 @@ const server_state = {
       text: 'Yes, we accept bitcoin.',
       createdAt: 'timestamp',
     }],
-    175: [{},{}]
+    175: [{}, {}]
   },
   user: {
     id: 515,
