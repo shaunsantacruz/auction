@@ -19,8 +19,6 @@ export default connect(
   mapStateToProps,
   {
     handleInputChange: setPrice,
-    handleInputKeyDown: (price) => {
-      return setPrice(price, {remote: true})
-    },
+    handleInputKeyDown: (price) => setPrice(price, {remote: true}),
   }
 )(Cattle)

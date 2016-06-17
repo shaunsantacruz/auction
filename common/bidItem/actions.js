@@ -24,8 +24,8 @@ export const adjustPrice = (price, {remote = false} = {}) => ({
   meta: { remote },
 })
 
-export const handleBidAttempt = (userId, {remote = false} = {}) => ({
+export const handleBidAttempt = (user, price, {remote = false} = {}) => ({
   type: BID_ATTEMPT,
-  payload: { userId },
+  payload: { user, price },
   meta: { remote },
 })

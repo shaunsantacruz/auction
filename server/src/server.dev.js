@@ -36,7 +36,23 @@ process.on('uncaughtException', function (err) {
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: webpackConfig.output.publicPath
+  publicPath: webpackConfig.output.publicPath,
+  stats: {
+    colors: true,
+    errors: true,
+    errorDetails: true,
+    warnings: true,
+    hash: false,
+    version: false,
+    timings: false,
+    assets: false,
+    chunks: false,
+    modules: false,
+    reasons: false,
+    children: false,
+    source: false,
+    publicPath: false,
+  }
 }))
 app.use(require('webpack-hot-middleware')(compiler))
 //app.use('/', express.static(path.join(__dirname, '..', 'static')))

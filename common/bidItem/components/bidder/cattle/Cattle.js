@@ -16,7 +16,7 @@ class BidItem extends Component {
     let input
     const {
       model: { price },
-      userId,
+      user,
       onClickHandler
       } = this.props
 
@@ -29,7 +29,10 @@ class BidItem extends Component {
             readOnly
             value={formatMoney(price)}
           />
-          <button onClick={() => {onClickHandler(userId)}}>
+          <button onClick={(e) => {
+            e.preventDefault()
+            onClickHandler(user, price)
+          }}>
             Bid Now!
           </button>
         </form>
@@ -40,7 +43,7 @@ class BidItem extends Component {
 
 BidItem.propTypes = {
   model: PropTypes.object.isRequired,
-  userId: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   onClickHandler: PropTypes.func.isRequired
 }
 

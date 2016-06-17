@@ -10,7 +10,7 @@ import { handleBidAttempt } from '../../../actions'
 function mapStateToProps(state) {
   return {
     model: getModel(state),
-    userId: user.selectors.getId(state)
+    user: user.selectors.getModel(state),
   }
 }
 
@@ -22,5 +22,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {onClickHandler: handleBidAttempt }
+  {
+    onClickHandler: (user, price) => handleBidAttempt(user, price, {remote: true})
+  }
 )(Cattle)

@@ -4,6 +4,7 @@ import React, {
 } from 'react'
 import {connect} from 'react-redux'
 
+import handleSocketEvents from '../socket-events'
 import * as user from '../../user'
 import Broadcaster from './Broadcaster'
 
@@ -21,9 +22,9 @@ class Container extends Component {
     const {userId} = nextProps
 
     if(userId) {
-      //const {store} = this.context
-      //const {namespace} = this.context
-      //handleSocketEvents(namespace, store)
+      const {store} = this.context
+      const {namespace} = this.context
+      handleSocketEvents(namespace, store)
     }
   }
 

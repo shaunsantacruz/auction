@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:server": "DEBUG=socket.io:* NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
-    "start:client": "webpack-dev-server --config webpack.config.dev.js",
+    "start:server": "NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
+    "start:server:debug": "DEBUG=socket.io:* NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js && NODE_ENV=production babel ./server/src -d ./server/build",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
@@ -25,6 +25,7 @@
     "deep-diff": "^0.3.4",
     "express": "^4.13.4",
     "flexboxgrid": "^6.3.0",
+    "is-equal": "^1.5.3",
     "ramda": "^0.21.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
