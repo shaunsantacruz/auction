@@ -4,5 +4,5 @@ export const ADD = `${name}/ADD`
 
 export const add = (log) => ({
   type: ADD,
-  payload: {log},
+  payload: { log },
 })

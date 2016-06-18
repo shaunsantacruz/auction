@@ -1,17 +1,35 @@
 import React, {
   Component,
-  //PropTypes,
+  PropTypes,
 } from 'react'
+import {formatMoney} from '../../utils'
 
 class BidLog extends Component {
+  constructor(props, context) {
+    super(props, context)
+  }
   render() {
+    const {model} = this.props
     return (
-      <div><h2>Bid Log</h2></div>
+      <div>
+        {model.reverse().map(({fullName, buyerNumber, amount, createdAt}) => {
+          return (
+            <p key={createdAt}>
+              <small>
+                {`${fullName}: ${buyerNumber}: ${formatMoney(amount)}`}
+              </small>
+            </p>
+          )
+        }
+        )}
+      </div>
     )
   }
 }
 
-BidLog.propTypes = {}
+BidLog.propTypes = {
+  model: PropTypes.array.isRequired
+}
 BidLog.defaultProps = {}
 
 export default BidLog

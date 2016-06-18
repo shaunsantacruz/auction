@@ -1,9 +1,14 @@
 import * as bidBoard from '../bidBoard'
+import * as bidLog from '../bidLog'
 import * as user from '../user'
 
 export default function handleSocketEvents(namespace, store) {
   namespace.on(bidBoard.actions.SET_STATE, (state) => {
     store.dispatch(bidBoard.actions.setState(state))
+  })
+
+  namespace.on(bidLog.actions.ADD, (log) => {
+    store.dispatch(bidLog.actions.add(log))
   })
 
   // Attempt to join room

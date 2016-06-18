@@ -13,26 +13,29 @@ export default function handleSocketEvents(socketServer, store) {
   const { dispatch } = store
   const connectedSocketsById = {}
   const DEV_MODE = process.env.NODE_ENV !== 'production'
+  const BIDDER_NSP = '/bidder'
+  const BROADCASTER_NSP = '/broadcaster'
 
   const watchBidItem = watch(store.getState, bidItem.name, isEqual)
   store.subscribe(
-    watchBidItem((newVal, oldVal) => {
+    watchBidItem((newBidItem, oldBidItem) => {
       // If only difference is price, emit a price change to all connected bidders,
       // otherwise emit the entire object to them
-      const differences = diff(oldVal, newVal)
-      if(differences[0].path.length === 1 && differences[0].path[0] === 'price') {
+      const differences = diff(newBidItem, oldBidItem)
+      const {price} = newBidItem
+      if (differences[0].path.length === 1 && differences[0].path[0] === 'price') {
         socketServer
-          .of('/bidder')
+          .of(BIDDER_NSP)
           .emit(
             bidItem.actions.SET_PRICE,
-            bidItem.selectors.getPrice(store.getState())
+            price
           )
-      }else {
+      } else {
         socketServer
-          .of('/bidder')
+          .of(BIDDER_NSP)
           .emit(
             bidItem.actions.SET_STATE,
-            bidItem.selectors.getModel(store.getState())
+            newBidItem
           )
       }
       //console.log('old', oldVal)
@@ -43,29 +46,45 @@ export default function handleSocketEvents(socketServer, store) {
 
   const watchBidBoard = watch(store.getState, bidBoard.name, isEqual)
   store.subscribe(
-    watchBidBoard(() => {
+    watchBidBoard((newBidBoard) => {
       socketServer
-        .of('/broadcaster')
+        .of(BROADCASTER_NSP)
         .emit(
           bidBoard.actions.SET_STATE,
-          bidBoard.selectors.getModel(store.getState())
+          newBidBoard
         )
     })
   )
 
-  socketServer.of('/bidder').on('connection', (socket) => {
-    if(DEV_MODE) {
+  const watchBidLog = watch(store.getState, bidLog.name, isEqual)
+  store.subscribe(
+    watchBidLog((newBidLog) => {
+      const log = newBidLog.slice(-1)[0]
+      socketServer
+        .of(BROADCASTER_NSP)
+        .emit(
+          bidLog.actions.ADD,
+          log
+        )
+    })
+    //console.log('NEW', newVal)
+    //console.log(bidLog.selectors.getModel(store.getState()))
+  )
+
+  socketServer.of(BIDDER_NSP).on('connection', (socket) => {
+    if (DEV_MODE) {
       console.log('User ' + socket.id + ' connected')
       console.log('connection users', loggedInUserIds.selectors.getModel(store.getState()))
     }
 
     socket.on('action', (action) => {
-      if(DEV_MODE) {
+      if (DEV_MODE) {
         console.log('bidder action received on server', action)
       }
       const { type } = action
       switch (type) {
-        case bidItem.actions.BID_ATTEMPT: {
+        case bidItem.actions.BID_ATTEMPT:
+        {
           const {user, price} = action.payload
           const {fullName} = user
           const recentBidder = {
@@ -74,14 +93,15 @@ export default function handleSocketEvents(socketServer, store) {
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
           dispatch(bidLog.actions.add(makeLog(user, price)))
-          console.log('makeLog', makeLog(user, price))
-          console.log('bidLog', bidLog.selectors.getModel(store.getState()))
-          console.log('STATE', store.getState());
+          //console.log('makeLog', makeLog(user, price))
+          //console.log('bidLog', bidLog.selectors.getModel(store.getState()))
+          //console.log('STATE', store.getState())
           // TODO: Add bid accepted confirmation
-          //socketServer.of('/bidder').to(id).emit('bid accepted', 'THANKS!')
+          //socketServer.of(BIDDER_NSP).to(id).emit('bid accepted', 'THANKS!')
           return
         }
-        default: null
+        default:
+          null
       }
     })
 
@@ -89,24 +109,26 @@ export default function handleSocketEvents(socketServer, store) {
     socket.on('join', joinUser)
   })
 
-  socketServer.of('/broadcaster').on('connection', (socket) => {
+  socketServer.of(BROADCASTER_NSP).on('connection', (socket) => {
 
     socket.on('action', (action) => {
-      if(DEV_MODE) {
+      if (DEV_MODE) {
         console.log('broadcaster action received on server', action)
       }
       const { type } = action
       switch (type) {
-        case bidItem.actions.SET_PRICE: {
+        case bidItem.actions.SET_PRICE:
+        {
           const {payload: {price}} = action
           dispatch(bidItem.actions.setPrice(price))
           return
         }
-        default: null
+        default:
+          null
       }
     })
 
-    if(DEV_MODE) {
+    if (DEV_MODE) {
       console.log('User ' + socket.id + ' connected')
       console.log('connection users', loggedInUserIds.selectors.getModel(store.getState()))
     }
@@ -121,15 +143,15 @@ export default function handleSocketEvents(socketServer, store) {
     dispatch(loggedInUserIds.actions.addId(id))
     dispatch(usersById.actions.addUser(user))
     this.join(id)
-    if(DEV_MODE) {
-      socketServer.of('/bidder').to(id).emit('joined', `Hello ${fullName}`)
+    if (DEV_MODE) {
+      socketServer.of(BIDDER_NSP).to(id).emit('joined', `Hello ${fullName}`)
       console.log('join users', loggedInUserIds.selectors.getModel(store.getState()))
     }
   }
 
   function disconnect() {
     dispatch(loggedInUserIds.actions.removeId(connectedSocketsById[this.id]))
-    if(DEV_MODE) {
+    if (DEV_MODE) {
       console.log('disconnect users', loggedInUserIds.selectors.getModel(store.getState()))
     }
   }

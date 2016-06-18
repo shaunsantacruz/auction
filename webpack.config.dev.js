@@ -2,7 +2,8 @@ var webpack = require('webpack');
 
 //http://webpack.github.io/docs/configuration.htm
 module.exports = {
-  devtool: 'eval-source-map',
+  //devtool: 'eval-source-map',
+  devtool: 'cheap-eval-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client',
