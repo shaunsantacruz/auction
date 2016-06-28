@@ -20,7 +20,9 @@ export function getInitialStateByType(type = 'cattle') {
   }
 }
 
-export default (state = getInitialStateByType(), action) => {
+export const initialState = getInitialStateByType()
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case a.SET_STATE: {
       const {state} = action.payload

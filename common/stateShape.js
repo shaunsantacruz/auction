@@ -81,18 +81,20 @@ const server_state = {
     buyerNumber: 'foo_125',
     role: 'bidder'
   },
-  loggedInUserIds: [515, 175],
-  biddersByUserId: {
-    515: {
-      id: 515,
-      fullName: 'Dan Abramov',
-      firstName: 'Dan',
-      lastName: 'Abromov',
-      state: 'NY',
-      buyerNumber: 'foo_125',
-    },
-    175: {
-      //
+  users: {
+    loggedInIds: [515, 175],
+    byId: {
+      515: {
+        id: 515,
+        fullName: 'Dan Abramov',
+        firstName: 'Dan',
+        lastName: 'Abromov',
+        state: 'NY',
+        buyerNumber: 'foo_125',
+      },
+      175: {
+        //
+      }
     }
   },
   isConnectionStatusOk: true,

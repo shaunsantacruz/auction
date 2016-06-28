@@ -39,15 +39,8 @@ describe('bidItem reducer', () => {
   })
 
   it('should be able to update a price', () => {
-    let nextState = reducer(undefined, a.updatePrice(1000))
+    let nextState = reducer(undefined, a.setPrice(1000))
     expect(nextState.price).to.equal(1000)
-
-    const state = {
-      price: 2000
-    }
-
-    nextState = reducer(state, a.updatePrice(500))
-    expect(nextState.price).to.equal(2500)
   })
 
   it('should set draft #/ID', () => {

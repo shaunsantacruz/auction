@@ -2,8 +2,7 @@ import watch from 'redux-watch'
 import * as bidItem from '../../common/bidItem'
 import * as bidBoard from '../../common/bidBoard'
 import * as bidLog from '../../common/bidLog'
-import * as usersById from '../../common/usersById'
-import * as loggedInUserIds from '../../common/loggedInUserIds'
+import * as users from '../../common/users'
 import {makeLog} from '../../common/utils'
 import diff from 'deep-diff'
 import isEqual from 'is-equal'
@@ -46,12 +45,12 @@ export default function handleSocketEvents(socketServer, store) {
 
   const watchBidBoard = watch(store.getState, bidBoard.name, isEqual)
   store.subscribe(
-    watchBidBoard((newBidBoard) => {
+    watchBidBoard((state) => {
       socketServer
         .of(BROADCASTER_NSP)
         .emit(
           bidBoard.actions.SET_STATE,
-          newBidBoard
+          state
         )
     })
   )
@@ -74,7 +73,7 @@ export default function handleSocketEvents(socketServer, store) {
   socketServer.of(BIDDER_NSP).on('connection', (socket) => {
     if (DEV_MODE) {
       console.log('User ' + socket.id + ' connected')
-      console.log('connection users', loggedInUserIds.selectors.getModel(store.getState()))
+      console.log('connection users', users.selectors.getLoggedInIds(store.getState()))
     }
 
     socket.on('action', (action) => {
@@ -128,31 +127,44 @@ export default function handleSocketEvents(socketServer, store) {
       }
     })
 
-    if (DEV_MODE) {
-      console.log('User ' + socket.id + ' connected')
-      console.log('connection users', loggedInUserIds.selectors.getModel(store.getState()))
-    }
     socket.on('disconnect', disconnect)
     socket.on('join', joinUser)
+
+    if (DEV_MODE) {
+      console.log('User ' + socket.id + ' connected')
+      console.log('connection users', users.selectors.getLoggedInIds(store.getState()))
+    }
   })
 
   function joinUser(user) {
-    // map socket id to user id
-    connectedSocketsById[this.id] = user.id
+    // map socket id to user
+    connectedSocketsById[this.id] = user
     const {id, fullName} = user
-    dispatch(loggedInUserIds.actions.addId(id))
-    dispatch(usersById.actions.addUser(user))
+    dispatch(users.actions.add(user))
+    socketServer
+      .of(BROADCASTER_NSP)
+      .emit(
+        users.actions.ADD,
+        user
+      )
     this.join(id)
     if (DEV_MODE) {
       socketServer.of(BIDDER_NSP).to(id).emit('joined', `Hello ${fullName}`)
-      console.log('join users', loggedInUserIds.selectors.getModel(store.getState()))
+      console.log('join users', users.selectors.getLoggedInIds(store.getState()))
     }
   }
 
   function disconnect() {
-    dispatch(loggedInUserIds.actions.removeId(connectedSocketsById[this.id]))
+    const user = connectedSocketsById[this.id]
+    dispatch(users.actions.remove(user))
+    socketServer
+      .of(BROADCASTER_NSP)
+      .emit(
+        users.actions.REMOVE,
+        user
+      )
     if (DEV_MODE) {
-      console.log('disconnect users', loggedInUserIds.selectors.getModel(store.getState()))
+      console.log('disconnect users', users.selectors.getLoggedInIds(store.getState()))
     }
   }
 }
