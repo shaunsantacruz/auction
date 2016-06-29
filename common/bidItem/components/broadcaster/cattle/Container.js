@@ -4,9 +4,8 @@ import Cattle from './Cattle'
 
 import * as user from '../../../../user'
 
-import {setPrice} from '../../../actions'
+import {setPrice, mergeState} from '../../../actions'
 import { getModel } from '../../../selectors'
-//import { handleBidAttempt } from '../../../actions'
 
 function mapStateToProps(state) {
   return {
@@ -18,7 +17,9 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    handleInputChange: setPrice,
-    handleInputKeyDown: (price) => setPrice(price, {remote: true}),
+    handleInputKeyDown: (state) => mergeState(state, {remote: true}),
+    handleChange: (state, remote) => mergeState(state, {remote}),
+    handlePriceChange: setPrice,
+    handlePriceInputKeyDown: (price) => setPrice(price, {remote: true}),
   }
 )(Cattle)

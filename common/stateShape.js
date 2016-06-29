@@ -12,7 +12,7 @@ const server_state = {
   bidItem: {
     id: 1,
     name: '',
-    count: 53,
+    headCount: 53,
     weight: 533,
     averageWeight: 455,
     pricePer: 4150,

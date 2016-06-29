@@ -7,7 +7,8 @@
     "start:server:debug": "DEBUG=socket.io:* NODE_ENV=development nodemon --ignore common/ ./server/index.js --exec babel-node",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js && NODE_ENV=production babel ./server/src -d ./server/build",
     "test": "mocha --compilers js:babel-core/register --recursive",
-    "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
+    "lint:js": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
+    "lint:sass": "sass-lint --verbose --no-exit",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -60,6 +61,7 @@
     "nodemon": "^1.9.2",
     "postcss-loader": "^0.9.1",
     "react-hot-loader": "^1.3.0",
+    "sass-lint": "^1.8.2",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

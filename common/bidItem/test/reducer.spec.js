@@ -20,6 +20,19 @@ describe('bidItem reducer', () => {
     expect(nextState).to.deep.equal(initialState)
   })
 
+  it('should be able to merge state', () => {
+    const state = {
+      draft: 5
+    }
+    const action = {
+      type: a.MERGE_STATE,
+      payload: {state}// use initial state to test. Could be any object
+    }
+    const nextState = reducer(undefined, action)
+    expect(nextState.draft).to.equal(5)
+    expect(nextState.type).to.equal('cattle')
+  })
+
   it('should set a bid price', () => {
     let price = 2000
     let action = {

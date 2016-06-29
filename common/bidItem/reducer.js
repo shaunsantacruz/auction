@@ -7,11 +7,11 @@ export function getInitialStateByType(type = 'cattle') {
         type,
         id: 0,
         name: '',
-        count: 0,
+        headCount: 0,
         weight: 0,
         averageWeight: 0,
         pricePer: 0,
-        variants: '',
+        variant: '',
         price: 0,
         updatedAt: '',
       }
@@ -24,6 +24,14 @@ export const initialState = getInitialStateByType()
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case a.MERGE_STATE: {
+      const newState = action.payload.state
+      console.log(newState)
+      return {
+        ...state,
+        ...newState
+      }
+    }
     case a.SET_STATE: {
       const {state} = action.payload
       return state

@@ -3,7 +3,11 @@ import { Link } from 'react-router'
 
 import { combineReducers } from 'redux'
 
-import './app.scss'
+if (typeof window !== 'undefined') {
+  const styles = require('./main.scss')
+  console.log(styles)
+}
+
 
 import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
@@ -27,7 +31,7 @@ export const Root = ({ children }) => {
         <li><Link to="/bidder">Bidder</Link></li>
         <li><Link to="/broadcaster">Broadcaster</Link></li>
       </ul>
-      <main className="app">
+      <main className="main">
         { children }
       </main>
     </div>

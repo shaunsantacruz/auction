@@ -12,7 +12,7 @@ class BidItem extends Component {
 
   renderPriceAdjuster() {
     return (
-      <div className="col-xs">
+      <div className="col-xs-5">
         <div className="box">
           <PriceAdjusterRoot />
         </div>
@@ -26,12 +26,13 @@ class BidItem extends Component {
     const pathTo = isBroadcaster ? '/broadcaster' : '/bidder'
     // e.g. /broadcaster/cattle/Root.js || /bidder/land/Root.js
     const pathToBidTypeRootComponent = `.${pathTo}/${bidType}/Root.js`
+    // TODO: fix webpack warning this line generates https://github.com/webpack/docs/wiki/context
     const TypeRootComponent = require(pathToBidTypeRootComponent).default
 
     return (
       <div className="row">
         {isBroadcaster && this.renderPriceAdjuster()}
-        <div className="col-xs">
+        <div className={isBroadcaster ? 'col-xs-7' : 'col-xs'}>
           <div className="box">
             {/* Typeroot is the auction-type bidItem component. i.e. Cattle or Land etc. */}
             <TypeRootComponent />
