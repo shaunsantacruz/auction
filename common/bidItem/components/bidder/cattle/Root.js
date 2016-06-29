@@ -13,7 +13,6 @@ export default class Root extends Component {
   render() {
     return (
       <div>
-        <h2>Bid Item Cattle Root for bidder</h2>
         <Container />
       </div>
     )

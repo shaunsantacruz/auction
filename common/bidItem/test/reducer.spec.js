@@ -11,7 +11,7 @@ describe('bidItem reducer', () => {
   })
 
   it('should be able to load state', () => {
-    const state = initialState;
+    const state = initialState
     const action = {
       type: a.SET_STATE,
       payload: {state}// use initial state to test. Could be any object

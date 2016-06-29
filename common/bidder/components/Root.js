@@ -18,7 +18,7 @@ export default class Root extends Component {
     const {location: {pathname} } = this.props
     return (
       <div>
-        <h2>Bidder Root</h2>
+        <h2>Bidder</h2>
         <Container pathname={pathname} />
       </div>
     )

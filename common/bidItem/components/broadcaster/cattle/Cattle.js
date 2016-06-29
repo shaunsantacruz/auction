@@ -33,7 +33,7 @@ class BidItem extends Component {
               }
             }}
             value={formatMoney(price, '$ ')}
-          />
+          /><label htmlFor="price">Price</label>
         </form>
       </div>
     )
