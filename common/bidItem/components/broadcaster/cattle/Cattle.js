@@ -5,7 +5,7 @@ import React, {
 //import ReactDOM from 'react-dom'
 import {formatMoney, unformatMoney} from '../../../../utils'
 
-if (typeof window !== 'undefined')
+if (process.env.APP_ENV === 'client')
   require('./cattle.scss')
 
 class BidItem extends Component {

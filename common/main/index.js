@@ -3,11 +3,8 @@ import { Link } from 'react-router'
 
 import { combineReducers } from 'redux'
 
-if (typeof window !== 'undefined') {
-  const styles = require('./main.scss')
-  console.log(styles)
-}
-
+if (process.env.APP_ENV === 'client')
+  require('./main.scss')
 
 import * as bidItem from '../bidItem'
 import * as bidBoard from '../bidBoard'
