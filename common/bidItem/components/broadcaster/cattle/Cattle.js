@@ -84,10 +84,11 @@ class BidItem extends Component {
             type="text"/><label> :Head#</label>
           <select
             ref="variant"
+            value={variant}
             onChange={this.onSelectChange.bind(this)}>
             <option value=""></option>
-            <option value="Heifer" selected={variant === 'Heifer'}>Heifer</option>
-            <option value="Cow" selected={variant === 'Cow'}>Cow</option>
+            <option value="Heifer">Heifer</option>
+            <option value="Cow">Cow</option>
           </select><label> :Sex</label>
           <input
             ref="weight"

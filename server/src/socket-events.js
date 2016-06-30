@@ -114,14 +114,17 @@ export default function handleSocketEvents(socketServer, store) {
       if (DEV_MODE) {
         console.log('broadcaster action received on server', action)
       }
-      const { type } = action
+      const {
+        type,
+        payload: { price, state } = {}
+        } = action
       switch (type) {
         case bidItem.actions.SET_PRICE:
-        {
-          const {payload: {price}} = action
           dispatch(bidItem.actions.setPrice(price))
-          return
-        }
+          break
+        case bidItem.actions.MERGE_STATE:
+          dispatch(bidItem.actions.mergeState(state))
+          break
         default:
           null
       }
