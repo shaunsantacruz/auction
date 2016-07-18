@@ -27,4 +27,11 @@ describe(`${name} reducer`, () => {
     expect(nextState).to.be.an.array
     expect(nextState).to.deep.equal([515,100,700])
   })
+
+  it('should not allow duplicate userIds to be added', () => {
+    const prevState = [515,100,75, 700]
+    const nextState = reducer(prevState, a.addId(700))
+    expect(nextState).to.be.an.array
+    expect(nextState).to.deep.equal([...prevState])
+  })
 })
