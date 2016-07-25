@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import Bidder from './Bidder'
 import * as user from '../../user'
+
 import handleSocketEvents from '../socket-events'
 
 class Container extends Component {

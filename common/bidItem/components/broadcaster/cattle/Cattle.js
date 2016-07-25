@@ -41,8 +41,6 @@ class BidItem extends Component {
     let newState = {}
     const {model} = this.props
     Object.keys(model).map((key) => {
-      // price has it's own handler so skip it
-      //if (key === 'price') return
       if (this.refs[key]) {
         newState[key] = this.refs[key].value
       }

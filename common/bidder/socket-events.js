@@ -6,6 +6,10 @@ export default function handleSocketEvents(namespace, store) {
     store.dispatch(bidItem.actions.setPrice(price))
   })
 
+  namespace.on(bidItem.actions.MERGE_STATE, (state) => {
+    store.dispatch(bidItem.actions.mergeState(state))
+  })
+
   // Attempt to join room
   const userObj = user.selectors.getModel(store.getState())
   namespace.emit('join', userObj)

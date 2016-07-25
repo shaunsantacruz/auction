@@ -5,6 +5,9 @@ import React, {
 
 import {formatMoney} from '../../../../utils'
 
+if (process.env.APP_ENV === 'client')
+  require('./cattle.scss')
+
 class BidItem extends Component {
 
   constructor(props) {
@@ -15,14 +18,44 @@ class BidItem extends Component {
 
     let input
     const {
-      model: { price },
+      model,
       user,
       onClickHandler
       } = this.props
 
+    const {
+      price,
+      headCount,
+      // id,
+      variant,
+      weight,
+      averageWeight,
+      pricePer,
+    } = model
+
     return (
       <div>
-        <form action="#">
+        <form action="#" className="cattle-bid-item-bidder">
+          <p>
+            <label># Head:</label>
+            <input type="text" value={headCount}/>
+          </p>
+          <p>
+            <label>Weight:</label>
+            <input type="text" value={weight}/>
+          </p>
+          <p>
+            <label>Avg. Wt:</label>
+            <input type="text" value={averageWeight}/>
+          </p>
+          <p>
+            <label>$/Head:</label>
+            <input type="text" value={pricePer}/>
+          </p>
+          <p>
+            <label>Sex:</label>
+            <input type="text" value={variant}/>
+          </p>
           <input
             ref={node => input = node}
             type="text"

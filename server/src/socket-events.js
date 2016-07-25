@@ -33,7 +33,7 @@ export default function handleSocketEvents(socketServer, store) {
         socketServer
           .of(BIDDER_NSP)
           .emit(
-            bidItem.actions.SET_STATE,
+            bidItem.actions.MERGE_STATE,
             newBidItem
           )
       }
@@ -166,6 +166,7 @@ export default function handleSocketEvents(socketServer, store) {
         users.actions.REMOVE,
         user
       )
+    this.disconnect()
     if (DEV_MODE) {
       console.log('disconnect users', users.selectors.getLoggedInIds(store.getState()))
     }

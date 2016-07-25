@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case a.MERGE_STATE: {
       const newState = action.payload.state
-      console.log(newState)
       return {
         ...state,
         ...newState
