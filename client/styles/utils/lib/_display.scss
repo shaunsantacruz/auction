@@ -1,0 +1,110 @@
+.d-b {
+	display: block !important;
+}
+
+.d-i {
+	display: inline !important;
+}
+
+.d-ib {
+	display: inline-block !important;
+	max-width: 100%;
+}
+
+.d-tb {
+	display: table !important;
+}
+
+.d-itb {
+	display: inline-table !important;
+}
+
+.d-tbc {
+	display: table-cell !important;
+}
+
+.d-tbr {
+	display: table-row !important;
+}
+
+.d-n {
+	display: none;
+}
+
+.d-ni {
+  display: none !important;
+}
+
+.vh {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w75 {
+  width: 75%;
+}
+
+@for $i from 1 through 10 {
+	$classname: #{$i*10};
+	.w#{$classname} { width: percentage( $i / 10 ); }
+}
+
+
+@for $i from 0 through 7 {
+	$i: #{$i*10};
+  .mb-#{$i} { margin-bottom: #{$i}px !important; }
+  .mt-#{$i} { margin-top: #{$i}px !important; }
+
+  .pt-#{$i} { padding-top: #{$i}px !important; }
+  .pr-#{$i} { padding-right: #{$i}px !important; }
+  .pb-#{$i} { padding-bottom: #{$i}px !important; }
+  .pl-#{$i} { padding-left: #{$i}px !important; }
+
+}
+.mb-5 {
+	margin-bottom: 5px !important;
+}
+.pb-5 {
+  padding-bottom: 5px !important;
+}
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+.mb-25 {
+  margin-bottom: 25px !important;
+}
+.mt-25 {
+  margin-top: 25px !important;
+}
+
+.fl-l {
+	float: left;
+}
+.fl-r {
+	float: right;
+}
+
+.abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

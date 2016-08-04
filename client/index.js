@@ -1,10 +1,12 @@
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "flexboxgrid" }]*/
+/*eslint no-unused-vars: 0*/
+
 import { Router, browserHistory } from 'react-router'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import {flexboxgrid} from 'flexboxgrid'
 import SocketProvider from '../common/socket/SocketProvider'
+import {flexboxgrid} from 'flexboxgrid'
+import utils from './styles/utils/_utils.scss'
 
 import routes from './../common/routes'
 import configureStore from './../common/configureStore'

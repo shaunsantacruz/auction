@@ -7,6 +7,7 @@ import * as bidItem from '../../bidItem'
 import * as bidBoard from '../../bidBoard'
 import * as bidLog from '../../bidLog'
 import * as loggedInUsers from '../../loggedInUsers'
+import * as messagesByUserId from '../../messagesByUserId'
 
 export default class Broadcaster extends Component {
 
@@ -22,6 +23,11 @@ export default class Broadcaster extends Component {
         <div className="col-xs">
           <div className="box">
             <bidBoard.Root />
+          </div>
+          <div className="row">
+            <div className="col-xs">
+              <messagesByUserId.Root />
+            </div>
           </div>
         </div>
         <div className="col-xs">
