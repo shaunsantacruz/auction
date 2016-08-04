@@ -57,7 +57,7 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^6.0.0",
     "file-loader": "^0.9.0",
-    "mocha": "^3.0.0",
+    "mocha": "^3.0.1",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "postcss-loader": "^0.9.1",
