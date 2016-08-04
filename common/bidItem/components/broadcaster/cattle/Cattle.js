@@ -73,13 +73,13 @@ class BidItem extends Component {
             value={id}
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
-            type="text"/><label> :Draft#</label>
+            type="text"/><label> :Draft #</label>
           <input
             ref="headCount"
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
             value={headCount}
-            type="text"/><label> :Head#</label>
+            type="text"/><label> :# Head</label>
           <select
             ref="variant"
             value={variant}

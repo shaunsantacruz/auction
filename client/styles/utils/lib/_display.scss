@@ -50,6 +50,10 @@
 	width: 100%;
 }
 
+.w80 {
+	width: 80%;
+}
+
 .h100 {
   height: 100%;
 }
@@ -78,6 +82,9 @@
   .pb-#{$i} { padding-bottom: #{$i}px !important; }
   .pl-#{$i} { padding-left: #{$i}px !important; }
 
+}
+.mt-5 {
+	margin-top: 5px !important;
 }
 .mb-5 {
 	margin-bottom: 5px !important;

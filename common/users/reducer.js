@@ -21,10 +21,9 @@ function loggedInIds(state = initialState.loggedInIds, action) {
   const { type, payload: {user} = {} } = action
   switch (type) {
     case a.ADD:
-      return [
-        ...state,
-        user.id,
-      ]
+      return state.indexOf(user.id) === -1
+        ? [...state, user.id]
+        : state
     case a.REMOVE:
       return state.filter((id) => id !== user.id)
     default: return state

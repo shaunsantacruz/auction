@@ -1,12 +1,13 @@
-/*eslint no-unused-vars: 0*/
-
 import { Router, browserHistory } from 'react-router'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import SocketProvider from '../common/socket/SocketProvider'
-import {flexboxgrid} from 'flexboxgrid'
-import utils from './styles/utils/_utils.scss'
+
+// css
+require('normalize.css')
+require('flexboxgrid')
+require('./styles/base.scss')
 
 import routes from './../common/routes'
 import configureStore from './../common/configureStore'

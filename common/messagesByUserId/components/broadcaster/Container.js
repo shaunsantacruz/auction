@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import messagesByUserId from './MessagesByUserId'
-import { getModel } from '../selectors'
+import Chat from './Chat'
+import { getModel } from '../../selectors'
 
 function mapStateToProps(state) {
   return {
@@ -10,4 +10,4 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps
-)(messagesByUserId)
+)(Chat)

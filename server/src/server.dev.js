@@ -120,7 +120,7 @@ function renderFullPage(html, initialState) {
         <title>Auction</title>
       </head>
       <body>
-        <container id="app">${html}</container>
+        <div id="app">${html}</div>
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>

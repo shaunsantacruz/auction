@@ -1,21 +1,30 @@
 import React, {
   Component,
-  // PropTypes,
+  PropTypes,
 } from 'react'
 
-import Container from './Container'
-
 class Root extends Component {
+  constructor(props, context) {
+    super(props, context)
+  }
+
   render() {
+    const {pathname} = this.props
+    const isBroadcaster = /\/broadcaster/.test(pathname)
+    const pathTo = isBroadcaster ? '/broadcaster' : '/bidder'
+    const pathToComponent = `.${pathTo}/Root.js`
+    const Root = require(pathToComponent).default
     return (
-      <div className="mt-10">
-        <Container />
+      <div>
+        <Root />
       </div>
     )
   }
 }
 
-// Root.propTypes = {}
+Root.propTypes = {
+  pathname: PropTypes.string.isRequired,
+}
 // Root.defaultProps = {}
 
 export default Root

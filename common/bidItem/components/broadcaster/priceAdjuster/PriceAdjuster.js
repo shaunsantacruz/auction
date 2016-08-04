@@ -3,6 +3,9 @@ import React, {
   PropTypes,
 } from 'react'
 
+if(process.env.APP_ENV === 'client')
+  require('./price-adjuster.scss')
+
 class PriceAdjuster extends Component {
   constructor(props, context) {
     super(props, context)
@@ -19,17 +22,21 @@ class PriceAdjuster extends Component {
       250,
     ]
     return (
-      <div>
+      <div className="price-adjuster">
         {
           amounts.map(amt => [
-            <button onClick={() => {
-              handlePriceAdjust((price += amt))
-            }}>
-              {(amt / 100).toFixed(2)}
+            <button
+              onClick={() => {
+                  handlePriceAdjust((price += amt))
+              }}
+              className="pa-inc">
+              +{(amt / 100).toFixed(2)}
             </button>,
-            <button onClick={() => {
-              handlePriceAdjust((price -= amt))
-            }}>
+            <button
+              onClick={() => {
+                  handlePriceAdjust((price -= amt))
+              }}
+              className="pa-dec">
               -{(amt / 100).toFixed(2)}
             </button>,
             <br />,

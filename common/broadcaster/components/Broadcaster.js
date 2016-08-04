@@ -26,7 +26,7 @@ export default class Broadcaster extends Component {
           </div>
           <div className="row">
             <div className="col-xs">
-              <messagesByUserId.Root />
+              <messagesByUserId.Root pathname={pathname} />
             </div>
           </div>
         </div>

@@ -1,0 +1,7 @@
+@import "../../../client/styles/vars";
+
+.broadcaster-bid-item {
+  background-color: $lightgray;
+  border: 1px solid darken($lightgray, 10%);
+  padding: 10px;
+}

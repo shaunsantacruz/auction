@@ -31,6 +31,17 @@ describe(`${name} reducer`, () => {
     expect(nextState.loggedInIds[0]).to.equal(user.id)
   })
 
+  it(`should not allow duplicate users ${a.ADD}`, () => {
+    const user = {
+      id: 515,
+      fullName: 'Dan Abramov',
+    }
+    var nextState = reducer(undefined, a.add(user))
+    nextState = reducer(nextState, a.add(user))
+    expect(nextState.byId[515]).to.equal(user)
+    expect(nextState.loggedInIds).length(1)
+  })
+
   it(`should handle ${a.REMOVE}`, () => {
     const state = {
       loggedInIds: [515],

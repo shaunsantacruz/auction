@@ -6,12 +6,14 @@ import React, {
 class LoggedInUsers extends Component {
   render() {
     const {loggedInUsers} = this.props
-    console.log(loggedInUsers)
     return (
       <div>
         {loggedInUsers.reverse().map((user) => {
           return (
-            <p key={user.fullName}>
+            <p
+              key={user.fullName}
+              onClick={() => console.log('hi')}
+              style={{cursor: 'pointer'}}>
               <small>{user.fullName}</small>
             </p>
           )

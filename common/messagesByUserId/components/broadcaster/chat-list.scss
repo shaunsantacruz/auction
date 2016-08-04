@@ -1,0 +1,17 @@
+.message-list {
+  height: 135px;
+  width: 100%;
+  border: 1px solid lightgray;
+  padding: 10px;
+  font-size: .8rem;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+    padding-bottom: 3px;
+  }
+}
