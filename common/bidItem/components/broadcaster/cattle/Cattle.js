@@ -84,7 +84,7 @@ class BidItem extends Component {
             ref="variant"
             value={variant}
             onChange={this.onSelectChange.bind(this)}>
-            <option value=""></option>
+            <option value="" />
             <option value="Heifer">Heifer</option>
             <option value="Cow">Cow</option>
           </select><label> :Sex</label>
