@@ -11,14 +11,14 @@ export default class BidBoard extends Component {
   render() {
     const { recentBidder: {fullName}, price } = this.props.model
     return (
-      <div className="row">
-        <div className="col-xs">
+      <div className="row center-xs">
+        <div className="col-xs-6">
           <div className="box">
             <label>Most Recent Bidder</label>
             <input readOnly type="text" value={fullName} />
           </div>
         </div>
-        <div className="col-xs">
+        <div className="col-xs-6">
           <div className="box">
             <label>Bid Price</label>
             <input readOnly type="text" value={formatMoney(price)} />

@@ -4,13 +4,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-end;
+    align-items: center;
 
-    margin: 0;
-  }
-
-  input,
-  select {
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
   }
 
   label {
@@ -25,5 +21,25 @@
 
   select {
     width: 120px;
+  }
+
+  button {
+    margin: 5px auto 0;
+    background-color: #076707;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 1px;
+
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+
+
+    &:hover {
+      background-color: darken(#076707, 10%);
+    }
   }
 }

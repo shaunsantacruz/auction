@@ -5,14 +5,14 @@ import React, {
 
 class LoggedInUsers extends Component {
   render() {
-    const {loggedInUsers} = this.props
+    const {loggedInUsers, handleClick} = this.props
     return (
       <div>
         {loggedInUsers.reverse().map((user) => {
           return (
             <p
               key={user.fullName}
-              onClick={() => console.log('hi')}
+              onClick={handleClick.bind(null, user.id)}
               style={{cursor: 'pointer'}}>
               <small>{user.fullName}</small>
             </p>
@@ -24,7 +24,8 @@ class LoggedInUsers extends Component {
 }
 
 LoggedInUsers.propTypes = {
-  loggedInUsers: PropTypes.array
+  loggedInUsers: PropTypes.array,
+  handleClick: PropTypes.func,
 }
 LoggedInUsers.defaultProps = {}
 

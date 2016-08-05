@@ -56,18 +56,23 @@ class BidItem extends Component {
             <label>Sex:</label>
             <input type="text" value={variant}/>
           </p>
-          <input
-            ref={node => input = node}
-            type="text"
-            readOnly
-            value={formatMoney(price)}
-          />
-          <button onClick={(e) => {
-            e.preventDefault()
-            onClickHandler(user, price)
-          }}>
-            Bid Now!
-          </button>
+          <p>
+            <label>Price:</label>
+            <input
+              ref={node => input = node}
+              type="text"
+              readOnly
+              value={formatMoney(price)}
+            />
+          </p>
+          <p>
+            <button onClick={(e) => {
+              e.preventDefault()
+              onClickHandler(user, price)
+            }}>
+              Bid Now!
+            </button>
+          </p>
         </form>
       </div>
     )

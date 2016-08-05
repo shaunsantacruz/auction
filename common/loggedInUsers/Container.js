@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import LoggedInUsers from './LoggedInUsers'
 import * as users from '../users'
+import * as messagesByUserId from '../messagesByUserId'
 
 
 function mapStateToProps(state) {
@@ -9,7 +10,13 @@ function mapStateToProps(state) {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  handleClick(userId) {
+    dispatch(messagesByUserId.actions.setActive(userId))
+  }
+})
+
 export default connect(
-  mapStateToProps
-  //{onPriceChange: setPrice}
+  mapStateToProps,
+  mapDispatchToProps
 )(LoggedInUsers)

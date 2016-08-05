@@ -22,3 +22,6 @@ export const makeLog = ({id, fullName, buyerNumber}, amount) => ({
   amount,
   createdAt: Date.now(),
 })
+
+// timestamp is seconds
+export const time = () => Math.floor(Date.now() / 1000)

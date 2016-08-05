@@ -12,56 +12,63 @@ import {
 describe(`${name} reducer`, () => {
   it('should return default state', () => {
     const state = reducer(undefined, {})
-    expect(state).to.deep.equal({})
+    expect(state).to.deep.equal(initialState)
   })
 
-  it(`should handle ${a.INIT}`, () => {
-    const state = reducer(undefined, a.init({userId: 515}))
+  it(`should handle ${a.INIT}s`, () => {
+    // initilize first
+    let state = reducer(undefined, a.init(515))
     expect(state).to.deep.equal({
       515: []
+    })
+
+    // initilize a second
+    state = reducer(state, a.init(520))
+    expect(state).to.deep.equal({
+      515: [],
+      520: []
     })
   })
 
   it(`should handle ${a.ADD}`, () => {
     const state = initialState
-    let msg = {
-      id: 1,
+    const userId = 515
+    let message = {
       authorName: 'Auctioneer',
-      text: 'Yes, we accept bitcoin.',
-      createdAt: 'timestamp',
+      text: 'Can you pay with bitcoin?',
+      createdAt: 0,
     }
     // Test First message
-    const userId = 515
-    let newState = reducer(state, a.add({userId, msg}))
+    let newState = reducer(state, a.add(userId, message))
     expect(newState).to.deep.equal({
-      515: [
-        {
-          id: 1,
-          authorName: 'Auctioneer',
-          text: 'Yes, we accept bitcoin.',
-          createdAt: 'timestamp',
-        }
-      ]
+      515: [message]
     })
 
     // Test Second message
-    msg.id = 2
-    newState = reducer(newState, a.add({userId, msg}))
+    message = {
+      authorName: 'Bidder',
+      text: 'Yes I can pay with bitcoin?',
+      createdAt: 1,
+    }
+    newState = reducer(newState, a.add(userId, message))
     expect(newState).to.deep.equal({
-      515: [
-        {
-          id: 1,
-          authorName: 'Auctioneer',
-          text: 'Yes, we accept bitcoin.',
-          createdAt: 'timestamp',
-        },
-        {
-          id: 2,
-          authorName: 'Auctioneer',
-          text: 'Yes, we accept bitcoin.',
-          createdAt: 'timestamp',
-        },
-      ]
+      515: [{
+        authorName: 'Auctioneer',
+        text: 'Can you pay with bitcoin?',
+        createdAt: 0,
+      },
+      {
+        authorName: 'Bidder',
+        text: 'Yes I can pay with bitcoin?',
+        createdAt: 1,
+      }]
+    })
+  })
+
+  it(`should handle ${a.SET_ACTIVE_USER_ID}`, () => {
+    const newState = reducer(undefined, a.setActiveUserId(515))
+    expect(newState).to.deep.equal({
+      activeUserId: 515,
     })
   })
 })

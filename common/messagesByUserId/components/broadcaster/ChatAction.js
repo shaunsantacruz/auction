@@ -1,16 +1,23 @@
 import React, {
   Component,
-  // PropTypes,
+  PropTypes,
 } from 'react'
 
 class ChatAction extends Component {
   render() {
+    let input
+    const {handleSendMessage} = this.props
     return (
       <div className="mt-5">
         <input
           type="text"
+          ref={(node) => input = node}
           className="w80"/>
         <button
+          onClick={() => {
+            handleSendMessage(input.value.trim())
+            input.value = ''
+          }}
           style={{width: '18%', float: 'right'}}>
           Send
         </button>
@@ -19,7 +26,9 @@ class ChatAction extends Component {
   }
 }
 
-// ChatAction.propTypes = {}
+ChatAction.propTypes = {
+  handleSendMessage: PropTypes.func
+}
 // ChatAction.defaultProps = {}
 
 export default ChatAction

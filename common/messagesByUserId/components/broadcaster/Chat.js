@@ -11,7 +11,7 @@ class Chat extends Component {
     return (
       <div>
         <ChatList />
-        <ChatAction />
+        <ChatAction {...this.props} />
       </div>
     )
   }

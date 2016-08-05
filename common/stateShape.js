@@ -57,13 +57,12 @@ const server_state = {
     createdAt: 'timestamp',
   }],
   messagesByUserId: {
+    activeUserId: 515,
     515: [{
-      id: 0,
       authorName: 'Auctioneer',
       text: 'Can you pay with bitcoin?',
       createdAt: 'timestamp',
     }, {
-      id: 1,
       authorName: 'Dan Abramov',
       text: 'Yes, I can pay with bitcoin.',
       createdAt: 'timestamp',
