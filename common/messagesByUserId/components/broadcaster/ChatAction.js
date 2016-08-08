@@ -16,12 +16,13 @@ class ChatAction extends Component {
           disabled={!isSelected} />
         <button
           onClick={() => {
-            handleSendMessage(input.value.trim())
-            input.value = ''
+            if(input.value.trim() !== '') {
+              handleSendMessage(input.value.trim())
+              input.value = ''
+            }
           }}
           style={{width: '18%', float: 'right'}}
-          disabled={!isSelected}
-        >
+            disabled={!isSelected}>
           Send
         </button>
       </div>

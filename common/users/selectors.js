@@ -5,6 +5,7 @@ import { createSelector } from 'reselect'
 export const getModel = prop(name)
 export const getLoggedInIds = compose(prop('loggedInIds'), getModel)
 export const getUsersById = compose(prop('byId'), getModel)
+export const getSelectedUserId = compose(prop('selectedUserId'), getModel)
 
 export const getUserById = (state, id) => state[name]['byId'][id]
 
@@ -13,4 +14,3 @@ export const getLoggedInUsers = createSelector(
   getUsersById,
   (userIds, usersById) => userIds.map((id) => usersById[id])
 )
-

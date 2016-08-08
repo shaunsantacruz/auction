@@ -8,7 +8,7 @@ import * as users from '../../../users'
 
 function mapStateToProps(state) {
   const model = getModel(state)
-  const {selectedUserId} = model
+  const selectedUserId = users.selectors.getSelectedUserId(state)
 
   return {
     model,

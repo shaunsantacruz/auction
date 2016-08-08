@@ -116,18 +116,29 @@ export default function handleSocketEvents(socketServer, store) {
       }
       const {
         type,
-        payload: { price, state } = {}
-        } = action
-      switch (type) {
-        case bidItem.actions.SET_PRICE:
-          dispatch(bidItem.actions.setPrice(price))
-          break
-        case bidItem.actions.MERGE_STATE:
-          dispatch(bidItem.actions.mergeState(state))
-          break
-        default:
-          null
-      }
+        payload,
+        meta = {}
+      } = action
+      dispatch({
+        type,
+        payload,
+        meta
+      })
+      // const {
+      //   type,
+      //   payload,
+      //   payload: { price, state } = {}
+      //   } = action
+      // switch (type) {
+      //   case bidItem.actions.SET_PRICE:
+      //     // dispatch(bidItem.actions.setPrice(price))
+      //     break
+      //   case bidItem.actions.MERGE_STATE:
+      //     dispatch(bidItem.actions.mergeState(state))
+      //     break
+      //   default:
+      //     null
+      // }
     })
 
     socket.on('disconnect', disconnect)

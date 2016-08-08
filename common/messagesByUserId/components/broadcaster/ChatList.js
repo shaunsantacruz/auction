@@ -9,8 +9,7 @@ if(process.env.APP_ENV === 'client')
 class ChatList extends Component {
   render() {
     const {model, selectedUser} = this.props
-    const {selectedUserId} = model
-    const messages = selectedUserId ? model[selectedUserId] : []
+    const messages = selectedUser ? model[selectedUser.id] : []
 
     return (
       <div>
@@ -30,7 +29,6 @@ class ChatList extends Component {
 
 ChatList.propTypes = {
   model: PropTypes.object,
-  selectedUserId: PropTypes.string,
   selectedUser: PropTypes.object,
 }
 // ChatList.defaultProps = {}

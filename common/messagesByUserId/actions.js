@@ -1,6 +1,6 @@
 import {name} from './__init__'
 import {time} from '../utils'
-import {getModel, getSelectedUserId} from './selectors'
+import {getModel} from './selectors'
 
 // external deps
 import * as user from '../user'
@@ -14,7 +14,7 @@ export function addMsg(text) {
   return (dispatch, getState) => {
     const authorName = user.selectors.getFirstName(getState())
     const createdAt = time()
-    const userId = getSelectedUserId(getState())
+    const userId = users.selectors.getSelectedUserId(getState())
     const message = {
       authorName,
       text,
