@@ -1,6 +1,6 @@
 import React, {
   Component,
-  // PropTypes,
+  PropTypes,
 } from 'react'
 
 if(process.env.APP_ENV === 'client')
@@ -8,13 +8,19 @@ if(process.env.APP_ENV === 'client')
 
 class ChatList extends Component {
   render() {
+    const {model, selectedUser} = this.props
+    const {selectedUserId} = model
+    const messages = selectedUserId ? model[selectedUserId] : []
+
     return (
       <div>
-        <strong>Chat</strong>
+        <strong>
+          {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}
+        </strong>
         <div className="message-list">
           <ul>
-            <li><strong>Broadcaster: </strong>Hey</li>
-            <li><strong>User: </strong>Ho</li>
+            {messages.reverse().map(msg =>
+              <li key={msg.createdAt}><strong>{msg.authorName}:</strong> {msg.text}</li>)}
           </ul>
         </div>
       </div>
@@ -22,7 +28,11 @@ class ChatList extends Component {
   }
 }
 
-// ChatList.propTypes = {}
+ChatList.propTypes = {
+  model: PropTypes.object,
+  selectedUserId: PropTypes.string,
+  selectedUser: PropTypes.object,
+}
 // ChatList.defaultProps = {}
 
 export default ChatList

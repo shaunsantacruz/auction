@@ -6,19 +6,22 @@ import React, {
 class ChatAction extends Component {
   render() {
     let input
-    const {handleSendMessage} = this.props
+    const {handleSendMessage, isSelected} = this.props
     return (
       <div className="mt-5">
         <input
           type="text"
           ref={(node) => input = node}
-          className="w80"/>
+          className="w80"
+          disabled={!isSelected} />
         <button
           onClick={() => {
             handleSendMessage(input.value.trim())
             input.value = ''
           }}
-          style={{width: '18%', float: 'right'}}>
+          style={{width: '18%', float: 'right'}}
+          disabled={!isSelected}
+        >
           Send
         </button>
       </div>
@@ -27,7 +30,8 @@ class ChatAction extends Component {
 }
 
 ChatAction.propTypes = {
-  handleSendMessage: PropTypes.func
+  handleSendMessage: PropTypes.func,
+  isSelected: PropTypes.bool,
 }
 // ChatAction.defaultProps = {}
 

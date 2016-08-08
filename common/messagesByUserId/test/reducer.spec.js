@@ -65,10 +65,10 @@ describe(`${name} reducer`, () => {
     })
   })
 
-  it(`should handle ${a.SET_ACTIVE_USER_ID}`, () => {
-    const newState = reducer(undefined, a.setActiveUserId(515))
+  it(`should handle ${a.SET_SELECTED_USER_ID}`, () => {
+    const newState = reducer(undefined, a.setSelectedUserId(515))
     expect(newState).to.deep.equal({
-      activeUserId: 515,
+      selectedUserId: 515,
     })
   })
 })

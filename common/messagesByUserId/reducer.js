@@ -21,11 +21,11 @@ export default (state = initialState, action) => {
       }
     }
 
-    case a.SET_ACTIVE_USER_ID: {
+    case a.SET_SELECTED_USER_ID: {
       const { userId } = payload
       return {
         ...state,
-        activeUserId: userId
+        selectedUserId: userId
       }
     }
 

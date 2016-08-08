@@ -1,20 +1,20 @@
 import {name} from './__init__'
 import {time} from '../utils'
-import {getModel, getActiveUserId} from './selectors'
+import {getModel, getSelectedUserId} from './selectors'
 
 // external deps
 import * as user from '../user'
 
 export const ADD = `${name}/ADD`
 export const INIT = `${name}/INIT`
-export const SET_ACTIVE_USER_ID = `${name}/SET_ACTIVE_USER_ID`
+export const SET_SELECTED_USER_ID = `${name}/SET_SELECTED_USER_ID`
 
 // Side effects (thunk)
 export function addMsg(text) {
   return (dispatch, getState) => {
     const authorName = user.selectors.getFirstName(getState())
     const createdAt = time()
-    const userId = getActiveUserId(getState())
+    const userId = getSelectedUserId(getState())
     const message = {
       authorName,
       text,
@@ -44,12 +44,12 @@ export const init = (userId) => ({
   payload: {userId},
 })
 
-export const setActiveUserId = (userId) => ({
-  type: SET_ACTIVE_USER_ID,
+export const setSelectedUserId = (userId) => ({
+  type: SET_SELECTED_USER_ID,
   payload: {userId}
 })
 
-export const setActive = (userId) => (dispatch) => {
+export const setSelected = (userId) => (dispatch) => {
   dispatch(maybeInit(userId))
-  dispatch(setActiveUserId(userId))
+  dispatch(setSelectedUserId(userId))
 }

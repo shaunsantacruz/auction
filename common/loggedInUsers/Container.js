@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   handleClick(userId) {
-    dispatch(messagesByUserId.actions.setActive(userId))
+    dispatch(messagesByUserId.actions.setSelected(userId))
   }
 })
 

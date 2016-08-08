@@ -3,9 +3,17 @@ import Chat from './Chat'
 import { getModel } from '../../selectors'
 import * as a from '../../actions'
 
+// external deps
+import * as users from '../../../users'
+
 function mapStateToProps(state) {
+  const model = getModel(state)
+  const {selectedUserId} = model
+
   return {
-    model: getModel(state),
+    model,
+    isSelected: selectedUserId !== undefined,
+    selectedUser: selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
   }
 }
 

@@ -10,7 +10,7 @@ class Chat extends Component {
   render() {
     return (
       <div>
-        <ChatList />
+        <ChatList {...this.props} />
         <ChatAction {...this.props} />
       </div>
     )
