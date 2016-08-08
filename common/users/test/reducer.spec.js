@@ -73,4 +73,13 @@ describe(`${name} reducer`, () => {
     const nextState = reducer(state, a.remove(user))
     expect(nextState.loggedInIds).to.be.empty
   })
+
+  it(`should handle ${a.SET_SELECTED_USER_ID}`, () => {
+    const newState = reducer(undefined, a.setSelectedUserId(515))
+    expect(newState).to.deep.equal({
+      byId: {},
+      loggedInIds: [],
+      selectedUserId: 515,
+    })
+  })
 })

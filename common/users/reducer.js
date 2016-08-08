@@ -18,20 +18,22 @@ function byId(state = initialState.byId, action) {
 }
 
 function loggedInIds(state = initialState.loggedInIds, action) {
-  const { type, payload: {user} = {} } = action
+  const { type, payload } = action
   switch (type) {
     case a.ADD:
+      var {user} = payload
       return state.indexOf(user.id) === -1
         ? [...state, user.id]
         : state
     case a.REMOVE:
+      var {user} = payload
       return state.filter((id) => id !== user.id)
     default: return state
   }
 }
 
 export default (state = initialState, action) => {
-  const { type } = action
+  const { type, payload } = action
   switch (type) {
     case a.REMOVE:
     case a.ADD:
@@ -39,6 +41,15 @@ export default (state = initialState, action) => {
         byId: byId(state.byId, action),
         loggedInIds: loggedInIds(state.loggedInIds, action),
       }
+
+    case a.SET_SELECTED_USER_ID: {
+      const { userId } = payload
+      return {
+        ...state,
+        selectedUserId: userId
+      }
+    }
+
     default:
       return state
   }

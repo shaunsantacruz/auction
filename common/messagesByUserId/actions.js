@@ -4,10 +4,10 @@ import {getModel, getSelectedUserId} from './selectors'
 
 // external deps
 import * as user from '../user'
+import * as users from '../users'
 
 export const ADD = `${name}/ADD`
 export const INIT = `${name}/INIT`
-export const SET_SELECTED_USER_ID = `${name}/SET_SELECTED_USER_ID`
 
 // Side effects (thunk)
 export function addMsg(text) {
@@ -28,6 +28,7 @@ export function addMsg(text) {
 export const add = (userId, message) => ({
   type: ADD,
   payload: {userId, message},
+  meta: {remote: true},
 })
 
 // Side effects (thunk)
@@ -42,14 +43,11 @@ export const maybeInit = (userId) => (dispatch, getState) => {
 export const init = (userId) => ({
   type: INIT,
   payload: {userId},
+  meta: {remote: true},
 })
 
-export const setSelectedUserId = (userId) => ({
-  type: SET_SELECTED_USER_ID,
-  payload: {userId}
-})
 
 export const setSelected = (userId) => (dispatch) => {
   dispatch(maybeInit(userId))
-  dispatch(setSelectedUserId(userId))
+  dispatch(users.actions.setSelectedUserId(userId))
 }
