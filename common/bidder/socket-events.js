@@ -1,5 +1,6 @@
 import * as bidItem from '../bidItem'
 import * as user from '../user'
+import * as messagesByUserId from '../messagesByUserId'
 
 export default function handleSocketEvents(namespace, store) {
   namespace.on(bidItem.actions.SET_PRICE, (price) => {
@@ -8,6 +9,10 @@ export default function handleSocketEvents(namespace, store) {
 
   namespace.on(bidItem.actions.MERGE_STATE, (state) => {
     store.dispatch(bidItem.actions.mergeState(state))
+  })
+
+  namespace.on(messagesByUserId.actions.ADD, ({userId, message}) => {
+    store.dispatch(messagesByUserId.actions.add(userId, message, {remote: false}))
   })
 
   // Attempt to join room

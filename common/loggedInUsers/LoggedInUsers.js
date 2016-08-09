@@ -9,6 +9,8 @@ class LoggedInUsers extends Component {
     return (
       <div>
         {loggedInUsers.reverse().map((user) => {
+          if (user.role === 'broadcaster') return
+
           return (
             <p
               key={user.fullName}

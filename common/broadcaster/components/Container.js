@@ -15,7 +15,7 @@ class Container extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props
-    dispatch(user.actions.getUser(5))
+    dispatch(user.actions.getUser(5, 'broadcaster'))
   }
 
   componentWillReceiveProps(nextProps) {

@@ -20,6 +20,14 @@ export default function handleSocketEvents(namespace, store) {
     store.dispatch(users.actions.remove(user))
   })
 
+  // TODO: Can all socket callbacks use 'action'?
+  namespace.on('action', ({type, payload}) => {
+    store.dispatch({
+      type,
+      payload
+    })
+  })
+
   // Attempt to join room
   const userObj = user.selectors.getModel(store.getState())
   namespace.emit('join', userObj)

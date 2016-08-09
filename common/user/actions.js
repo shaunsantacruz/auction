@@ -1,5 +1,6 @@
 import {name} from './__init__'
 import uuid from 'uuid'
+import faker from 'faker'
 
 //export const GET_USER = `${name}/GET_USER`
 export const SET_STATE = `${name}/SET_STATE`
@@ -10,30 +11,33 @@ export const setState = (user) => ({
 })
 
 // async
-function fetchUser() {
+function fetchUser(id, role) {
   return new Promise((resolve) => {
     // Mocked User
     const uid = uuid.v1().substr(0, 5)
+    const firstName = faker.name.firstName()
+    const lastName = faker.name.lastName()
+    const fullName = `${firstName} ${lastName}`
     const user = {
       id: uid,
-      fullName: `User ${uid}`,
-      firstName: `User ${uid}`,
-      lastName: 'Number',
-      email: `User_${uid}@email.com`,
+      fullName,
+      firstName,
+      lastName,
+      email: `${firstName}@email.com`,
       city: 'New York',
       state: 'NY',
-      buyerNumber: `foo_${uid}`,
-      role: 'bidder'
+      buyerNumber: `buyer#_${uid}`,
+      role
     }
     // simulate network req
     setTimeout(() => {
       resolve(user)
-    }, 2500)
+    }, 500)
   })
 }
 
-export const getUser = (id) => (dispatch) => {
-  fetchUser(id)
+export const getUser = (id, role) => (dispatch) => {
+  fetchUser(id, role)
     .then((user) => {
       dispatch(setState(user))
     })

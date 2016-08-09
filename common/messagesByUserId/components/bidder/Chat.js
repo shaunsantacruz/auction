@@ -12,7 +12,7 @@ if(process.env.APP_ENV === 'client')
 class Chat extends Component {
   render() {
     return (
-      <div className="broadcaster-chat">
+      <div className="bidder-chat">
         <ChatList {...this.props} />
         <ChatAction {...this.props} />
       </div>

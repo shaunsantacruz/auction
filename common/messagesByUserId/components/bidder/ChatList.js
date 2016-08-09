@@ -6,6 +6,7 @@ import React, {
 class ChatList extends Component {
 
   chatItem({ authorRole, createdAt, authorName, text }) {
+    // if(!createdAt) return
     return (
       <li key={createdAt}>
         <strong>{authorName}{authorRole === 'broadcaster' && ' (broadcaster)'}: </strong>
@@ -15,15 +16,13 @@ class ChatList extends Component {
   }
 
   render() {
-    const {model, selectedUser} = this.props
-    const messages = selectedUser && model[selectedUser.id] ? model[selectedUser.id] : []
+    const {model, userId} = this.props
+    const messages = model[userId] ? model[userId] : []
 
     return (
       <div>
-        <strong>
-          {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}
-        </strong>
-        <div className="broadcaster-chat__list">
+        <strong>Chat</strong>
+        <div className="bidder-chat__list">
           <ul>
             {messages.reverse().map(this.chatItem)}
           </ul>
@@ -35,7 +34,7 @@ class ChatList extends Component {
 
 ChatList.propTypes = {
   model: PropTypes.object,
-  selectedUser: PropTypes.object,
+  userId: PropTypes.string,
 }
 // ChatList.defaultProps = {}
 

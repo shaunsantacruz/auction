@@ -9,6 +9,7 @@ export const add = (user) => ({
   payload: { user },
 })
 
+
 export const remove = (user) => ({
   type: REMOVE,
   payload: { user },
@@ -17,5 +18,4 @@ export const remove = (user) => ({
 export const setSelectedUserId = (userId) => ({
   type: SET_SELECTED_USER_ID,
   payload: {userId},
-  meta: {remote: true},
 })

@@ -4,16 +4,15 @@ import { getModel } from '../../selectors'
 import * as a from '../../actions'
 
 // external deps
-import * as users from '../../../users'
+import * as user from '../../../user'
 
 function mapStateToProps(state) {
   const model = getModel(state)
-  const selectedUserId = users.selectors.getSelectedUserId(state)
+  const userId = user.selectors.getId(state)
 
   return {
     model,
-    isSelected: selectedUserId !== 0,
-    selectedUser: selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
+    userId,
   }
 }
 

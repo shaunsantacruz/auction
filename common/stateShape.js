@@ -59,10 +59,12 @@ const server_state = {
   messagesByUserId: {
     515: [{
       authorName: 'Auctioneer',
+      authorRole: 'broadcaster',
       text: 'Can you pay with bitcoin?',
       createdAt: 'timestamp',
     }, {
       authorName: 'Dan Abramov',
+      authorRole: 'bidder',
       text: 'Yes, I can pay with bitcoin.',
       createdAt: 'timestamp',
     }],

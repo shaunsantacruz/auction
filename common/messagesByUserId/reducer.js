@@ -5,13 +5,13 @@ export const initialState = {}
 export default (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case a.INIT: {
-      const { userId } = payload
-      return {
-        ...state,
-        [userId]: []
-      }
-    }
+    // case a.INIT: {
+    //   const { userId } = payload
+    //   return {
+    //     ...state,
+    //     [userId]: []
+    //   }
+    // }
 
     case a.ADD: {
       const { userId } = payload
@@ -36,5 +36,7 @@ function messages(state = {}, action) {
         {...message}
       ]
     }
+
+    default: return state
   }
 }

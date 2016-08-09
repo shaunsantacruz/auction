@@ -3,6 +3,7 @@ import * as bidItem from '../../common/bidItem'
 import * as bidBoard from '../../common/bidBoard'
 import * as bidLog from '../../common/bidLog'
 import * as users from '../../common/users'
+import * as messagesByUserId from '../../common/messagesByUserId'
 import {makeLog} from '../../common/utils'
 import diff from 'deep-diff'
 import isEqual from 'is-equal'
@@ -14,6 +15,35 @@ export default function handleSocketEvents(socketServer, store) {
   const DEV_MODE = process.env.NODE_ENV !== 'production'
   const BIDDER_NSP = '/bidder'
   const BROADCASTER_NSP = '/broadcaster'
+
+  const watchMessagesByUserId = watch(store.getState, messagesByUserId.name, isEqual)
+  store.subscribe(
+    watchMessagesByUserId((newState, oldState) => {
+      const differences = diff(newState, oldState)
+      if(differences[0].path.length === 1) {
+        const userId = differences[0].path[0]
+        const message = newState[userId].slice(-1)[0]
+        const {authorRole} = message
+        // If it was the broadcaster that updated the server state, send it to the bidder's room
+        // Else, the bidder updated the server state and so emit to broadcaster
+        if(authorRole === 'broadcaster') {
+          // TODO: Use action creator instead of pojo
+          socketServer.of(BIDDER_NSP).to(userId).emit(messagesByUserId.actions.ADD, {
+            userId,
+            message,
+          })
+        } else {
+          socketServer.of(BROADCASTER_NSP).emit('action', {
+            type: messagesByUserId.actions.ADD,
+            payload: {userId, message}
+          })
+        }
+      }
+      // console.log('old', oldState)
+      // console.log('new', newState)
+      // console.log('diff', diff(oldState, newState))
+    })
+  )
 
   const watchBidItem = watch(store.getState, bidItem.name, isEqual)
   store.subscribe(
@@ -80,15 +110,17 @@ export default function handleSocketEvents(socketServer, store) {
       if (DEV_MODE) {
         console.log('bidder action received on server', action)
       }
-      const { type } = action
+      const {
+        type,
+        payload
+      } = action
+
       switch (type) {
         case bidItem.actions.BID_ATTEMPT:
         {
-          const {user, price} = action.payload
+          const {user, price} = payload
           const {fullName} = user
-          const recentBidder = {
-            fullName
-          }
+          const recentBidder = fullName
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
           dispatch(bidLog.actions.add(makeLog(user, price)))
@@ -99,8 +131,13 @@ export default function handleSocketEvents(socketServer, store) {
           //socketServer.of(BIDDER_NSP).to(id).emit('bid accepted', 'THANKS!')
           return
         }
-        default:
-          null
+        default: {
+          dispatch({
+            type,
+            payload,
+            meta: {remote: false}
+          })
+        }
       }
     })
 
@@ -116,13 +153,12 @@ export default function handleSocketEvents(socketServer, store) {
       }
       const {
         type,
-        payload,
-        meta = {}
+        payload
       } = action
       dispatch({
         type,
         payload,
-        meta
+        meta: {remote: false}
       })
       // const {
       //   type,
