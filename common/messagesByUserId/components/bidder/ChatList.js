@@ -20,9 +20,13 @@ class ChatList extends Component {
     return (
       <div>
         <strong>Chat</strong>
-        <div className="bidder-chat__list">
+        <div
+          ref={(node) => {
+            node && (node.scrollTop = node.scrollHeight)
+          }}
+          className="bidder-chat__list">
           <ul>
-            {messages.reverse().map(this.chatItem)}
+            {messages.map(this.chatItem)}
           </ul>
         </div>
       </div>

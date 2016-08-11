@@ -1,16 +1,16 @@
 import {connect} from 'react-redux'
 import Chat from './Chat'
-import { getModel } from '../../selectors'
+import { getSortedMessagesById } from '../../selectors'
 import * as a from '../../actions'
 
 // external deps
 import * as users from '../../../users'
 
 function mapStateToProps(state) {
-  const model = getModel(state)
+  // const model = getModel(state)
   const selectedUserId = users.selectors.getSelectedUserId(state)
   const selectedUser = selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
-  const messages = selectedUser && model[selectedUser.id] ? model[selectedUser.id] : []
+  const messages = getSortedMessagesById(state, selectedUserId)
 
   return {
     selectedUser,

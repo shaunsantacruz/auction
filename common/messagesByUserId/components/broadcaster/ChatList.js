@@ -16,15 +16,19 @@ class ChatList extends Component {
 
   render() {
     const {selectedUser, messages} = this.props
-    
+
     return (
       <div>
         <strong>
           {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}
         </strong>
-        <div className="broadcaster-chat__list">
+        <div
+          ref={(node) => {
+            node && (node.scrollTop = node.scrollHeight)
+          }}
+          className="broadcaster-chat__list">
           <ul>
-            {messages.reverse().map(this.chatItem)}
+            {messages.map(this.chatItem)}
           </ul>
         </div>
       </div>

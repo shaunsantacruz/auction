@@ -12,6 +12,14 @@ class ChatAction extends Component {
         <input
           type="text"
           ref={(node) => input = node}
+          onKeyDown={(e) => {
+            if(e.which === 13 || e.which === 9) {
+              if(input.value.trim() !== '') {
+                handleSendMessage(input.value.trim())
+                input.value = ''
+              }
+            }
+          }}
           className="w80" />
         <button
           onClick={() => {
