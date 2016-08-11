@@ -27,9 +27,9 @@
 
   button {
     margin: 5px auto 0;
-    background-color: #076707;
+    background: linear-gradient(0deg, #076707, #219c21);
     border: none;
-    padding: 15px;
+    padding: 10px 15px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -41,7 +41,7 @@
 
 
     &:hover {
-      background-color: darken(#076707, 10%);
+      background: linear-gradient(0deg, darken(#076707, 5%), darken(#219c21, 5%));
     }
   }
 }
