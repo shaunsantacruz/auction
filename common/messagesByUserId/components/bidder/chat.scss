@@ -1,3 +1,5 @@
+@import "../../../../client/styles/index";
+
 .bidder-chat__list {
   width: 100%;
   border: 1px solid lightgray;
@@ -25,7 +27,24 @@
 }
 
 .bidder-chat__action {
+
   input {
     padding: 3px;
+    width: 80%;
+  }
+
+  button {
+    width: 19%;
+    float: right;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+    border: 0;
+    color: white;
+    background: linear-gradient(0deg, $blue, #4888ff);
+
+    &:hover {
+      background: linear-gradient(0deg, darken($blue, 10%), darken(#4888ff, 10%));
+    }
   }
 }
