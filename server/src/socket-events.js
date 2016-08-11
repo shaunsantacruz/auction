@@ -121,6 +121,7 @@ export default function handleSocketEvents(socketServer, store) {
           const {user, price} = payload
           const {fullName} = user
           const recentBidder = fullName
+          console.log(recentBidder)
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
           dispatch(bidLog.actions.add(makeLog(user, price)))

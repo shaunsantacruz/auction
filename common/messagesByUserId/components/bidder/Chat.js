@@ -1,6 +1,6 @@
 import React, {
   Component,
-  // PropTypes,
+  PropTypes,
 } from 'react'
 
 import ChatList from './ChatList'
@@ -11,8 +11,10 @@ if(process.env.APP_ENV === 'client')
 
 class Chat extends Component {
   render() {
+    const {messages} = this.props
+    const style = messages && messages.length > 0 ? {display: 'block'} : {display: 'none'}
     return (
-      <div className="bidder-chat">
+      <div className="bidder-chat" style={style}>
         <ChatList {...this.props} />
         <ChatAction {...this.props} />
       </div>
@@ -20,7 +22,8 @@ class Chat extends Component {
   }
 }
 
-// ChatsByUserId.propTypes = {}
-// ChatsByUserId.defaultProps = {}
+Chat.propTypes = {
+  messages: PropTypes.array,
+}
 
 export default Chat

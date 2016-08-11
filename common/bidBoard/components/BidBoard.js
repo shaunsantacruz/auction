@@ -9,7 +9,7 @@ export default class BidBoard extends Component {
     super(props, context)
   }
   render() {
-    const { recentBidder: {fullName}, price } = this.props.model
+    const { recentBidder: fullName, price } = this.props.model
     return (
       <div className="row center-xs">
         <div className="col-xs-6">
