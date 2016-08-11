@@ -3,6 +3,8 @@ import React, {
   PropTypes,
 } from 'react'
 
+import {scrollToBottom} from '../../../domUtils'
+
 class ChatList extends Component {
 
   chatItem({ authorRole, createdAt, authorName, text }) {
@@ -23,9 +25,7 @@ class ChatList extends Component {
           {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}
         </strong>
         <div
-          ref={(node) => {
-            node && (node.scrollTop = node.scrollHeight)
-          }}
+          ref={(node) => scrollToBottom(node)}
           className="broadcaster-chat__list">
           <ul>
             {messages.map(this.chatItem)}

@@ -15,13 +15,13 @@ export default class BidBoard extends Component {
         <div className="col-xs-6">
           <div className="box">
             <label>Most Recent Bidder</label>
-            <input readOnly type="text" value={fullName} />
+            <input className="w100" readOnly type="text" value={fullName} />
           </div>
         </div>
         <div className="col-xs-6">
           <div className="box">
             <label>Bid Price</label>
-            <input readOnly type="text" value={formatMoney(price)} />
+            <input className="w100" readOnly type="text" value={formatMoney(price)} />
           </div>
         </div>
       </div>

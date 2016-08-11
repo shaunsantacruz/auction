@@ -8,7 +8,7 @@ class ChatAction extends Component {
     let input
     const {handleSendMessage, selectedUser} = this.props
     return (
-      <div className="mt-5">
+      <div className="broadcaster-chat__action mt-5">
         <input
           type="text"
           onKeyDown={(e) => {
@@ -20,7 +20,6 @@ class ChatAction extends Component {
             }
           }}
           ref={(node) => input = node}
-          className="w80"
           disabled={!selectedUser} />
         <button
           onClick={() => {
@@ -29,8 +28,7 @@ class ChatAction extends Component {
               input.value = ''
             }
           }}
-          style={{width: '18%', float: 'right'}}
-            disabled={!selectedUser}>
+          disabled={!selectedUser}>
           Send
         </button>
       </div>

@@ -4,7 +4,7 @@ import * as messagesByUserId from '../messagesByUserId'
 
 export default function handleSocketEvents(namespace, store) {
   namespace.on(bidItem.actions.SET_PRICE, (price) => {
-    store.dispatch(bidItem.actions.setPrice(price))
+    store.dispatch(bidItem.actions.setPrice(price, {remote: false}))
   })
 
   namespace.on(bidItem.actions.MERGE_STATE, (state) => {

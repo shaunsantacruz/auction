@@ -1,0 +1,15 @@
+@import "../../../client/styles/index";
+
+.bid-board {
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: $red;
+    font-size: 1rem;
+  }
+}

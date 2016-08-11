@@ -40,22 +40,3 @@ export const add = (userId, message, {remote = false} = {}) => ({
   meta: {remote},
 })
 
-// Side effects (thunk)
-// export const maybeInit = (userId) => (dispatch, getState) => {
-//   const model = getModel(getState())
-//   if(model[userId] === undefined) {
-//     dispatch(init(userId))
-//   }
-// }
-
-// testable pure action fn
-// export const init = (userId) => ({
-//   type: INIT,
-//   payload: {userId}
-// })
-
-
-export const setSelected = (userId) => (dispatch) => {
-  // dispatch(maybeInit(userId))
-  dispatch(users.actions.setSelectedUserId(userId))
-}

@@ -1,3 +1,8 @@
+// Utilities
 @import "./utils/utils";
-@import "global";
+// App container styles
 @import "app";
+// Styles that cascade and are global. Think twice before adding styles here
+@import "global";
+// Variables
+@import "vars";

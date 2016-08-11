@@ -24,20 +24,15 @@ export default class Broadcaster extends Component {
           <div className="box">
             <bidBoard.Root />
           </div>
-          <div className="row">
-            <div className="col-xs">
-              <messagesByUserId.Root pathname={pathname} />
-            </div>
+          <div className="box mt-10">
+            <messagesByUserId.Root pathname={pathname} />
           </div>
         </div>
         <div className="col-xs">
-
           <div className="box">
-            Bid Log for Current Draft (most recent on top)
             <bidLog.Root />
           </div>
-          <div className="box">
-            Logged in users
+          <div className="box mt-10">
             <loggedInUsers.Root />
           </div>
 

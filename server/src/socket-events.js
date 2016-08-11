@@ -52,6 +52,7 @@ export default function handleSocketEvents(socketServer, store) {
       // otherwise emit the entire object to them
       const differences = diff(newBidItem, oldBidItem)
       const {price} = newBidItem
+      // TODO: Use action creator instead of pojo
       if (differences[0].path.length === 1 && differences[0].path[0] === 'price') {
         socketServer
           .of(BIDDER_NSP)
@@ -87,6 +88,7 @@ export default function handleSocketEvents(socketServer, store) {
 
   const watchBidLog = watch(store.getState, bidLog.name, isEqual)
   store.subscribe(
+    // TODO: Use action creator instead of pojo
     watchBidLog((newBidLog) => {
       const log = newBidLog.slice(-1)[0]
       socketServer
@@ -121,7 +123,6 @@ export default function handleSocketEvents(socketServer, store) {
           const {user, price} = payload
           const {fullName} = user
           const recentBidder = fullName
-          console.log(recentBidder)
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
           dispatch(bidLog.actions.add(makeLog(user, price)))

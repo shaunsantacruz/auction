@@ -3,6 +3,9 @@ import React, {
   PropTypes,
 } from 'react'
 
+// if(process.env.APP_ENV === 'client')
+//   require('./chat-root.scss')
+
 class Root extends Component {
   constructor(props, context) {
     super(props, context)
@@ -15,7 +18,7 @@ class Root extends Component {
     const pathToComponent = `.${pathTo}/Root.js`
     const Root = require(pathToComponent).default
     return (
-      <div>
+      <div className="chat component-root">
         <Root />
       </div>
     )

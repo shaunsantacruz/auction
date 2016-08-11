@@ -1,34 +1,36 @@
+@import "../../../../../client/styles/index";
+
 .price-adjuster {
   button {
     width: 47%;
     // 12px
     font-size: .75rem;
     padding: 7px 0;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     border: none;
     cursor: pointer;
-
+    font-weight: bold;
     border-radius: 3px;
     transition: all 0.2s ease-in-out;
   }
 }
 
 .pa-inc {
-  background-color: #3f8a42;
+  background: linear-gradient(0deg, $green, #39c23e);
   margin-right: 3%;
   margin-bottom: 3%;
 
   &:hover {
-    background-color: darken(#3f8a42, 20%);
+    background: linear-gradient(0deg, darken($green, 5%), darken(#39c23e, 5%));
     color: white;
   }
 }
 
 .pa-dec {
-  background-color: #db4041;
+  background: linear-gradient(0deg, #db4041, #e86e6e);
 
   &:hover {
-    background-color: darken(#db4041, 20%);
+    background: linear-gradient(0deg, darken($red, 5%), darken(#e86e6e, 5%));
     color: white;
   }
 }

@@ -8,7 +8,7 @@ class ChatAction extends Component {
     let input
     const {handleSendMessage} = this.props
     return (
-      <div className="mt-5">
+      <div className="bidder-chat__action mt-5">
         <input
           type="text"
           ref={(node) => input = node}

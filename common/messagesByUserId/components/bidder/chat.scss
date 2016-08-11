@@ -4,6 +4,7 @@
   padding: 10px;
   font-size: .8rem;
   overflow: auto;
+  background-color: white;
 
   ul {
     width: 100%;
@@ -20,5 +21,11 @@
     width: 100%;
     list-style-type: none;
     padding-bottom: 3px;
+  }
+}
+
+.bidder-chat__action {
+  input {
+    padding: 3px;
   }
 }

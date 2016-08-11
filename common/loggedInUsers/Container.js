@@ -1,8 +1,6 @@
 import {connect} from 'react-redux'
 import LoggedInUsers from './LoggedInUsers'
 import * as users from '../users'
-import * as messagesByUserId from '../messagesByUserId'
-
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +10,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   handleClick(userId) {
-    dispatch(messagesByUserId.actions.setSelected(userId))
+    dispatch(users.actions.setSelectedUserId(userId))
   }
 })
 

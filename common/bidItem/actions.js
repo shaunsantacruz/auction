@@ -20,10 +20,10 @@ export const setState = (state, {remote = false} = {}) => ({
   meta: { remote },
 })
 
-export const setPrice = (price) => ({
+export const setPrice = (price, {remote = false} = {}) => ({
   type: SET_PRICE,
   payload: { price },
-  meta: { remote: true },
+  meta: { remote },
 })
 
 //export const adjustPrice = (price, {remote = false} = {}) => ({
