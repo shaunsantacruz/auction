@@ -13,6 +13,7 @@ class Root extends Component {
     const isBroadcaster = /\/broadcaster/.test(pathname)
     const pathTo = isBroadcaster ? '/broadcaster' : '/bidder'
     const pathToComponent = `.${pathTo}/Root.js`
+    console.log(pathToComponent)
     const Root = require(pathToComponent).default
     return (
       <div>

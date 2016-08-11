@@ -16,9 +16,7 @@ class ChatList extends Component {
   }
 
   render() {
-    const {model, userId} = this.props
-    const messages = model[userId] ? model[userId] : []
-
+    const {messages} = this.props
     return (
       <div>
         <strong>Chat</strong>
@@ -33,8 +31,7 @@ class ChatList extends Component {
 }
 
 ChatList.propTypes = {
-  model: PropTypes.object,
-  userId: PropTypes.string,
+  messages: PropTypes.array,
 }
 // ChatList.defaultProps = {}
 

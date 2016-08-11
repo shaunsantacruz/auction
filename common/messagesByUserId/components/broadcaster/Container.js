@@ -9,11 +9,12 @@ import * as users from '../../../users'
 function mapStateToProps(state) {
   const model = getModel(state)
   const selectedUserId = users.selectors.getSelectedUserId(state)
+  const selectedUser = selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
+  const messages = selectedUser && model[selectedUser.id] ? model[selectedUser.id] : []
 
   return {
-    model,
-    isSelected: selectedUserId !== 0,
-    selectedUser: selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
+    selectedUser,
+    messages,
   }
 }
 

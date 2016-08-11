@@ -9,10 +9,10 @@ import * as user from '../../../user'
 function mapStateToProps(state) {
   const model = getModel(state)
   const userId = user.selectors.getId(state)
+  const messages = model[userId] ? model[userId] : []
 
   return {
-    model,
-    userId,
+    messages
   }
 }
 
