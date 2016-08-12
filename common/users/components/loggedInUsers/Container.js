@@ -1,16 +1,17 @@
 import {connect} from 'react-redux'
 import LoggedInUsers from './LoggedInUsers'
-import * as users from '../users'
+import {getLoggedInUsers} from '../../selectors'
+import {setSelectedUserId} from '../../actions'
 
 function mapStateToProps(state) {
   return {
-    loggedInUsers: users.selectors.getLoggedInUsers(state),
+    loggedInUsers: getLoggedInUsers(state),
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   handleClick(userId) {
-    dispatch(users.actions.setSelectedUserId(userId))
+    dispatch(setSelectedUserId(userId))
   }
 })
 

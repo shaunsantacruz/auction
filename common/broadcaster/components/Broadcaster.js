@@ -6,7 +6,7 @@ import React, {
 import * as bidItem from '../../bidItem'
 import * as bidBoard from '../../bidBoard'
 import * as bidLog from '../../bidLog'
-import * as loggedInUsers from '../../loggedInUsers'
+import * as users from '../../users'
 import * as messagesByUserId from '../../messagesByUserId'
 
 export default class Broadcaster extends Component {
@@ -33,7 +33,7 @@ export default class Broadcaster extends Component {
             <bidLog.Root />
           </div>
           <div className="box mt-10">
-            <loggedInUsers.Root />
+            <users.components.LoggedInUsers />
           </div>
 
         </div>

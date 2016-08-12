@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from 'react'
 
-import {scrollToBottom} from '../domUtils'
+import {scrollToBottom} from '../../../domUtils'
 
 if(process.env.APP_ENV === 'client')
   require('./logged-in-users.scss')
