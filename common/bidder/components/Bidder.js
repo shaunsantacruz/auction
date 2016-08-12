@@ -17,7 +17,7 @@ class Bidder extends Component {
         <div className="row">
           <div className="col-xs-3">
             <div className="box">
-              <p>uid: {this.props.userId}</p>
+              {/*<p>uid: {this.props.userId}</p>*/}
               <bidItem.Root pathname={pathname} />
             </div>
           </div>
@@ -38,11 +38,7 @@ class Bidder extends Component {
 }
 
 Bidder.propTypes = {
-  userId: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired,
 }
-//Bidder.contextTypes = {
-//  namespace: PropTypes.object,
-//}
 
 export default Bidder
