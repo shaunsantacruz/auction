@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/informationsynergy/auction#readme",
   "dependencies": {
+    "classnames": "^2.2.5",
     "deep-diff": "^0.3.4",
     "express": "^4.14.0",
     "flexboxgrid": "^6.3.0",

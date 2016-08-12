@@ -6,6 +6,8 @@ import React, {
 import * as bidItem from '../../bidItem'
 import * as bidBoard from '../../bidBoard'
 import * as bidLog from '../../bidLog'
+// eslist is throwing a false positive on users so ignore it for now
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "users" }]*/
 import * as users from '../../users'
 import * as messagesByUserId from '../../messagesByUserId'
 
