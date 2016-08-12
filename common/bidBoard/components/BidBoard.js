@@ -4,24 +4,29 @@ import React, {
 } from 'react'
 import {formatMoney} from '../../utils'
 
+if(process.env.APP_ENV === 'client')
+  require('./bid-board.scss')
+
 export default class BidBoard extends Component {
   constructor(props, context) {
     super(props, context)
   }
   render() {
-    const { recentBidder: fullName, price } = this.props.model
+    const { recentBidder: {fullName}, price } = this.props.model
     return (
-      <div className="row center-xs">
-        <div className="col-xs-6">
-          <div className="box">
-            <label>Most Recent Bidder</label>
-            <input className="w100" readOnly type="text" value={fullName} />
+      <div className="bid-board component-well">
+        <div className="row center-xs">
+          <div className="col-xs-6">
+            <div className="box">
+              <label>Most Recent Bidder</label>
+              <input className="w100" readOnly type="text" value={fullName} />
+            </div>
           </div>
-        </div>
-        <div className="col-xs-6">
-          <div className="box">
-            <label>Bid Price</label>
-            <input className="w100" readOnly type="text" value={formatMoney(price)} />
+          <div className="col-xs-6">
+            <div className="box">
+              <label>Bid Price</label>
+              <input className="w100" readOnly type="text" value={formatMoney(price)} />
+            </div>
           </div>
         </div>
       </div>

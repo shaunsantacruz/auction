@@ -30,7 +30,7 @@ class BidItem extends Component {
     const TypeRootComponent = require(pathToBidTypeRootComponent).default
 
     return (
-      <div className="row">
+      <div className="row component-well">
         {isBroadcaster && this.renderPriceAdjuster()}
         <div className={isBroadcaster ? 'col-xs-7' : 'col-xs'}>
           <div className="box">

@@ -122,7 +122,10 @@ export default function handleSocketEvents(socketServer, store) {
         {
           const {user, price} = payload
           const {fullName} = user
-          const recentBidder = fullName
+          // TODO: Does this need to be an object? Can it be a string 'fullname'?
+          const recentBidder = {
+            fullName
+          }
           dispatch(bidBoard.actions.setRecentBidder(recentBidder))
           dispatch(bidBoard.actions.setPrice(price))
           dispatch(bidLog.actions.add(makeLog(user, price)))

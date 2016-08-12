@@ -43,8 +43,13 @@
     color: white;
     background: linear-gradient(0deg, $blue, #4888ff);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: linear-gradient(0deg, darken($blue, 10%), darken(#4888ff, 10%));
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
     }
   }
 }

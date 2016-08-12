@@ -16,7 +16,7 @@ class BidLog extends Component {
   render() {
     const {model, handleClick} = this.props
     return (
-      <div>
+      <div className="component-well">
         <p className="mt-0"><strong>Bid Log for Current Draft</strong> (most recent on top)</p>
         <div
           className="bid-log__list"

@@ -12,7 +12,7 @@ class LoggedInUsers extends Component {
   render() {
     const {loggedInUsers, handleClick} = this.props
     return (
-      <div>
+      <div className="component-well">
         <p className="mt-0"><strong>Logged in users</strong></p>
         <div
           className="logged-in-users__list"

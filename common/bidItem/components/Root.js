@@ -5,9 +5,6 @@ import React, {
 
 import Container from './Container'
 
-// if(process.env.APP_ENV === 'client')
-//   require('./broadcaster-bid-item.scss')
-
 export default class Root extends Component {
 
   constructor(props, context) {
@@ -16,7 +13,7 @@ export default class Root extends Component {
 
   render() {
     return (
-      <div className="broadcaster-bid-item component-root">
+      <div>
         <Container {...this.props} />
       </div>
     )

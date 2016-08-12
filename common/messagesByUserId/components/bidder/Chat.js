@@ -14,7 +14,9 @@ class Chat extends Component {
     const {messages} = this.props
     const style = messages && messages.length > 0 ? {display: 'block'} : {display: 'none'}
     return (
-      <div className="bidder-chat" style={style}>
+      <div
+        className="bidder-chat component-well"
+        style={style}>
         <ChatList {...this.props} />
         <ChatAction {...this.props} />
       </div>
