@@ -25,7 +25,7 @@ export const reducer = combineReducers({
 export const Root = ({ children }) => {
   return (
     <div>
-      <h1>Auction</h1>
+      <h1>Live Auction for Sidney Livestock Market Center</h1>
       <ul>
         <li><Link to="/bidder">Bidder</Link></li>
         <li><Link to="/broadcaster">Broadcaster</Link></li>
