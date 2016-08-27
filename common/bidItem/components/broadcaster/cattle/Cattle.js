@@ -68,57 +68,74 @@ class BidItem extends Component {
     return (
       <div>
         <form action="#" className="cattle-bid-item">
-          <input
-            ref="id"
-            value={id}
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onInputChange.bind(this)}
-            type="number"/><label> :Draft #</label>
-          <input
-            ref="headCount"
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onInputChange.bind(this)}
-            value={headCount}
-            type="number"/><label> :# Head</label>
-          <select
-            ref="variant"
-            value={variant}
-            onChange={this.onSelectChange.bind(this)}>
-            <option value="" />
-            <option value="Heifer">Heifer</option>
-            <option value="Cow">Cow</option>
-          </select><label> :Sex</label>
-          <input
-            ref="weight"
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onInputChange.bind(this)}
-            value={weight}
-            type="number"/><label> :Weight</label>
-          <input
-            ref="averageWeight"
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onInputChange.bind(this)}
-            value={averageWeight}
-            type="number"/><label> :Avg/#</label>
-          <input
-            ref="pricePer"
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onInputChange.bind(this)}
-            value={pricePer}
-            type="number"/><label> :$/Head</label>
-          <input
-            ref={node => input = node}
-            type="number"
-            onChange={() => {
-              handlePriceChange(unformatMoney(input.value.trim()))
-            }}
-            onKeyDown={(e) => {
-              if(e.which === 13 || e.which === 9) {
-                handlePriceInputKeyDown(unformatMoney(input.value.trim()))
-              }
-            }}
-            value={formatMoney(price, '$ ')}
-          /><label> :Price</label>
+          <div className="form-group">
+            <input
+              ref="id"
+              value={id}
+              onChange={this.onInputChange.bind(this)}
+              onKeyDown={this.onInputChange.bind(this)}
+              type="number"/><label> :Draft #</label>
+          </div>
+          <div className="form-group">
+            <input
+              ref="headCount"
+              onChange={this.onInputChange.bind(this)}
+              onKeyDown={this.onInputChange.bind(this)}
+              value={headCount}
+              type="number"/><label> :# Head</label>
+          </div>
+          <div className="form-group">
+            <select
+              ref="variant"
+              value={variant}
+              onChange={this.onSelectChange.bind(this)}>
+              <option value="" />
+              <option value="Heifer">Heifer</option>
+              <option value="Cow">Cow</option>
+            </select><label> :Sex</label>
+          </div>
+          <div className="form-group">
+            <input
+              ref="weight"
+              onChange={this.onInputChange.bind(this)}
+              onKeyDown={this.onInputChange.bind(this)}
+              value={weight}
+              type="number"/><label> :Weight</label>
+          </div>
+          <div className="form-group">
+            <input
+              ref="averageWeight"
+              onChange={this.onInputChange.bind(this)}
+              onKeyDown={this.onInputChange.bind(this)}
+              value={averageWeight}
+              type="number"/><label> :Avg/#</label>
+          </div>
+          <div className="form-group">
+            <input
+              ref="pricePer"
+              onChange={this.onInputChange.bind(this)}
+              onKeyDown={this.onInputChange.bind(this)}
+              value={pricePer}
+              type="number"/><label> :$/Head</label>
+          </div>
+          <div className="form-group">
+            <div className="input-group">
+              <span className="input-group-addon">$</span>
+              <input
+                ref={node => input = node}
+                type="number"
+                onChange={() => {
+                  handlePriceChange(unformatMoney(input.value.trim()))
+                }}
+                onKeyDown={(e) => {
+                  if(e.which === 13 || e.which === 9) {
+                    handlePriceInputKeyDown(unformatMoney(input.value.trim()))
+                  }
+                }}
+                value={formatMoney(price, '$ ')}
+              /><label> :Price</label>
+            </div>
+          </div>
         </form>
       </div>
     )
