@@ -1,3 +1,5 @@
+@import "../../../../../client/styles/index";
+
 .cattle-bid-item-bidder {
   p {
     display: flex;
@@ -43,5 +45,25 @@
     &:hover {
       background: linear-gradient(0deg, darken(#076707, 5%), darken(#219c21, 5%));
     }
+  }
+}
+
+.input-group {
+  display: table;
+  border-collapse: collapse;
+
+  input {
+    width: 83%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .input-group-addon {
+    background-color: darken($lightgray, 10%);
+    width: 15%;
+    text-align: center;
+    display: table-cell;
+    color: #444;
+    vertical-align: middle;
   }
 }

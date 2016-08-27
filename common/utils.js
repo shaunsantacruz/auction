@@ -6,10 +6,10 @@ export const formatMoney = (cents, symbol = '$') => {
   return `${symbol}${(cents / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}`
 }
 
-// unformats a value returned in the format returned by the fn formatMoney. e.g. $500.00 -> 50000
+// unformats a value 500.00 -> 50000
 export const unformatMoney = (value) => {
-  // Handle a whole number. e.g. 500 -> 500.00
   if(value.indexOf('.') === -1) {
+    // Special case handling of a whole number. e.g. 500 -> 500.00
     value = `${value}.00`
   }
   return parseInt(('' + value).replace(/[^0-9-]/g, ''), 10)

@@ -3,7 +3,8 @@ import React, {
   PropTypes,
 } from 'react'
 //import ReactDOM from 'react-dom'
-import {formatMoney, unformatMoney} from '../../../../utils'
+import {unformatMoney} from '../../../../utils'
+import CurrencyInput from 'react-currency-input'
 
 if (process.env.APP_ENV === 'client')
   require('./cattle.scss')
@@ -50,7 +51,7 @@ class BidItem extends Component {
   }
 
   render() {
-    let input
+    // let input
     const {
       model,
       handlePriceChange,
@@ -121,18 +122,17 @@ class BidItem extends Component {
           <div className="form-group">
             <div className="input-group">
               <span className="input-group-addon">$</span>
-              <input
-                ref={node => input = node}
-                type="number"
-                onChange={() => {
-                  handlePriceChange(unformatMoney(input.value.trim()))
+              <CurrencyInput
+                ref="input"
+                onChange={(newValue) => {
+                  handlePriceChange(unformatMoney(newValue))
                 }}
                 onKeyDown={(e) => {
                   if(e.which === 13 || e.which === 9) {
-                    handlePriceInputKeyDown(unformatMoney(input.value.trim()))
+                    handlePriceInputKeyDown(unformatMoney(this.refs.input.getMaskedValue()))
                   }
                 }}
-                value={formatMoney(price, '$ ')}
+                value={price.toString()}
               /><label> :Price</label>
             </div>
           </div>

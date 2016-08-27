@@ -2,8 +2,7 @@ import React, {
   Component,
   PropTypes,
 } from 'react'
-
-import {formatMoney} from '../../../../utils'
+import CurrencyInput from 'react-currency-input'
 
 if (process.env.APP_ENV === 'client')
   require('./cattle.scss')
@@ -57,12 +56,13 @@ class BidItem extends Component {
           </p>
           <p>
             <label>Price:</label>
-            <input
-              ref={node => input = node}
-              type="text"
-              readOnly
-              value={formatMoney(price)}
-            />
+            <div className="input-group">
+              <span className="input-group-addon">$</span>
+              <CurrencyInput
+                readOnly
+                value={price.toString()}
+              />
+            </div>
           </p>
           <p>
             <button onClick={(e) => {
