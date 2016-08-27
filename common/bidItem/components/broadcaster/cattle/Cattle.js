@@ -73,13 +73,13 @@ class BidItem extends Component {
             value={id}
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
-            type="text"/><label> :Draft #</label>
+            type="number"/><label> :Draft #</label>
           <input
             ref="headCount"
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
             value={headCount}
-            type="text"/><label> :# Head</label>
+            type="number"/><label> :# Head</label>
           <select
             ref="variant"
             value={variant}
@@ -93,22 +93,22 @@ class BidItem extends Component {
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
             value={weight}
-            type="text"/><label> :Weight</label>
+            type="number"/><label> :Weight</label>
           <input
             ref="averageWeight"
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
             value={averageWeight}
-            type="text"/><label> :Avg/#</label>
+            type="number"/><label> :Avg/#</label>
           <input
             ref="pricePer"
             onChange={this.onInputChange.bind(this)}
             onKeyDown={this.onInputChange.bind(this)}
             value={pricePer}
-            type="text"/><label> :$/Head</label>
+            type="number"/><label> :$/Head</label>
           <input
             ref={node => input = node}
-            type="text"
+            type="number"
             onChange={() => {
               handlePriceChange(unformatMoney(input.value.trim()))
             }}

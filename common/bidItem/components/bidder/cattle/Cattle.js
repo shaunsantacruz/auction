@@ -26,7 +26,6 @@ class BidItem extends Component {
     const {
       price,
       headCount,
-      // id,
       variant,
       weight,
       averageWeight,
@@ -38,23 +37,23 @@ class BidItem extends Component {
         <form action="#" className="cattle-bid-item-bidder">
           <p>
             <label># Head:</label>
-            <input type="text" value={headCount}/>
+            <input type="text" readOnly value={headCount}/>
           </p>
           <p>
             <label>Weight:</label>
-            <input type="text" value={weight}/>
+            <input type="text" readOnly value={weight}/>
           </p>
           <p>
             <label>Avg. Wt:</label>
-            <input type="text" value={averageWeight}/>
+            <input type="text" readOnly value={averageWeight}/>
           </p>
           <p>
             <label>$/Head:</label>
-            <input type="text" value={pricePer}/>
+            <input type="text" readOnly value={pricePer}/>
           </p>
           <p>
             <label>Sex:</label>
-            <input type="text" value={variant}/>
+            <input type="text" readOnly value={variant}/>
           </p>
           <p>
             <label>Price:</label>
