@@ -3,7 +3,7 @@ import * as bidItem from '../../common/bidItem'
 import * as bidBoard from '../../common/bidBoard'
 import * as bidLog from '../../common/bidLog'
 import * as users from '../../common/users'
-import * as messagesByUserId from '../../common/messagesByUserId'
+import * as chat from '../../common/chat'
 import {makeLog} from '../../common/utils'
 import diff from 'deep-diff'
 import isEqual from 'is-equal'
@@ -16,26 +16,33 @@ export default function handleSocketEvents(socketServer, store) {
   const BIDDER_NSP = '/bidder'
   const BROADCASTER_NSP = '/broadcaster'
 
-  const watchMessagesByUserId = watch(store.getState, messagesByUserId.name, isEqual)
+  const watchChat = watch(store.getState, chat.name, isEqual)
   store.subscribe(
-    watchMessagesByUserId((newState, oldState) => {
+    watchChat((newState, oldState) => {
       const differences = diff(newState, oldState)
-      if(differences[0].path.length === 1) {
-        const userId = differences[0].path[0]
-        const message = newState[userId].slice(-1)[0]
-        const {authorRole} = message
+      const {path} = differences[0]
+      // console.log(differences) ->
+      // [{
+      //     kind: 'D',
+      //     path: ['messagesByUserId', 'f4a23'],
+      //     lhs: [[Object]]
+      //   }]
+      if (path.length > 0 && path[0] === 'messagesByUserId') {
+        const userId = path[1]
+        const message = newState.messagesByUserId[userId].slice(-1)[0]
+        const { authorRole } = message
         // If it was the broadcaster that updated the server state, send it to the bidder's room
         // Else, the bidder updated the server state and so emit to broadcaster
-        if(authorRole === 'broadcaster') {
+        if (authorRole === 'broadcaster') {
           // TODO: Use action creator instead of pojo
-          socketServer.of(BIDDER_NSP).to(userId).emit(messagesByUserId.actions.ADD, {
+          socketServer.of(BIDDER_NSP).to(userId).emit(chat.actions.ADD_BY_ID, {
             userId,
             message,
           })
         } else {
           socketServer.of(BROADCASTER_NSP).emit('action', {
-            type: messagesByUserId.actions.ADD,
-            payload: {userId, message}
+            type: chat.actions.ADD_BY_ID,
+            payload: { userId, message }
           })
         }
       }
@@ -51,7 +58,7 @@ export default function handleSocketEvents(socketServer, store) {
       // If only difference is price, emit a price change to all connected bidders,
       // otherwise emit the entire object to them
       const differences = diff(newBidItem, oldBidItem)
-      const {price} = newBidItem
+      const { price } = newBidItem
       // TODO: Use action creator instead of pojo
       if (differences[0].path.length === 1 && differences[0].path[0] === 'price') {
         socketServer
@@ -118,10 +125,9 @@ export default function handleSocketEvents(socketServer, store) {
       } = action
 
       switch (type) {
-        case bidItem.actions.BID_ATTEMPT:
-        {
-          const {user, price} = payload
-          const {fullName} = user
+        case bidItem.actions.BID_ATTEMPT: {
+          const { user, price } = payload
+          const { fullName } = user
           // TODO: Does this need to be an object? Can it be a string 'fullname'?
           const recentBidder = {
             fullName
@@ -140,7 +146,7 @@ export default function handleSocketEvents(socketServer, store) {
           dispatch({
             type,
             payload,
-            meta: {remote: false}
+            meta: { remote: false }
           })
         }
       }
@@ -163,7 +169,7 @@ export default function handleSocketEvents(socketServer, store) {
       dispatch({
         type,
         payload,
-        meta: {remote: false}
+        meta: { remote: false }
       })
       // const {
       //   type,
@@ -194,7 +200,7 @@ export default function handleSocketEvents(socketServer, store) {
   function joinUser(user) {
     // map socket id to user
     connectedSocketsById[this.id] = user
-    const {id, fullName} = user
+    const { id, fullName } = user
     dispatch(users.actions.add(user))
     socketServer
       .of(BROADCASTER_NSP)

@@ -9,7 +9,7 @@ import * as bidLog from '../../bidLog'
 // eslist is throwing a false positive on users so ignore it for now
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "users" }]*/
 import * as users from '../../users'
-import * as messagesByUserId from '../../messagesByUserId'
+import * as chat from '../../chat'
 
 export default class Broadcaster extends Component {
 
@@ -27,7 +27,7 @@ export default class Broadcaster extends Component {
             <bidBoard.Root />
           </div>
           <div className="box mt-10">
-            <messagesByUserId.Root pathname={pathname} />
+            <chat.Root pathname={pathname} />
           </div>
         </div>
         <div className="col-xs">

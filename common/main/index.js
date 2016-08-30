@@ -11,7 +11,7 @@ import * as bidBoard from '../bidBoard'
 import * as bidLog from '../bidLog'
 import * as user from '../user'
 import * as users from '../users'
-import * as messagesByUserId from '../messagesByUserId'
+import * as chat from '../chat'
 
 export const reducer = combineReducers({
   [bidItem.name]: bidItem.reducer,
@@ -19,7 +19,7 @@ export const reducer = combineReducers({
   [user.name]: user.reducer,
   [users.name]: users.reducer,
   [bidLog.name]: bidLog.reducer,
-  [messagesByUserId.name]: messagesByUserId.reducer,
+  [chat.name]: chat.reducer,
 })
 
 export const Root = ({ children }) => {

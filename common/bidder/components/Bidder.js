@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import * as bidItem from '../../bidItem'
-import * as messagesByUserId from '../../messagesByUserId'
+import * as chat from '../../chat'
 
 if (process.env.APP_ENV === 'client')
   var placeholder = require('../../../public/assets/img/test-1.jpg')
@@ -29,7 +29,7 @@ class Bidder extends Component {
         </div>
         <div className="row">
           <div className="col-xs-offset-3 col-xs-9">
-            <messagesByUserId.Root />
+            <chat.Root />
           </div>
         </div>
       </div>

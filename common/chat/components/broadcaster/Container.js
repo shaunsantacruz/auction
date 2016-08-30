@@ -20,7 +20,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   handleSendMessage(text) {
-    dispatch(a.addMsg(text, {remote: true}))
+    dispatch(a.addMsgById(text, {remote: true}))
   }
 })
 

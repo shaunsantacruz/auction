@@ -44,4 +44,39 @@ describe(`${name} reducer`, () => {
     expect(state.mutedUsersById).to.not.equal(userId)
     expect(state.mutedUsersById).to.be.empty
   })
+
+  it(`should handle ${a.ADD_BY_ID}`, () => {
+    const state = initialState
+    const userId = 515
+    let message = {
+      authorName: 'Auctioneer',
+      text: 'Can you pay with bitcoin?',
+      createdAt: 0,
+    }
+    // Test First message
+    let newState = reducer(state, a.addById(userId, message))
+    expect(newState.messagesByUserId).to.eql({
+      515: [message]
+    })
+
+    // Test Second message
+    message = {
+      authorName: 'Bidder',
+      text: 'Yes I can pay with bitcoin?',
+      createdAt: 1,
+    }
+    newState = reducer(newState, a.addById(userId, message))
+    expect(newState.messagesByUserId).to.eql({
+      515: [{
+        authorName: 'Auctioneer',
+        text: 'Can you pay with bitcoin?',
+        createdAt: 0,
+      },
+      {
+        authorName: 'Bidder',
+        text: 'Yes I can pay with bitcoin?',
+        createdAt: 1,
+      }]
+    })
+  })
 })
