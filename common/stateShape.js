@@ -56,6 +56,26 @@ const server_state = {
     buyerNumber: 'foo_123',
     createdAt: 'timestamp',
   }],
+  chat: {
+    isLobbyOpen: false,
+    mutedUsersById: [515, 450, 25],
+    messages: [
+      {
+        authorName: 'Auctioneer',
+        authorRole: 'broadcaster',
+        text: 'Get into a flow and focus.',
+        createdAt: 'timestamp',
+        userId: 515
+      },
+      {
+        authorName: 'Auctioneer',
+        authorRole: 'broadcaster',
+        text: 'Chop, chop em down!',
+        createdAt: 'timestamp',
+        userId: 520
+      }
+    ]
+  },
   messagesByUserId: {
     515: [{
       authorName: 'Auctioneer',

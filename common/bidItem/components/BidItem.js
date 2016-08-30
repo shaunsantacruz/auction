@@ -30,12 +30,14 @@ class BidItem extends Component {
     const TypeRootComponent = require(pathToBidTypeRootComponent).default
 
     return (
-      <div className="row component-well">
-        {isBroadcaster && this.renderPriceAdjuster()}
-        <div className={isBroadcaster ? 'col-xs-7' : 'col-xs'}>
-          <div className="box">
-            {/* Typeroot is the auction-type bidItem component. i.e. Cattle or Land etc. */}
-            <TypeRootComponent />
+      <div className="component-well">
+        <div className="row">
+          {isBroadcaster && this.renderPriceAdjuster()}
+          <div className={isBroadcaster ? 'col-xs-7' : 'col-xs'}>
+            <div className="box">
+              {/* Typeroot is the auction-type bidItem component. i.e. Cattle or Land etc. */}
+              <TypeRootComponent />
+            </div>
           </div>
         </div>
       </div>
