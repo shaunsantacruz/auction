@@ -4,28 +4,38 @@ import React, {
 } from 'react'
 
 import {scrollToBottom} from '../../../domUtils'
+import {Chat, VolumeOff} from '../../../theme/icons'
 
 if(process.env.APP_ENV === 'client')
   require('./logged-in-users.scss')
 
 class LoggedInUsers extends Component {
   render() {
-    const {loggedInUsers, handleClick} = this.props
+    const {
+      loggedInUsers,
+      handleSelectUser,
+      handleToggleMute,
+      mutedUsersById,
+    } = this.props
     return (
       <div className="component-well">
-        <p className="mt-0"><strong>Logged in users</strong></p>
-        <div
-          className="logged-in-users__list"
-          ref={(node) => scrollToBottom(node)}>
+        <p className="mt-0 mb-5"><strong>Logged in users</strong></p>
+        <div className="logged-in-users__list" ref={(node) => scrollToBottom(node)}>
           {loggedInUsers.reverse().map((user) => {
             if (user.role === 'broadcaster') return
 
             return (
-              <p
-                key={user.fullName}
-                onClick={handleClick.bind(null, user.id)}>
-                <small>{user.fullName}</small>
-              </p>
+              <div className="logged-in-users__item" key={user.fullName}>
+                <span className="logged-in-users__user">
+                  {user.fullName}
+                </span>
+                <span className={`logged-in-users__action ${mutedUsersById.indexOf(user.id) ? '-is-muted' : ''}`}>
+                  <Chat onClick={handleSelectUser.bind(null, user.id)} />
+                  <VolumeOff
+                    onClick={handleToggleMute.bind(null, user.id)}
+                  />
+                </span>
+              </div>
             )
           })}
         </div>
@@ -36,7 +46,9 @@ class LoggedInUsers extends Component {
 
 LoggedInUsers.propTypes = {
   loggedInUsers: PropTypes.array,
-  handleClick: PropTypes.func,
+  mutedUsersById: PropTypes.array,
+  handleSelectUser: PropTypes.func,
+  handleToggleMute: PropTypes.func,
 }
 LoggedInUsers.defaultProps = {}
 

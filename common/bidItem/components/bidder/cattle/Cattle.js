@@ -56,13 +56,13 @@ class BidItem extends Component {
           </p>
           <p>
             <label>Price:</label>
-            <div className="input-group">
+            <span className="input-group">
               <span className="input-group-addon">$</span>
               <CurrencyInput
                 readOnly
                 value={price.toString()}
               />
-            </div>
+            </span>
           </p>
           <p>
             <button onClick={(e) => {

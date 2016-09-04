@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import SocketProvider from '../common/socket/SocketProvider'
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // css
 require('normalize.css')
 require('flexboxgrid')
@@ -21,7 +21,9 @@ const store = configureStore(initialState, namespace)
 ReactDOM.render(
   <Provider store={store}>
     <SocketProvider namespace={namespace}>
-      <Router history={browserHistory} routes={routes}/>
+      <MuiThemeProvider>
+        <Router history={browserHistory} routes={routes}/>
+      </MuiThemeProvider>
     </SocketProvider>
   </Provider>,
   document.getElementById('app')

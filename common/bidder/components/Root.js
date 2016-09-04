@@ -17,7 +17,7 @@ export default class Root extends Component {
   render() {
     const {location: {pathname} } = this.props
     return (
-      <div>
+      <div className="component-root">
         <h2>Bidder</h2>
         <Container pathname={pathname} />
       </div>
@@ -26,5 +26,5 @@ export default class Root extends Component {
 }
 
 Root.propTypes = {
-  location: PropTypes.object.isRequired
+  location: PropTypes.object
 }

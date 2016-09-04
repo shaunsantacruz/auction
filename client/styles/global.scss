@@ -5,9 +5,9 @@
 .component-well {
   background-color: $lightgray;
   border: 1px solid darken($lightgray, 10%);
-  padding: 10px;
+  padding: 0.7rem;
 }
 
-//.component-root + .component-root {
-//  margin-top: 20px;
-//}
+.component-root + .component-root {
+  margin-top: 1rem;
+}

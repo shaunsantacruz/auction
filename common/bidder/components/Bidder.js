@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import * as bidItem from '../../bidItem'
 import * as chat from '../../chat'
+import {Grid, Row, Fourth, ThreeFourth} from '../../theme/grid'
 
 if (process.env.APP_ENV === 'client')
   var placeholder = require('../../../public/assets/img/test-1.jpg')
@@ -13,26 +14,22 @@ class Bidder extends Component {
   render() {
     const {pathname} = this.props
     return (
-      <div>
-        <div className="row">
-          <div className="col-xs-3">
-            <div className="box">
-              {/*<p>uid: {this.props.userId}</p>*/}
-              <bidItem.Root pathname={pathname} />
-            </div>
-          </div>
-          <div className="col-xs-9">
-            <div className="box">
-              <img src={placeholder} />
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-offset-3 col-xs-9">
+      <Grid>
+        <Row>
+          <Fourth>
+            <bidItem.Root pathname={pathname} />
+          </Fourth>
+          <ThreeFourth>
+            <img src={placeholder} />
+          </ThreeFourth>
+        </Row>
+        <Row>
+          <ThreeFourth offset="3">
             <chat.Root />
-          </div>
-        </div>
-      </div>
+          </ThreeFourth>
+        </Row>
+      </Grid>
+
     )
   }
 }

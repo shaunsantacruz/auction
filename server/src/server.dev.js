@@ -115,6 +115,7 @@ function renderFullPage(html, initialState) {
     <html lang="en">
       <head>
         <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
         <title>Auction</title>

@@ -4,8 +4,21 @@ import React, {
 } from 'react'
 
 class ChatAction extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.input = null
+  }
+
+  componentDidUpdate(prevProps) {
+    const {selectedUser} = this.props
+    if(selectedUser !== prevProps.selectedUser) {
+      this.input.focus()
+    }
+  }
+
   render() {
-    let input
     const {handleSendMessage, selectedUser} = this.props
     return (
       <div className="broadcaster-chat__action mt-5">
@@ -13,19 +26,23 @@ class ChatAction extends Component {
           type="text"
           onKeyDown={(e) => {
             if(e.which === 13 || e.which === 9) {
-              if(input.value.trim() !== '') {
-                handleSendMessage(input.value.trim())
-                input.value = ''
+              if(this.input.value.trim() !== '') {
+                handleSendMessage(this.input.value.trim())
+                this.input.value = ''
               }
             }
           }}
-          ref={(node) => input = node}
+          ref={
+            (node) => {
+              this.input = node
+            }
+          }
           disabled={!selectedUser} />
         <button
           onClick={() => {
-            if(input.value.trim() !== '') {
-              handleSendMessage(input.value.trim())
-              input.value = ''
+            if(this.input.value.trim() !== '') {
+              handleSendMessage(this.input.value.trim())
+              this.input.value = ''
             }
           }}
           disabled={!selectedUser}>

@@ -17,13 +17,10 @@ class ChatList extends Component {
   }
 
   render() {
-    const {selectedUser, messages} = this.props
+    const {messages} = this.props
 
     return (
       <div>
-        <strong>
-          {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}
-        </strong>
         <div
           ref={(node) => scrollToBottom(node)}
           className="broadcaster-chat__list">
@@ -37,7 +34,6 @@ class ChatList extends Component {
 }
 
 ChatList.propTypes = {
-  selectedUser: PropTypes.object,
   messages: PropTypes.array,
 }
 // ChatList.defaultProps = {}

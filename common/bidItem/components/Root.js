@@ -13,7 +13,7 @@ export default class Root extends Component {
 
   render() {
     return (
-      <div>
+      <div className="component-root">
         <Container {...this.props} />
       </div>
     )

@@ -7,7 +7,9 @@ import Container from './Container'
 class Root extends Component {
   render() {
     return (
-      <Container />
+      <div className="component-root">
+        <Container />
+      </div>
     )
   }
 }

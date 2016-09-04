@@ -18,7 +18,7 @@ class Root extends Component {
     const pathToComponent = `.${pathTo}/Root.js`
     const Root = require(pathToComponent).default
     return (
-      <div className="chat">
+      <div className="chat component-root">
         <Root />
       </div>
     )

@@ -10,36 +10,36 @@ import * as bidLog from '../../bidLog'
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "users" }]*/
 import * as users from '../../users'
 import * as chat from '../../chat'
+import {Grid, Row, TwoThird, Third, Half, Whole} from '../../theme/grid'
 
 export default class Broadcaster extends Component {
 
   render() {
     const {pathname} = this.props
     return (
-      <div className="row">
-        <div className="col-xs">
-          <div className="box">
-            <bidItem.Root pathname={pathname} />
-          </div>
-        </div>
-        <div className="col-xs">
-          <div className="box">
-            <bidBoard.Root />
-          </div>
-          <div className="box mt-10">
-            <chat.Root pathname={pathname} />
-          </div>
-        </div>
-        <div className="col-xs">
-          <div className="box">
+      <Grid>
+        <Row>
+          <TwoThird>
+            <Row>
+              <Half>
+                <bidItem.Root pathname={pathname} />
+              </Half>
+              <Half>
+                <bidBoard.Root />
+              </Half>
+            </Row>
+            <Row>
+              <Whole>
+                <chat.Root pathname={pathname} />
+              </Whole>
+            </Row>
+          </TwoThird>
+          <Third>
             <bidLog.Root />
-          </div>
-          <div className="box mt-10">
             <users.components.LoggedInUsers />
-          </div>
-
-        </div>
-      </div>
+          </Third>
+        </Row>
+      </Grid>
     )
   }
 }

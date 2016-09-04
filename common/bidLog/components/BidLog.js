@@ -17,7 +17,7 @@ class BidLog extends Component {
     const {model, handleClick} = this.props
     return (
       <div className="component-well">
-        <p className="mt-0"><strong>Bid Log for Current Draft</strong> (most recent on top)</p>
+        <p className="mt-0 mb-5"><strong>Bid Log for Current Draft</strong> (most recent on top)</p>
         <div
           className="bid-log__list"
           ref={(node) => scrollToBottom(node)}>
