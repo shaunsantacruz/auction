@@ -3,6 +3,7 @@ import {time} from '../utils'
 // external deps
 import * as user from '../user'
 import * as users from '../users'
+import {isLobbyOpen} from './selectors'
 
 export const ADD = `${name}/ADD`
 export const ADD_BY_ID = `${name}/ADD_BY_ID`
@@ -11,9 +12,9 @@ export const TOGGLE_MUTED_USER_ID = `${name}/TOGGLE_MUTED_USER_ID`
 
 
 
-export const add = (message, {remote = true} = {}) => ({
+export const add = (text, {remote = true} = {}) => ({
   type: ADD,
-  payload: {message},
+  payload: {text},
   meta: {remote}
 })
 
@@ -33,13 +34,15 @@ export const toggleMutedUserId = (userId, {remote = false} = {}) => ({
 export function addMsgById(text, {remote = false} = {}) {
   return (dispatch, getState) => {
     const state = getState()
+    const isLobbyOpen = isLobbyOpen(state)
+    const selectedUserId = users.selectors.getSelectedUserId(state)
+    const isLobbySelected = selectedUserId == 0 && isLobbyOpen
     const authorName = user.selectors.getFirstName(state)
     const authorRole = user.selectors.getRole(state)
     const createdAt = time()
-    // Note: Broadcaster sets key users.selectedUserId & Bidder does not
-    // Check state for user.selectedUserId
-    const userId = state[users.name]['selectedUserId'] !== 0
-      ? users.selectors.getSelectedUserId(state)
+    // Note: Broadcaster in only concerned with users.selectedUserId. Bidder is not
+    const userId = authorRole === 'broadcaster'
+      ? selectedUserId
       : user.selectors.getId(state)
 
     const message = {
@@ -47,8 +50,14 @@ export function addMsgById(text, {remote = false} = {}) {
       authorRole,
       text,
       createdAt,
+      userId: user.selectors.getId(state)
     }
-    dispatch(addById(userId, message, {remote}))
+
+    if(!isLobbySelected) 
+      dispatch(addById(userId, message, {remote}))
+    }else {
+      dispatch(add(message, {remote}))
+    }
   }
 }
 

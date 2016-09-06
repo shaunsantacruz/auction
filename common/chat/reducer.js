@@ -2,14 +2,14 @@ import * as a from './actions'
 
 export const initialState = {
   isLobbyOpen: false,
-  mutedUsersById: [],
+  mutedUserIds: [],
   messages: [],
   messagesByUserId: {},
 }
 
 function isUserMuted(state, userId) {
-  const { mutedUsersById } = state
-  return mutedUsersById.indexOf(userId) >= 0
+  const { mutedUserIds } = state
+  return mutedUserIds.indexOf(userId) >= 0
 }
 
 function messagesByID(state = [], action) {
@@ -60,15 +60,15 @@ export default function reducer(state = initialState, action) {
       if (!isUserMuted(state, userId)) {
         return {
           ...state,
-          mutedUsersById: [
-            ...state.mutedUsersById,
+          mutedUserIds: [
+            ...state.mutedUserIds,
             userId
           ]
         }
       }
       return {
         ...state,
-        mutedUsersById: state.mutedUsersById.filter((id) => id !== userId)
+        mutedUserIds: state.mutedUserIds.filter((id) => id !== userId)
       }
     }
 

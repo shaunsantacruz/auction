@@ -38,11 +38,11 @@ describe(`${name} reducer`, () => {
   it(`should handle ${a.TOGGLE_MUTED_USER_ID}`, () => {
     const userId = 515
     const nextState = reducer(initialState, a.toggleMutedUserId(userId))
-    expect(nextState.mutedUsersById[0]).to.equal(userId)
+    expect(nextState.mutedUserIds[0]).to.equal(userId)
 
     const state = reducer(nextState, a.toggleMutedUserId(userId))
-    expect(state.mutedUsersById).to.not.equal(userId)
-    expect(state.mutedUsersById).to.be.empty
+    expect(state.mutedUserIds).to.not.equal(userId)
+    expect(state.mutedUserIds).to.be.empty
   })
 
   it(`should handle ${a.ADD_BY_ID}`, () => {

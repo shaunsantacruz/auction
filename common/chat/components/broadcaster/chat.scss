@@ -65,8 +65,8 @@
   }
 
   > ul > li {
-    list-style-type: none
-  ;
+    list-style-type: none;
+
     &:first-child {
       border-bottom: 1px solid #ccc;
       margin-bottom: 10px;
@@ -74,7 +74,25 @@
     }
 
     &:not(:first-child) {
-      padding: 6px 0;
+      padding: 7px 0 7px 10px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.-is-selected {
+      background-color: darken($lightgray, 15%);
+    }
+  }
+
+  li.lobby-item {
+    cursor: not-allowed !important;
+    opacity: .5;
+
+    &.-is-open {
+      opacity: 1;
+      cursor: pointer !important;
     }
   }
 }

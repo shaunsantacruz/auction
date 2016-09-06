@@ -3,6 +3,7 @@ import React, {
   PropTypes,
 } from 'react'
 
+import classnames from 'classnames'
 import {scrollToBottom} from '../../../domUtils'
 import {Chat, VolumeOff} from '../../../theme/icons'
 
@@ -15,25 +16,31 @@ class LoggedInUsers extends Component {
       loggedInUsers,
       handleSelectUser,
       handleToggleMute,
-      mutedUsersById,
+      mutedUserIds,
+      privateMessageUserIds,
+      selectedUserId,
     } = this.props
+
     return (
       <div className="component-well">
         <p className="mt-0 mb-5"><strong>Logged in users</strong></p>
         <div className="logged-in-users__list" ref={(node) => scrollToBottom(node)}>
-          {loggedInUsers.reverse().map((user) => {
-            if (user.role === 'broadcaster') return
+          {loggedInUsers.filter((user) => user.role !== 'broadcaster').reverse().map((user) => {
+            const cx = classnames({
+              '-is-muted': mutedUserIds.indexOf(user.id) > -1,
+              '-is-chatting': privateMessageUserIds.indexOf(user.id) > -1 || selectedUserId == user.id,
+            })
 
             return (
               <div className="logged-in-users__item" key={user.fullName}>
                 <span className="logged-in-users__user">
                   {user.fullName}
                 </span>
-                <span className={`logged-in-users__action ${mutedUsersById.indexOf(user.id) ? '-is-muted' : ''}`}>
-                  <Chat onClick={handleSelectUser.bind(null, user.id)} />
+                <span className={`logged-in-users__action ${cx}`}>
+                  <Chat
+                    onClick={handleSelectUser.bind(null, user.id)} />
                   <VolumeOff
-                    onClick={handleToggleMute.bind(null, user.id)}
-                  />
+                    onClick={handleToggleMute.bind(null, user.id)} />
                 </span>
               </div>
             )
@@ -46,7 +53,9 @@ class LoggedInUsers extends Component {
 
 LoggedInUsers.propTypes = {
   loggedInUsers: PropTypes.array,
-  mutedUsersById: PropTypes.array,
+  mutedUserIds: PropTypes.array,
+  selectedUserId: PropTypes.string,
+  privateMessageUserIds: PropTypes.array,
   handleSelectUser: PropTypes.func,
   handleToggleMute: PropTypes.func,
 }

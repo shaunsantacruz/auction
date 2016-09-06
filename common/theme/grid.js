@@ -3,14 +3,14 @@ import React, {
 } from 'react'
 
 // helper fn
-function getCx(typeObj) {
-  const key = Object.keys(typeObj)[0]
-  if(typeof typeObj[key] === 'undefined') {
+function getCx(prop) {
+  const key = Object.keys(prop)[0]
+  if(typeof prop[key] === 'undefined') {
     return ''
   }
   switch (key) {
     case 'offset':
-      return `col-xs-offset-${typeObj.offset}`
+      return `col-xs-offset-${prop.offset}`
     case 'center':
     case 'end':
     case 'middle':
@@ -18,6 +18,9 @@ function getCx(typeObj) {
 
     default: return ''
   }
+}
+function createCx(props) {
+  return props.map(getCx).join(' ')
 }
 
 export const Grid = ({children, ...props}) => (
@@ -28,7 +31,7 @@ Grid.propTypes = {
 }
 
 export const Row = ({children, center, end, middle, ...props}) => {
-  const cx = `row ${getCx({center})} ${getCx({end})} ${getCx({middle})}`
+  const cx = `row ${createCx([{center}, {end}, {middle}])}`
   return (
     <div {...props} className={cx}>{children}</div>
   )

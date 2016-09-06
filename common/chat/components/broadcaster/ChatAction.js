@@ -12,14 +12,21 @@ class ChatAction extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {selectedUser} = this.props
+    const {
+      selectedUser,
+    } = this.props
+
     if(selectedUser !== prevProps.selectedUser) {
       this.input.focus()
     }
   }
 
   render() {
-    const {handleSendMessage, selectedUser} = this.props
+    const {
+      handleSendMessage,
+      selectedUser,
+      isLobbySelected,
+    } = this.props
     return (
       <div className="broadcaster-chat__action mt-5">
         <input
@@ -27,7 +34,7 @@ class ChatAction extends Component {
           onKeyDown={(e) => {
             if(e.which === 13 || e.which === 9) {
               if(this.input.value.trim() !== '') {
-                handleSendMessage(this.input.value.trim())
+                handleSendMessage(this.input.value.trim(), isLobbySelected)
                 this.input.value = ''
               }
             }
@@ -37,15 +44,15 @@ class ChatAction extends Component {
               this.input = node
             }
           }
-          disabled={!selectedUser} />
+          disabled={!isLobbySelected && !selectedUser} />
         <button
           onClick={() => {
             if(this.input.value.trim() !== '') {
-              handleSendMessage(this.input.value.trim())
+              handleSendMessage(this.input.value.trim(), isLobbySelected)
               this.input.value = ''
             }
           }}
-          disabled={!selectedUser}>
+          disabled={!isLobbySelected && !selectedUser}>
           Send
         </button>
       </div>
@@ -56,6 +63,8 @@ class ChatAction extends Component {
 ChatAction.propTypes = {
   handleSendMessage: PropTypes.func,
   selectedUser: PropTypes.object,
+  model: PropTypes.object,
+  isLobbySelected: PropTypes.bool,
 }
 // ChatAction.defaultProps = {}
 

@@ -24,7 +24,7 @@ class Chat extends Component {
             <ChatSidebar {...this.props} />
           </Third>
           <TwoThird>
-            <Row middle>
+            <Row>
               <Cell>
                 <strong className="d-ib fl-l">
                   {selectedUser ? `Chatting with ${selectedUser.fullName}` : 'Chat'}

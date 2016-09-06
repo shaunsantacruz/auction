@@ -58,7 +58,8 @@ const server_state = {
   }],
   chat: {
     isLobbyOpen: false,
-    mutedUsersById: [515, 450, 25],
+    mutedUserIds: [515, 450, 25],
+    unreadMessagesByUserId: [515, 450, 25],
     messages: [
       {
         authorName: 'Auctioneer',

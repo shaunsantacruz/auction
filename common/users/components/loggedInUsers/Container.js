@@ -1,14 +1,18 @@
 import {connect} from 'react-redux'
 import LoggedInUsers from './LoggedInUsers'
-import {getLoggedInUsers} from '../../selectors'
+import {getLoggedInUsers, getModel} from '../../selectors'
 import {setSelectedUserId} from '../../actions'
 import * as chat from '../../../chat'
 
 function mapStateToProps(state) {
+  const model = getModel(state)
+  const {selectedUserId} = model
 
   return {
     loggedInUsers: getLoggedInUsers(state),
-    mutedUsersById: chat.selectors.getMutedUsersIds(state),
+    mutedUserIds: chat.selectors.getMutedUsersIds(state),
+    privateMessageUserIds: chat.selectors.getPrivateMessageUserIds(state),
+    selectedUserId,
   }
 }
 

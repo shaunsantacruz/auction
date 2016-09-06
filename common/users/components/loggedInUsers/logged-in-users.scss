@@ -31,6 +31,10 @@
     opacity: 1;
   }
 
+  &.-is-chatting .icon-chat {
+    opacity: 1;
+  }
+
   .material-icons {
     font-size: 1.3rem !important;
     cursor: pointer;
