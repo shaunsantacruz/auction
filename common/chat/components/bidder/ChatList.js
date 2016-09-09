@@ -7,21 +7,29 @@ import {scrollToBottom} from '../../../domUtils'
 
 class ChatList extends Component {
 
-  chatItem({ authorRole, createdAt, authorName, text }) {
+  chatItem({ role, createdAt, fullName, text }) {
     // if(!createdAt) return
     return (
       <li key={createdAt}>
-        <strong>{authorName}{authorRole === 'broadcaster' && ' (broadcaster)'}: </strong>
+        <strong>{fullName}{role === 'broadcaster' && ' (broadcaster)'}: </strong>
         {text}
       </li>
     )
   }
 
   render() {
-    const {messages} = this.props
+    const {
+      privateMessages,
+      lobbyMessages,
+      isLobby,
+    } = this.props
+
+    const messages = isLobby ? lobbyMessages : privateMessages
+    const title = isLobby ? 'Public Chat' : 'Private Chat'
+
     return (
       <div>
-        <strong>Chat</strong>
+        <strong>{title}</strong>
         <div
           ref={(node) => scrollToBottom(node)}
           className="bidder-chat__list">
@@ -35,7 +43,9 @@ class ChatList extends Component {
 }
 
 ChatList.propTypes = {
-  messages: PropTypes.array,
+  privateMessages: PropTypes.array,
+  lobbyMessages: PropTypes.array,
+  isLobby: PropTypes.bool,
 }
 // ChatList.defaultProps = {}
 

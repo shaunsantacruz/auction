@@ -17,17 +17,16 @@ class ChatSidebar extends Component {
 
   renderItem(id) {
     const {
-      loggedInUsersById,
+      usersById,
       handleSelectUser,
       selectedUserId,
     } = this.props
-
-    const user = loggedInUsersById[id]
+    const user = usersById[id]
 
     return (
       <li key={id}
           className={selectedUserId == id ? '-is-selected' : ''}
-          onClick={handleSelectUser.bind(null, id)}>
+          onClick={handleSelectUser.bind(null, parseInt(id, 10))}>
         {user.fullName}
       </li>
     )
@@ -35,32 +34,29 @@ class ChatSidebar extends Component {
 
   render() {
     const {
-      messagesByUserId,
-      isLobbyOpen,
-    } = this.props.model
-    const {
       handleToggleLobby,
       handleSelectLobby,
       isLobbySelected,
+      messagesByChannelId,
+      isLobbyOpen,
     } = this.props
-    const privateMessageUserIds = Object.keys(messagesByUserId)
+    const privateMessageUserIds = Object.keys(messagesByChannelId)
     const lobbyItemCx = classnames({
       'lobby-item': true,
       '-is-selected': isLobbySelected,
-      '-is-open': isLobbyOpen
+      '-is-open': isLobbyOpen,
     })
 
     return (
       <div className="broadcaster-chat__sidebar">
         <ul>
           <li>
-            <Toggler label="Lobby" onToggle={() => handleToggleLobby()} />
+            <Toggler label="Lobby"
+              onToggle={() => handleToggleLobby()}
+              defaultToggled={isLobbyOpen} />
           </li>
           <li className={lobbyItemCx}
             onClick={() => {
-              if(!isLobbyOpen) {
-                return
-              }
               handleSelectLobby()
             }}>
             Lobby
@@ -74,12 +70,14 @@ class ChatSidebar extends Component {
 
 ChatSidebar.propTypes = {
   model: PropTypes.object,
-  loggedInUsersById: PropTypes.object,
+  usersById: PropTypes.object,
   selectedUserId: PropTypes.number,
   handleSelectLobby: PropTypes.func,
   handleToggleLobby: PropTypes.func,
   handleSelectUser: PropTypes.func,
   isLobbySelected: PropTypes.bool,
+  messagesByChannelId: PropTypes.object,
+  isLobbyOpen: PropTypes.bool,
 }
 // ChatSidebar.defaultProps = {}
 

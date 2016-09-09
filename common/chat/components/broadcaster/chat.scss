@@ -7,14 +7,16 @@
   overflow: auto;
   padding: 10px;
   width: 100%;
+  height: 170px;
 
   ul {
     align-content: flex-end;
     align-items: flex-end;
     flex-flow: row wrap;
     width: 100%;
+    height: 170px;
     display: flex;
-    height: 150px;
+    overflow: auto;
     margin: 0;
     padding: 0;
   }
@@ -31,6 +33,10 @@
   input {
     padding: 3px;
     width: 80%;
+
+    &:disabled:hover {
+      cursor: not-allowed;
+    }
   }
 
   button {
@@ -87,12 +93,11 @@
   }
 
   li.lobby-item {
-    cursor: not-allowed !important;
     opacity: .5;
 
     &.-is-open {
       opacity: 1;
-      cursor: pointer !important;
+      font-weight: bold;
     }
   }
 }

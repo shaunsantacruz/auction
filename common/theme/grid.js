@@ -43,8 +43,8 @@ Row.propTypes = {
   middle: PropTypes.bool,
 }
 
-export const Cell = ({children, ...props}) => (
-  <div {...props} className="col-xs">
+export const Cell = ({children, className = '', ...props}) => (
+  <div {...props} className={`col-xs ${className}`}>
     <div className="box">
       {children}
     </div>
@@ -52,6 +52,7 @@ export const Cell = ({children, ...props}) => (
 )
 Cell.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 }
 
 export const Sixth = ({children, ...props}) => (

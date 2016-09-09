@@ -1,6 +1,6 @@
 import {name} from './__init__'
-import uuid from 'uuid'
 import faker from 'faker'
+import random from 'lodash/random'
 
 //export const GET_USER = `${name}/GET_USER`
 export const SET_STATE = `${name}/SET_STATE`
@@ -14,7 +14,7 @@ export const setState = (user) => ({
 function fetchUser(id, role) {
   return new Promise((resolve) => {
     // Mocked User
-    const uid = uuid.v1().substr(0, 5)
+    const uid = random(0, 5000)
     const firstName = faker.name.firstName()
     const lastName = faker.name.lastName()
     const fullName = `${firstName} ${lastName}`

@@ -3,6 +3,15 @@ import * as user from '../user'
 import * as chat from '../chat'
 
 export default function handleSocketEvents(namespace, store) {
+
+  // TODO: Can all socket callbacks use 'action'?
+  namespace.on('action', ({type, payload}) => {
+    store.dispatch({
+      type,
+      payload
+    })
+  })
+
   namespace.on(bidItem.actions.SET_PRICE, (price) => {
     store.dispatch(bidItem.actions.setPrice(price, {remote: false}))
   })
@@ -11,8 +20,8 @@ export default function handleSocketEvents(namespace, store) {
     store.dispatch(bidItem.actions.mergeState(state))
   })
 
-  namespace.on(chat.actions.ADD_BY_ID, ({userId, message}) => {
-    store.dispatch(chat.actions.addById(userId, message, {remote: false}))
+  namespace.on(chat.actions.ADD_BY_ID, ({message, channelId}) => {
+    store.dispatch(chat.actions.addById(message, channelId, {remote: false}))
   })
 
   // Attempt to join room

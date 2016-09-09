@@ -54,7 +54,7 @@ class LoggedInUsers extends Component {
 LoggedInUsers.propTypes = {
   loggedInUsers: PropTypes.array,
   mutedUserIds: PropTypes.array,
-  selectedUserId: PropTypes.string,
+  selectedUserId: PropTypes.number,
   privateMessageUserIds: PropTypes.array,
   handleSelectUser: PropTypes.func,
   handleToggleMute: PropTypes.func,

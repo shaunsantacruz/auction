@@ -21,8 +21,8 @@ export default class BidBoard extends Component {
     // A new bid has arrived
     if(nextProps.model.price !== this.props.model.price) {
       this.classNames = classnames({
-        '-has-bid': this.props.model.price > 0,
-        '-flash': this.props.model.price > 0,
+        '-has-bid': nextProps.model.price > 0,
+        '-flash': nextProps.model.price > 0,
         'bid-board component-well': true,
       })
       // reset animationEnd flag since a new bid was received

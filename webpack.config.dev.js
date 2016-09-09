@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+// var CircularDependencyPlugin = require('circular-dependency-plugin');
 
 //http://webpack.github.io/docs/configuration.htm
 module.exports = {
@@ -54,6 +55,12 @@ module.exports = {
         'APP_ENV': JSON.stringify('client'),
       },
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    // new CircularDependencyPlugin({
+    //   // exclude detection of files based on a RegExp
+    //   // exclude: /a\.js/,
+    //   // add errors to webpack instead of warnings
+    //   failOnError: true
+    // })
   ]
 };

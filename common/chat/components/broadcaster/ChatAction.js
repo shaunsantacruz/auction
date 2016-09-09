@@ -13,10 +13,10 @@ class ChatAction extends Component {
 
   componentDidUpdate(prevProps) {
     const {
-      selectedUser,
+      selectedUserId,
     } = this.props
 
-    if(selectedUser !== prevProps.selectedUser) {
+    if(selectedUserId !== prevProps.selectedUserId) {
       this.input.focus()
     }
   }
@@ -24,9 +24,12 @@ class ChatAction extends Component {
   render() {
     const {
       handleSendMessage,
-      selectedUser,
+      selectedUserId,
       isLobbySelected,
+      currentUser,
     } = this.props
+    const channelId = selectedUserId !== 0 ? selectedUserId : 'lobby'
+
     return (
       <div className="broadcaster-chat__action mt-5">
         <input
@@ -34,7 +37,7 @@ class ChatAction extends Component {
           onKeyDown={(e) => {
             if(e.which === 13 || e.which === 9) {
               if(this.input.value.trim() !== '') {
-                handleSendMessage(this.input.value.trim(), isLobbySelected)
+                handleSendMessage(this.input.value.trim(), channelId, currentUser)
                 this.input.value = ''
               }
             }
@@ -44,15 +47,15 @@ class ChatAction extends Component {
               this.input = node
             }
           }
-          disabled={!isLobbySelected && !selectedUser} />
+          disabled={!isLobbySelected && !selectedUserId} />
         <button
           onClick={() => {
             if(this.input.value.trim() !== '') {
-              handleSendMessage(this.input.value.trim(), isLobbySelected)
+              handleSendMessage(this.input.value.trim(), channelId, currentUser)
               this.input.value = ''
             }
           }}
-          disabled={!isLobbySelected && !selectedUser}>
+          disabled={!isLobbySelected && !selectedUserId}>
           Send
         </button>
       </div>
@@ -62,7 +65,8 @@ class ChatAction extends Component {
 
 ChatAction.propTypes = {
   handleSendMessage: PropTypes.func,
-  selectedUser: PropTypes.object,
+  selectedUserId: PropTypes.number,
+  currentUser: PropTypes.object,
   model: PropTypes.object,
   isLobbySelected: PropTypes.bool,
 }

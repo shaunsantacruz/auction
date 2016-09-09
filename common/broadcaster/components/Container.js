@@ -45,7 +45,7 @@ Container.contextTypes = {
 }
 Container.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  userId: PropTypes.string
+  userId: PropTypes.number
 }
 
 export default connect(

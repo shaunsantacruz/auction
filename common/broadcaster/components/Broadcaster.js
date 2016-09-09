@@ -45,6 +45,6 @@ export default class Broadcaster extends Component {
 }
 
 Broadcaster.propTypes = {
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.number.isRequired,
   pathname: PropTypes.string.isRequired,
 }

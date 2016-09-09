@@ -1,36 +1,42 @@
 import {connect} from 'react-redux'
 import Chat from './Chat'
-import { getMessagesById, getModel } from '../../selectors'
+import { getMessagesWithoutMuted, getMessagesById, getModel } from '../../selectors'
 import * as a from '../../actions'
 
 // external deps
 import * as users from '../../../users'
+import * as user from '../../../user'
 
 function mapStateToProps(state) {
   const model = getModel(state)
+  const {
+    messagesByChannelId,
+    isLobbyOpen,
+  } = model
   const selectedUserId = users.selectors.getSelectedUserId(state)
   const selectedUser = selectedUserId ? users.selectors.getUserById(state, selectedUserId) : null
   const isLobbySelected = selectedUserId == 0 && model.isLobbyOpen
-  const messages = getMessagesById(state, selectedUserId)
-  const loggedInUsersById = users.selectors.getUsersById(state)
+  const currentUser = user.selectors.getModel(state)
+  const messages = selectedUserId == 0
+    ? getMessagesWithoutMuted(state)
+    : getMessagesById(state, selectedUserId)
+  const usersById = users.selectors.getUsersById(state)
 
   return {
+    currentUser,
     selectedUser,
     selectedUserId,
     messages,
-    model,
-    loggedInUsersById,
+    usersById,
     isLobbySelected,
+    messagesByChannelId,
+    isLobbyOpen,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSendMessage(text, isLobbySelected) {
-    if(isLobbySelected) {
-      dispatch(a.add(text, {remote: true}))
-    }else {
-      dispatch(a.addMsgById(text, {remote: true}))
-    }
+  handleSendMessage(text, channelId, currentUser) {
+    dispatch(a.addMsg(text, channelId, currentUser, {remote: true}))
   },
   handleToggleLobby() {
     dispatch(a.toggleLobby())

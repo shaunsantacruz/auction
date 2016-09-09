@@ -31,6 +31,10 @@
   input {
     padding: 3px;
     width: 80%;
+
+    &:disabled:hover {
+      cursor: not-allowed;
+    }
   }
 
   button {
@@ -43,8 +47,24 @@
     color: white;
     background: linear-gradient(0deg, $blue, #4888ff);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: linear-gradient(0deg, darken($blue, 10%), darken(#4888ff, 10%));
     }
+
+    &:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
   }
+}
+
+.bidder-chat__lobby {
+  background-color: $lightgray;
+  border: 1px solid darken($lightgray, 10%);
+  padding: 0.7rem;
+}
+.bidder-chat__private {
+  background-color: darken($lightgray, 30%);
+  border: 1px solid darken($lightgray, 10%);
+  padding: 0.7rem;
 }

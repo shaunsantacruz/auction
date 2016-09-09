@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 
   return {
     loggedInUsers: getLoggedInUsers(state),
-    mutedUserIds: chat.selectors.getMutedUsersIds(state),
+    mutedUserIds: chat.selectors.getMutedUserIds(state),
     privateMessageUserIds: chat.selectors.getPrivateMessageUserIds(state),
     selectedUserId,
   }

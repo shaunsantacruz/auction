@@ -35,7 +35,7 @@ class Bidder extends Component {
 }
 
 Bidder.propTypes = {
-  pathname: PropTypes.string.isRequired,
+  pathname: PropTypes.string,
 }
 
 export default Bidder

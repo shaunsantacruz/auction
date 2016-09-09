@@ -4,12 +4,12 @@ export const initialState = {
   isLobbyOpen: false,
   mutedUserIds: [],
   messages: [],
-  messagesByUserId: {},
+  messagesByChannelId: {},
 }
 
 function isUserMuted(state, userId) {
   const { mutedUserIds } = state
-  return mutedUserIds.indexOf(userId) >= 0
+  return mutedUserIds.indexOf(userId) > -1
 }
 
 function messagesByID(state = [], action) {
@@ -45,12 +45,12 @@ export default function reducer(state = initialState, action) {
     }
 
     case a.ADD_BY_ID: {
-      const { userId } = payload
+      const { channelId } = payload
       return {
         ...state,
-        messagesByUserId: {
-          ...state.messagesByUserId,
-          [userId]: messagesByID(state.messagesByUserId[userId], action)
+        messagesByChannelId: {
+          ...state.messagesByChannelId,
+          [channelId]: messagesByID(state.messagesByChannelId[channelId], action)
         }
       }
     }
@@ -69,6 +69,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         mutedUserIds: state.mutedUserIds.filter((id) => id !== userId)
+      }
+    }
+
+    case a.SET_MUTED_USER_IDS: {
+      const {userIds} = payload
+      return {
+        ...state,
+        mutedUserIds: [...userIds]
       }
     }
 

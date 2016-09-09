@@ -3,15 +3,15 @@ import React, {
   PropTypes,
 } from 'react'
 
-import {random} from 'lodash'
+import random from 'lodash/random'
 import {scrollToBottom} from '../../../domUtils'
 
 class ChatList extends Component {
 
-  chatItem({ authorRole, createdAt, authorName, text }) {
+  chatItem({ role, createdAt, fullName, text }) {
     return (
       <li key={`${createdAt}${random(0, 5000)}`}>
-        <strong>{authorName}{authorRole === 'broadcaster' && ' (broadcaster)'}: </strong>
+        <strong>{fullName}{role === 'broadcaster' && ' (broadcaster)'}: </strong>
         {text}
       </li>
     )

@@ -59,11 +59,12 @@ const server_state = {
   chat: {
     isLobbyOpen: false,
     mutedUserIds: [515, 450, 25],
-    unreadMessagesByUserId: [515, 450, 25],
+    unreadMessagesUserIds: [515, 450, 25],
     messages: [
       {
         authorName: 'Auctioneer',
         authorRole: 'broadcaster',
+        channelId: 'lobby',
         text: 'Get into a flow and focus.',
         createdAt: 'timestamp',
         userId: 515
@@ -71,20 +72,25 @@ const server_state = {
       {
         authorName: 'Auctioneer',
         authorRole: 'broadcaster',
+        channelId: 'lobby',
         text: 'Chop, chop em down!',
         createdAt: 'timestamp',
         userId: 520
       }
     ],
-    messagesByUserId: {
+    messagesByChannelId: {
       515: [{
         authorName: 'Auctioneer',
         authorRole: 'broadcaster',
+        channelId: 515,
+        userId: 210, // broadcaster id
         text: 'Can you pay with bitcoin?',
         createdAt: 'timestamp',
       }, {
         authorName: 'Dan Abramov',
         authorRole: 'bidder',
+        channelId: 515,
+        userId: 515,
         text: 'Yes, I can pay with bitcoin.',
         createdAt: 'timestamp',
       }],
