@@ -34,7 +34,9 @@ class PriceAdjuster extends Component {
             </button>,
             <button
               onClick={() => {
-                  handlePriceAdjust((price -= amt))
+                  if(price !== 0) {
+                    handlePriceAdjust((price -= amt))
+                  }
               }}
               className="pa-dec">
               -{(amt / 100).toFixed(2)}

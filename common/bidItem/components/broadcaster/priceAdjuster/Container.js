@@ -12,6 +12,9 @@ export default connect(
     price: getPrice(state)
   }),
   {
-    handlePriceAdjust: (price) => setPrice(price, {remote: true}),
+    handlePriceAdjust: (price) => {
+      price = price <= 0 ? 0 : price
+      return setPrice(price, {remote: true})
+    },
   }
 )(PriceAdjuster)

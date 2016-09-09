@@ -3,6 +3,7 @@ import reducer, {initialState} from './reducer'
 import * as actions from './actions'
 import Root from './components/Root'
 import * as selectors from './selectors'
+import watcher from './watcher'
 
 export {
   name,
@@ -11,4 +12,5 @@ export {
   actions,
   Root,
   selectors,
+  watcher,
 }
