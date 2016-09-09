@@ -10,6 +10,7 @@ export const ADD_BY_ID = `${name}/ADD_BY_ID`
 export const TOGGLE_LOBBY = `${name}/TOGGLE_LOBBY`
 export const TOGGLE_MUTED_USER_ID = `${name}/TOGGLE_MUTED_USER_ID`
 export const SET_MUTED_USER_IDS = `${name}/SET_MUTED_USER_IDS`
+export const SET_LOBBY_OPEN_STATE = `${name}/SET_LOBBY_OPEN_STATE`
 
 export const add = (message, {remote = true} = {}) => ({
   type: ADD,
@@ -20,6 +21,12 @@ export const add = (message, {remote = true} = {}) => ({
 export const toggleLobby = ({remote = true} = {}) => ({
   type: TOGGLE_LOBBY,
   payload: '',
+  meta: {remote}
+})
+
+export const setLobbyOpenState = (openState, {remote = true} = {}) => ({
+  type: TOGGLE_LOBBY,
+  payload: {openState},
   meta: {remote}
 })
 

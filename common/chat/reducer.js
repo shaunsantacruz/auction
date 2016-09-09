@@ -86,6 +86,15 @@ export default function reducer(state = initialState, action) {
         isLobbyOpen: !state.isLobbyOpen
       }
 
+    case a.SET_LOBBY_OPEN_STATE: {
+      const {openState} = payload
+      return {
+        ...state,
+        isLobbyOpen: openState
+      }
+    }
+
+
     default:
       return state
   }

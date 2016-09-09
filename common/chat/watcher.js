@@ -9,7 +9,7 @@ export default function(io, store) {
   const watchChat = watch(store.getState, chat.name, isEqual)
   store.subscribe(watchChat((newState, oldState) => {
       const differences = diff(newState, oldState)
-      const {path} = differences[0]
+      const {path, lhs} = differences[0]
       // console.log(differences) ->
       // [{
       //     kind: 'D',
@@ -43,7 +43,9 @@ export default function(io, store) {
       }
 
       if(path.length > 0 && path[0] === 'isLobbyOpen') {
-        io.of(BIDDER_NSP).emit('action', chat.actions.toggleLobby())
+        const openState = lhs
+        console.log(openState)
+        io.of(BIDDER_NSP).emit('action', chat.actions.setLobbyOpenState(openState))
       }
 
       if(path.length > 0 && path[0] === 'mutedUserIds') {

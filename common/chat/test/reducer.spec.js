@@ -35,6 +35,13 @@ describe(`${name} reducer`, () => {
     expect(state.isLobbyOpen).to.be.false
   })
 
+  it(`should handle ${a.SET_LOBBY_OPEN_STATE}`, () => {
+    const nextState = reducer(initialState, a.setLobbyOpenState(true))
+    expect(nextState.isLobbyOpen).to.be.true
+    const state = reducer(nextState, a.setLobbyOpenState(false))
+    expect(state.isLobbyOpen).to.be.false
+  })
+
   it(`should handle ${a.TOGGLE_MUTED_USER_ID}`, () => {
     const userId = 515
     const nextState = reducer(initialState, a.toggleMutedUserId(userId))
